@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.1](https://github.com/odest/catalyzer/compare/v2.0.0...v2.0.1) (2026-06-07)
+
+
+### Documentation
+
+* add comprehensive AGENTS.md documentation ([58f927e](https://github.com/odest/catalyzer/commit/58f927e2603b8921578fdf290150cb4f85274b79))
+
+
+### Build System
+
+* **deps-dev:** bump turbo from 2.9.6 to 2.9.14 ([#68](https://github.com/odest/catalyzer/issues/68)) ([00905df](https://github.com/odest/catalyzer/commit/00905df14ba52fd6313c18cab63ef5640c08b046))
+* **deps:** bump mermaid from 11.14.0 to 11.15.0 ([#65](https://github.com/odest/catalyzer/issues/65)) ([4413c17](https://github.com/odest/catalyzer/commit/4413c17032dc1fe67c6420c95ef7956ab14476c4))
+* **deps:** bump next from 16.2.4 to 16.2.6 ([#66](https://github.com/odest/catalyzer/issues/66)) ([2efe049](https://github.com/odest/catalyzer/commit/2efe0495b72e13f8ebdea1db2f700b08a051f0f3))
+
 ## [2.0.0](https://github.com/odest/catalyzer/compare/v1.5.0...v2.0.0) (2026-05-10)
 
 
