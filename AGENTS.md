@@ -1,0 +1,159 @@
+# Catalyzer
+
+Catalyzer is a production-grade starter template for building cross-platform apps from a single codebase. One set of pages and components ships to web (SSR + PWA), desktop (Windows, macOS, Linux), and mobile (Android, iOS). End users scaffold a new project with `npm create catalyzer@latest`, which clones the template, renames identifiers, and optionally initializes git and installs dependencies.
+
+The web app (`apps/web`) runs as a standard Next.js 16 application with server-side rendering, a Fumadocs-powered documentation site, and Serwist-based PWA support. The native app (`apps/native`) takes the same Next.js codebase but builds it as a static HTML export, which Tauri 2 loads into a Rust-backed system webview. Both apps import their pages, hooks, stores, and layout components from `packages/core`, and their design system primitives from `packages/ui`. A change to a button in `packages/ui` shows up everywhere.
+
+The project includes 40+ OKLCh color themes with light/dark variants, type-safe i18n for 10 languages via next-intl, a command palette (Cmd+K), keyboard shortcuts, and a sidebar dashboard layout. State management uses Zustand with localStorage persistence. Styling uses Tailwind CSS v4 with shadcn/ui components built on Radix UI.
+
+The CLI package (`packages/cli`, published as `create-catalyzer` on npm) is independently versioned. CI/CD runs through GitHub Actions with Release Please for Conventional Commits-based versioning and automated changelogs.
+
+## Setup and commands
+
+```bash
+# Install: always use pnpm, never npm/yarn
+pnpm install
+
+# Development (starts web + native in parallel)
+pnpm dev
+
+# Individual targets
+pnpm web dev               # Web only (http://localhost:3000)
+pnpm tauri dev             # Desktop only
+pnpm tauri android dev     # Android
+pnpm tauri ios dev         # iOS
+
+# Quality gates (CI runs all four on every PR)
+pnpm format:check          # Prettier check
+pnpm lint                  # ESLint (flat config, warnings only)
+pnpm typecheck             # tsc --noEmit across all workspaces
+pnpm build                 # Full production build
+
+# Utilities
+pnpm format                # Auto-format all code
+pnpm clean                 # Remove build artifacts
+pnpm shadcn add <name>     # Add shadcn/ui component to packages/ui
+pnpm deps:check            # Check for outdated deps
+pnpm deps:update           # Interactive update
+```
+
+All tasks are Turborepo-aware. Run from the repo root; never `cd` into a package to run scripts.
+
+## Monorepo architecture
+
+```
+apps/
+  web/                Next.js (SSR), web app, landing page, docs (Fumadocs), PWA (Serwist)
+  native/             Next.js (static export) + Tauri 2, desktop and mobile
+
+packages/
+  core/               Shared business logic: pages, components, hooks, stores, providers, config
+  ui/                 Design system: shadcn/ui primitives, 40+ themes, global styles (Tailwind v4)
+  i18n/               10-language type-safe translations (next-intl), SSR and static support
+  cli/                Scaffolding CLI: `npm create catalyzer@latest` (published to npm)
+  eslint-config/      Shared ESLint flat config (base, next, react-internal)
+  typescript-config/  Shared tsconfig presets (base, nextjs, react-library)
+```
+
+### Dependency flow
+
+```
+apps/web & apps/native
+  └─ @workspace/core
+       ├─ @workspace/ui
+       └─ @workspace/i18n
+```
+
+Both apps import pages, layouts, and state from `packages/core`. Do not put platform-specific UI logic in `packages/core`; use the `@tauri-apps/api` guard pattern already in place.
+
+## Coding standards
+
+### TypeScript
+
+- Strict mode is on globally (`strict: true`, `noUncheckedIndexedAccess: true`).
+- Target: `ES2022`. Module: `NodeNext`.
+- All new code must be TypeScript. No `.js` files in `packages/` or `apps/` source directories.
+
+### Formatting (Prettier)
+
+- Double quotes, no semicolons, 2-space indent, trailing commas (`es5`), LF line endings.
+- Tailwind class sorting is enforced via `prettier-plugin-tailwindcss`.
+- Stylesheet reference: `packages/ui/src/styles/globals.css`.
+- `cn` and `cva` are recognized by the Tailwind sorter.
+
+### Linting (ESLint)
+
+- Flat config (`eslint.config.mjs` per package).
+- `eslint-plugin-only-warn` is active, so all lint violations are warnings, not errors.
+- Turbo env-var checking is on (`turbo/no-undeclared-env-vars`).
+
+### Commit messages
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/). Release Please parses these to auto-generate changelogs.
+
+| Prefix      | Purpose                             |
+| ----------- | ----------------------------------- |
+| `feat:`     | New feature                         |
+| `fix:`      | Bug fix                             |
+| `docs:`     | Documentation only                  |
+| `style:`    | Formatting, no logic                |
+| `refactor:` | Refactor, no behavior change        |
+| `perf:`     | Performance improvement             |
+| `test:`     | Adding/fixing tests                 |
+| `deps:`     | Dependency updates                  |
+| `ci:`       | CI config changes                   |
+| `chore:`    | Maintenance (hidden from changelog) |
+
+## Architecture boundaries
+
+### Do
+
+- Add new UI primitives to `packages/ui/src/components/`. Use shadcn/ui patterns.
+- Add shared pages to `packages/core/src/pages/`, hooks to `hooks/`, stores to `stores/`.
+- Add new translations to all 10 JSON files in `packages/i18n/src/messages/` (de, en, es, fr, it, ja, pt, ru, tr, zh).
+- Use `@workspace/ui`, `@workspace/core`, `@workspace/i18n` workspace imports, never relative paths across package boundaries.
+- Export new modules via the `exports` field in the respective `package.json`.
+
+### Do not
+
+- Do not modify `packages/eslint-config/` or `packages/typescript-config/` without explicit approval.
+- Do not add app-specific dependencies to shared packages (`core`, `ui`, `i18n`).
+- Do not modify `release-please-config.json`, `.release-please-manifest.json`, or GitHub workflow files without explicit approval.
+- Do not use `npm` or `yarn`. This repo uses pnpm exclusively (v10+, corepack-managed).
+- Do not add `"use server"` directives in `packages/core`. It must stay runtime-agnostic for static export.
+- Do not edit auto-generated directories: `.next/`, `.source/`, `.turbo/`, `dist/`, `gen/`, `node_modules/`.
+
+## Config locations
+
+| What                  | Where                                              |
+| --------------------- | -------------------------------------------------- |
+| Site metadata         | `packages/core/src/config/site.ts`                 |
+| Theme definitions     | `packages/core/src/config/themes.ts`               |
+| Navigation config     | `packages/core/src/config/navigation.ts`           |
+| Global CSS + themes   | `packages/ui/src/styles/globals.css`, `themes.css` |
+| Tauri config          | `apps/native/src-tauri/tauri.conf.json`            |
+| Web Next.js config    | `apps/web/next.config.ts`                          |
+| Native Next.js config | `apps/native/next.config.ts`                       |
+| PWA service worker    | `apps/web/app/sw.ts`                               |
+| Docs content (MDX)    | `apps/web/content/docs/`                           |
+
+## Gotchas
+
+- `apps/native` sets `output: "export"` in Next.js config. API routes, server components, and `revalidate` will not work there.
+- This project uses Tailwind CSS v4 with `@tailwindcss/postcss`. Configuration lives in `globals.css`, not `tailwind.config.ts`.
+- `packages/i18n` serves both SSR (web) and static (native). The routing config differs per app. Check `apps/native/src/i18n/request.ts` for the static variant.
+- Always add shadcn/ui components via `pnpm shadcn add <name>` from root. They land in `packages/ui/src/components/`.
+- `dev` and `clean` tasks have `cache: false` in Turborepo. Everything else is cacheable.
+- The repo requires squash merging with PR title as commit message. This keeps a linear history for Release Please.
+
+## Testing
+
+- The CLI package (`packages/cli`) uses Vitest. Run with `pnpm --filter create-catalyzer test`.
+- No test framework is configured for other packages yet. When adding tests, use Vitest and co-locate test files next to source (`*.test.ts`).
+
+## Prerequisites
+
+- Node.js >= 20
+- pnpm >= 10 (via corepack: `corepack enable`)
+- Rust (latest stable), required only for native/desktop/mobile builds
+- Platform-specific tools for native builds: see [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/)
