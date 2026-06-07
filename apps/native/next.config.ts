@@ -15,4 +15,4 @@ const nextConfig: NextConfig = {
   transpilePackages: ["@workspace/ui", "@workspace/core", "@workspace/i18n"],
 }
 
-export default withNextIntl(nextConfig)
+export default withNextIntl(nextConfig) as NextConfig
