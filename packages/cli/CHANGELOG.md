@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.0...create-catalyzer@v0.1.1) (2026-06-08)
+
+
+### Documentation
+
+* **cli:** Add AGENTS.md template and generate file during scaffold ([18306e7](https://github.com/odest/catalyzer/commit/18306e7ca47a51d299dbc51bdd3b2639aaaa1bad))
+
 ## [0.1.0](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.0.1...create-catalyzer@v0.1.0) (2026-05-10)
 
 
