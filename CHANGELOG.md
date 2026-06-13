@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.2](https://github.com/odest/catalyzer/compare/v2.0.1...v2.0.2) (2026-06-13)
+
+
+### Documentation
+
+* **cli:** Add AGENTS.md template and generate file during scaffold ([18306e7](https://github.com/odest/catalyzer/commit/18306e7ca47a51d299dbc51bdd3b2639aaaa1bad))
+
+
+### Build System
+
+* **deps-dev:** bump esbuild from 0.27.7 to 0.28.1 ([#73](https://github.com/odest/catalyzer/issues/73)) ([37e4141](https://github.com/odest/catalyzer/commit/37e41419199250196c4b1c606cdddb30fbbd4d36))
+
 ## [2.0.1](https://github.com/odest/catalyzer/compare/v2.0.0...v2.0.1) (2026-06-07)
 
 
