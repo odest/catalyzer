@@ -1,32 +1,32 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import type { ReactNode } from "react"
-import { cn } from "@workspace/ui/lib/utils"
-import { Logo } from "@workspace/ui/components/landing/logo"
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { cn } from "@workspace/ui/lib/utils";
+import { Logo } from "@workspace/ui/components/landing/logo";
 import {
   GithubIcon,
   MessageSquareIcon,
   BugIcon,
   GitPullRequestIcon,
-} from "lucide-react"
-import { ModeSwitch } from "@workspace/core/components/common/mode-switch"
-import { AnimatedContainer } from "@workspace/ui/components/landing/animated-container"
-import { TextHoverEffect } from "@workspace/ui/components/landing/text-hover-effect"
-import { BorderBeam } from "@workspace/ui/components/landing/border-beam"
-import { siteConfig } from "@workspace/core/config/site"
+} from "lucide-react";
+import { ModeSwitch } from "@workspace/core/components/common/mode-switch";
+import { AnimatedContainer } from "@workspace/ui/components/landing/animated-container";
+import { TextHoverEffect } from "@workspace/ui/components/landing/text-hover-effect";
+import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
+import { siteConfig } from "@workspace/core/config/site";
 
 type FooterLink = {
-  title: string
-  href: string
-  isExternal: boolean
-  icon?: ReactNode
-}
+  title: string;
+  href: string;
+  isExternal: boolean;
+  icon?: ReactNode;
+};
 
 type FooterSection = {
-  label: string
-  links: FooterLink[]
-}
+  label: string;
+  links: FooterLink[];
+};
 
 const footerLinks: FooterSection[] = [
   {
@@ -97,7 +97,7 @@ const footerLinks: FooterSection[] = [
       },
     ],
   },
-]
+];
 
 export function Footer() {
   return (
@@ -160,5 +160,5 @@ export function Footer() {
         size={200}
       />
     </footer>
-  )
+  );
 }

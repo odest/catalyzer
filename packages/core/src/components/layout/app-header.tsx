@@ -1,54 +1,56 @@
-"use client"
+"use client";
 
-import { type ComponentType, Fragment } from "react"
-import { Search } from "lucide-react"
-import { Kbd } from "@workspace/ui/components/kbd"
-import { Button } from "@workspace/ui/components/button"
-import { Separator } from "@workspace/ui/components/separator"
-import { SidebarTrigger } from "@workspace/ui/components/sidebar"
+import { type ComponentType, Fragment } from "react";
+import { Search } from "lucide-react";
+import { Kbd } from "@workspace/ui/components/kbd";
+import { Button } from "@workspace/ui/components/button";
+import { Separator } from "@workspace/ui/components/separator";
+import { SidebarTrigger } from "@workspace/ui/components/sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@workspace/ui/components/breadcrumb"
-import { NotificationCenter } from "@workspace/core/components/common/notification-center"
-import { ModeToggle } from "@workspace/core/components/common/mode-toggle"
-import { LanguageToggle } from "@workspace/core/components/common/language-toggle"
-import { navigationData } from "@workspace/core/config/navigation"
-import { useTranslations } from "@workspace/i18n"
-import { formatHotkeyDisplay } from "@workspace/core/lib/utils"
-import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store"
+} from "@workspace/ui/components/breadcrumb";
+import { NotificationCenter } from "@workspace/core/components/common/notification-center";
+import { ModeToggle } from "@workspace/core/components/common/mode-toggle";
+import { LanguageToggle } from "@workspace/core/components/common/language-toggle";
+import { navigationData } from "@workspace/core/config/navigation";
+import { useTranslations } from "@workspace/i18n";
+import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
+import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
 
 function formatSegment(segment: string): string {
   return segment
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ")
+    .join(" ");
 }
 
 interface AppHeaderProps {
   LinkComponent?:
     | ComponentType<{
-        href: string
-        children: React.ReactNode
-        onClick?: () => void
-        className?: string
+        href: string;
+        children: React.ReactNode;
+        onClick?: () => void;
+        className?: string;
       }>
-    | "a"
-  pathname: string
+    | "a";
+  pathname: string;
 }
 
 export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
-  const segments = pathname.split("/").filter((s) => Boolean(s) && s !== "home")
-  const t = useTranslations("Navigation")
-  const isHome = pathname === "/home" || pathname === "/"
+  const segments = pathname
+    .split("/")
+    .filter((s) => Boolean(s) && s !== "home");
+  const t = useTranslations("Navigation");
+  const isHome = pathname === "/home" || pathname === "/";
   const getBreadcrumbHref = (href: string) => {
-    const navItem = navigationData.navMain.find((item) => item.url === href)
-    return navItem?.href ?? href
-  }
-  const toggleCommandPalette = useCommandPaletteStore((s) => s.toggle)
+    const navItem = navigationData.navMain.find((item) => item.url === href);
+    return navItem?.href ?? href;
+  };
+  const toggleCommandPalette = useCommandPaletteStore((s) => s.toggle);
 
   return (
     <header className="hidden h-12 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 md:flex">
@@ -70,12 +72,12 @@ export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
             </BreadcrumbItem>
 
             {segments.map((segment, index) => {
-              const href = `/${segments.slice(0, index + 1).join("/")}`
-              const breadcrumbHref = getBreadcrumbHref(href)
-              const isLast = index === segments.length - 1
+              const href = `/${segments.slice(0, index + 1).join("/")}`;
+              const breadcrumbHref = getBreadcrumbHref(href);
+              const isLast = index === segments.length - 1;
               // Try to get translation, fallback to formatted segment
               const displayText =
-                t(segment) === segment ? formatSegment(segment) : t(segment)
+                t(segment) === segment ? formatSegment(segment) : t(segment);
 
               return (
                 <Fragment key={href}>
@@ -93,7 +95,7 @@ export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
                     )}
                   </BreadcrumbItem>
                 </Fragment>
-              )
+              );
             })}
           </BreadcrumbList>
         </Breadcrumb>
@@ -134,5 +136,5 @@ export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
         </div>
       </div>
     </header>
-  )
+  );
 }

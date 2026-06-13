@@ -8,29 +8,10 @@
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
   "files": { "ignoreUnknown": false },
   "formatter": {
-    "enabled": true,
-    "formatWithErrors": false,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineEnding": "crlf",
-    "lineWidth": 80,
-    "attributePosition": "auto",
-    "bracketSameLine": false,
-    "bracketSpacing": true,
-    "expand": "auto",
-    "useEditorconfig": true,
     "includes": [
       "**",
       "!apps/web/content/docs/**/*.mdx",
-      "!packages/cli/templates/docs/**/*.mdx",
-      "!**/CHANGELOG.md",
-      "!**/dist/",
-      "!**/node_modules/",
-      "!**/.next/",
-      "!**/.turbo/",
-      "!**/coverage/",
-      "!**/pnpm-lock.yaml",
-      "!**/.pnpm-store/"
+      "!packages/cli/templates/docs/**/*.mdx"
     ]
   },
   "linter": {
@@ -46,26 +27,6 @@
       "suspicious": "warn"
     },
     "includes": ["**", "!dist/**", "!.next/**", "!.source/**", "!.turbo/**"]
-  },
-  "javascript": {
-    "formatter": {
-      "jsxQuoteStyle": "double",
-      "quoteProperties": "asNeeded",
-      "trailingCommas": "es5",
-      "semicolons": "asNeeded",
-      "arrowParentheses": "always",
-      "bracketSameLine": false,
-      "quoteStyle": "double",
-      "attributePosition": "auto",
-      "bracketSpacing": true
-    },
-    "globals": []
-  },
-  "html": {
-    "formatter": {
-      "indentScriptAndStyle": false,
-      "selfCloseVoidElements": "always"
-    }
   },
   "css": {
     "parser": {

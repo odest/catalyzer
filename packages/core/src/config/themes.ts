@@ -40,13 +40,13 @@ export type Themes =
   | "twitter"
   | "vercel"
   | "vintage-paper"
-  | "violet-bloom"
+  | "violet-bloom";
 
 export const themes: {
-  name: Themes
-  label: string
-  lightPalette: [string, string, string, string, string]
-  darkPalette: [string, string, string, string, string]
+  name: Themes;
+  label: string;
+  lightPalette: [string, string, string, string, string];
+  darkPalette: [string, string, string, string, string];
 }[] = [
   {
     name: "default",
@@ -324,4 +324,4 @@ export const themes: {
     lightPalette: ["#7033ff", "#e2ebff", "#edf0f4", "#e7e7ee", "#fdfdfd"],
     darkPalette: ["#8c5cff", "#1e293b", "#2a2c33", "#33353a", "#1a1b1e"],
   },
-]
+];

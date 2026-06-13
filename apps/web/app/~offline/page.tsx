@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 export default function OfflinePage() {
   return (
@@ -80,5 +80,5 @@ export default function OfflinePage() {
         your connection and try again.
       </p>
     </>
-  )
+  );
 }

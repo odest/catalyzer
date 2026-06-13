@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowRight, Play, Rocket } from "lucide-react"
-import { fetchLatestGithubVersion } from "@workspace/core/lib/utils"
-import { Button } from "@workspace/ui/components/button"
-import { AnimatedGroup } from "@workspace/ui/components/landing/animated-group"
-import { LogoCloud } from "@workspace/ui/components/landing/logo-cloud"
-import { TextEffect } from "@workspace/ui/components/landing/text-effect"
-import { BorderBeam } from "@workspace/ui/components/landing/border-beam"
-import { transitionVariants } from "@/lib/animations"
-import { siteConfig } from "@workspace/core/config/site"
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, Play, Rocket } from "lucide-react";
+import { fetchLatestGithubVersion } from "@workspace/core/lib/utils";
+import { Button } from "@workspace/ui/components/button";
+import { AnimatedGroup } from "@workspace/ui/components/landing/animated-group";
+import { LogoCloud } from "@workspace/ui/components/landing/logo-cloud";
+import { TextEffect } from "@workspace/ui/components/landing/text-effect";
+import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
+import { transitionVariants } from "@/lib/animations";
+import { siteConfig } from "@workspace/core/config/site";
 
 export default function HeroSection() {
-  const [latestTag, setLatestTag] = useState<string | null>(null)
+  const [latestTag, setLatestTag] = useState<string | null>(null);
 
   useEffect(() => {
     fetchLatestGithubVersion().then((tag) => {
-      if (tag) setLatestTag(tag)
-    })
-  }, [])
+      if (tag) setLatestTag(tag);
+    });
+  }, []);
 
   return (
     <main className="overflow-hidden">
@@ -248,5 +248,5 @@ export default function HeroSection() {
       </section>
       <LogoCloud />
     </main>
-  )
+  );
 }

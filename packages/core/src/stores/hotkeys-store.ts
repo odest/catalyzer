@@ -1,10 +1,10 @@
-import { create } from "zustand"
+import { create } from "zustand";
 
 interface HotkeysDialogState {
-  close: () => void
-  isOpen: boolean
-  open: () => void
-  toggle: () => void
+  close: () => void;
+  isOpen: boolean;
+  open: () => void;
+  toggle: () => void;
 }
 
 export const useHotkeysDialogStore = create<HotkeysDialogState>()((set) => ({
@@ -12,4 +12,4 @@ export const useHotkeysDialogStore = create<HotkeysDialogState>()((set) => ({
   toggle: () => set((state) => ({ isOpen: !state.isOpen })),
   open: () => set({ isOpen: true }),
   close: () => set({ isOpen: false }),
-}))
+}));

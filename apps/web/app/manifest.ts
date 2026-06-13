@@ -1,5 +1,5 @@
-import type { MetadataRoute } from "next"
-import { siteConfig } from "@workspace/core/config/site"
+import type { MetadataRoute } from "next";
+import { siteConfig } from "@workspace/core/config/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -25,5 +25,5 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "any",
       },
     ],
-  }
+  };
 }

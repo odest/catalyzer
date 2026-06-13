@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { Greet } from "@workspace/core/components/common/greet"
-import { useTranslations } from "@workspace/i18n"
+import { Greet } from "@workspace/core/components/common/greet";
+import { useTranslations } from "@workspace/i18n";
 
 export function HomePage() {
-  const t = useTranslations("HomePage")
+  const t = useTranslations("HomePage");
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-4 p-4">
@@ -13,5 +13,5 @@ export function HomePage() {
       </h1>
       <Greet />
     </div>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import type * as React from "react"
-import { useCallback } from "react"
-import type { ComponentType } from "react"
-import { MainNav } from "@workspace/core/components/navigation/main-nav"
-import { ProjectsNav } from "@workspace/core/components/navigation/projects-nav"
-import { SecondaryNav } from "@workspace/core/components/navigation/secondary-nav"
-import { UserNav } from "@workspace/core/components/navigation/user-nav"
+import type * as React from "react";
+import { useCallback } from "react";
+import type { ComponentType } from "react";
+import { MainNav } from "@workspace/core/components/navigation/main-nav";
+import { ProjectsNav } from "@workspace/core/components/navigation/projects-nav";
+import { SecondaryNav } from "@workspace/core/components/navigation/secondary-nav";
+import { UserNav } from "@workspace/core/components/navigation/user-nav";
 import {
   Sidebar,
   SidebarContent,
@@ -16,23 +16,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@workspace/ui/components/sidebar"
-import { navigationData } from "@workspace/core/config/navigation"
-import { useSidebarStore } from "@workspace/core/stores/sidebar-store"
-import { useMounted } from "@workspace/core/hooks/use-mounted"
-import { Logo } from "@workspace/ui/components/landing/logo"
-import { siteConfig } from "@workspace/core/config/site"
+} from "@workspace/ui/components/sidebar";
+import { navigationData } from "@workspace/core/config/navigation";
+import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
+import { useMounted } from "@workspace/core/hooks/use-mounted";
+import { Logo } from "@workspace/ui/components/landing/logo";
+import { siteConfig } from "@workspace/core/config/site";
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   LinkComponent?:
     | ComponentType<{
-        href: string
-        children: React.ReactNode
-        onClick?: () => void
-        className?: string
+        href: string;
+        children: React.ReactNode;
+        onClick?: () => void;
+        className?: string;
       }>
-    | "a"
-  pathname: string
+    | "a";
+  pathname: string;
 }
 
 export function AppSidebar({
@@ -40,17 +40,17 @@ export function AppSidebar({
   LinkComponent = "a",
   ...props
 }: AppSidebarProps) {
-  const { isMobile, setOpenMobile } = useSidebar()
-  const { variant } = useSidebarStore()
-  const mounted = useMounted()
+  const { isMobile, setOpenMobile } = useSidebar();
+  const { variant } = useSidebarStore();
+  const mounted = useMounted();
 
   const handleLinkClick = useCallback(() => {
     if (isMobile) {
-      setOpenMobile(false)
+      setOpenMobile(false);
     }
-  }, [isMobile, setOpenMobile])
+  }, [isMobile, setOpenMobile]);
 
-  if (!mounted) return <></>
+  if (!mounted) return <></>;
 
   return (
     <Sidebar collapsible="icon" variant={variant} {...props}>
@@ -93,5 +93,5 @@ export function AppSidebar({
         <UserNav user={navigationData.user} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import type * as React from "react"
-import { Slot } from "radix-ui"
+import type * as React from "react";
+import { Slot } from "radix-ui";
 
-import { cn } from "@workspace/ui/lib/utils"
-import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-react"
+import { cn } from "@workspace/ui/lib/utils";
+import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
 
 function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -12,7 +12,7 @@ function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) {
       data-slot="breadcrumb"
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
@@ -25,7 +25,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
       data-slot="breadcrumb-list"
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
@@ -35,7 +35,7 @@ function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
       data-slot="breadcrumb-item"
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbLink({
@@ -43,9 +43,9 @@ function BreadcrumbLink({
   className,
   ...props
 }: React.ComponentProps<"a"> & {
-  asChild?: boolean
+  asChild?: boolean;
 }) {
-  const Comp = asChild ? Slot.Root : "a"
+  const Comp = asChild ? Slot.Root : "a";
 
   return (
     <Comp
@@ -53,7 +53,7 @@ function BreadcrumbLink({
       data-slot="breadcrumb-link"
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
@@ -66,7 +66,7 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
       role="link"
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbSeparator({
@@ -84,7 +84,7 @@ function BreadcrumbSeparator({
     >
       {children ?? <ChevronRightIcon />}
     </li>
-  )
+  );
 }
 
 function BreadcrumbEllipsis({
@@ -105,7 +105,7 @@ function BreadcrumbEllipsis({
       <MoreHorizontalIcon />
       <span className="sr-only">More</span>
     </span>
-  )
+  );
 }
 
 export {
@@ -116,4 +116,4 @@ export {
   BreadcrumbPage,
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
-}
+};

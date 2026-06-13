@@ -4,16 +4,16 @@ import {
   FileText,
   type LucideIcon,
   MessageCircle,
-} from "lucide-react"
+} from "lucide-react";
 
 export interface NotificationItem {
-  avatar?: string
-  description: string
-  icon?: LucideIcon
-  id: string
-  time: string
-  title: string
-  unread: boolean
+  avatar?: string;
+  description: string;
+  icon?: LucideIcon;
+  id: string;
+  time: string;
+  title: string;
+  unread: boolean;
 }
 
 export const notifications: NotificationItem[] = [
@@ -57,4 +57,4 @@ export const notifications: NotificationItem[] = [
     unread: false,
     icon: Tag,
   },
-]
+];

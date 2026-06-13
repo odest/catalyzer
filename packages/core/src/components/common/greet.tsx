@@ -1,79 +1,79 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { toast } from "sonner"
-import { isTauri, invoke } from "@tauri-apps/api/core"
-import { Input } from "@workspace/ui/components/input"
-import { Button } from "@workspace/ui/components/button"
-import { useTranslations } from "@workspace/i18n"
-import { useIsMobile } from "@workspace/ui/hooks/use-mobile"
+import { useState } from "react";
+import { toast } from "sonner";
+import { isTauri, invoke } from "@tauri-apps/api/core";
+import { Input } from "@workspace/ui/components/input";
+import { Button } from "@workspace/ui/components/button";
+import { useTranslations } from "@workspace/i18n";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 
 interface GreetResponse {
-  message_key: string
-  name: string
-  source: string
+  message_key: string;
+  name: string;
+  source: string;
 }
 
 export const Greet = () => {
-  const [name, setName] = useState("")
-  const t = useTranslations("Greet")
-  const isMobile = useIsMobile()
+  const [name, setName] = useState("");
+  const t = useTranslations("Greet");
+  const isMobile = useIsMobile();
 
-  const toastPosition = isMobile ? "top-center" : "bottom-right"
+  const toastPosition = isMobile ? "top-center" : "bottom-right";
 
   const handleGreet = async () => {
     if (!name || name.trim() === "") {
       toast.warning(t("missingName"), {
         description: t("missingNameDesc"),
         position: toastPosition,
-      })
-      return
+      });
+      return;
     }
 
     const fetchGreeting = async (): Promise<GreetResponse> => {
-      await new Promise((res) => setTimeout(res, 1000))
+      await new Promise((res) => setTimeout(res, 1000));
 
       if (isTauri()) {
-        return await invoke<GreetResponse>("greet", { name })
+        return await invoke<GreetResponse>("greet", { name });
       }
 
       const response = await fetch("/api/greet", {
         method: "POST",
         body: JSON.stringify({ name }),
         headers: { "Content-Type": "application/json" },
-      })
+      });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      return await response.json()
-    }
+      return await response.json();
+    };
 
     toast.promise(fetchGreeting(), {
       loading: isTauri() ? t("loadingTauri") : t("loadingWeb"),
       success: (data: GreetResponse) => {
-        const translationKey = data.message_key as Parameters<typeof t>[0]
+        const translationKey = data.message_key as Parameters<typeof t>[0];
 
         return t(translationKey, {
           name: data.name,
           source: data.source,
-        })
+        });
       },
       error: t("error"),
       position: toastPosition,
-    })
+    });
 
-    setName("")
-  }
+    setName("");
+  };
 
   return (
     <div>
       <form
         className="flex gap-2"
         onSubmit={(e) => {
-          e.preventDefault()
-          handleGreet()
+          e.preventDefault();
+          handleGreet();
         }}
       >
         <Input
@@ -85,5 +85,5 @@ export const Greet = () => {
         <Button type="submit">{t("button")}</Button>
       </form>
     </div>
-  )
-}
+  );
+};

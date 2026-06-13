@@ -1,11 +1,11 @@
-import { redirect } from "@workspace/i18n/navigation"
+import { redirect } from "@workspace/i18n/navigation";
 
 export default async function Dashboard({
   params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params
+  const { locale } = await params;
 
-  redirect({ href: "/dashboard/overview", locale })
+  redirect({ href: "/dashboard/overview", locale });
 }

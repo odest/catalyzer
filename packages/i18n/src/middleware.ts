@@ -1,1 +1,1 @@
-export { default } from "next-intl/middleware"
+export { default } from "next-intl/middleware";

@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Apple = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 814 1000" xmlSpace="preserve">
@@ -7,6 +7,6 @@ const Apple = (props: SVGProps<SVGSVGElement>) => (
       fill="currentColor"
     />
   </svg>
-)
+);
 
-export { Apple }
+export { Apple };

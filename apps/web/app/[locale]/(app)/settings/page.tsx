@@ -1,5 +1,5 @@
-import { SettingsPage } from "@workspace/core/pages/SettingsPage"
+import { SettingsPage } from "@workspace/core/pages/SettingsPage";
 
 export default function Settings() {
-  return <SettingsPage />
+  return <SettingsPage />;
 }

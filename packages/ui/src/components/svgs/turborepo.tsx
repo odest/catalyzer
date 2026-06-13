@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Turborepo = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} fill="none" viewBox="0 0 100 100">
@@ -26,6 +26,6 @@ const Turborepo = (props: SVGProps<SVGSVGElement>) => (
       </linearGradient>
     </defs>
   </svg>
-)
+);
 
-export { Turborepo }
+export { Turborepo };

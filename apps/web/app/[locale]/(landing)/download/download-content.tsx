@@ -1,41 +1,43 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect, useCallback } from "react"
-import Link from "next/link"
-import { ArrowDown } from "lucide-react"
-import { Button } from "@workspace/ui/components/button"
-import { Logo } from "@workspace/ui/components/landing/logo"
-import { AnimatedGroup } from "@workspace/ui/components/landing/animated-group"
-import { TextEffect } from "@workspace/ui/components/landing/text-effect"
-import { transitionVariants } from "@/lib/animations"
-import { detectPlatform, type Platform } from "@/lib/detect-platform"
-import { platformConfig } from "./platform-mappings"
-import type { ReleaseData } from "@/lib/github-releases"
-import PlatformCards from "../components/platform-cards"
-import { siteConfig } from "@workspace/core/config/site"
+import type React from "react";
+import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
+import { ArrowDown } from "lucide-react";
+import { Button } from "@workspace/ui/components/button";
+import { Logo } from "@workspace/ui/components/landing/logo";
+import { AnimatedGroup } from "@workspace/ui/components/landing/animated-group";
+import { TextEffect } from "@workspace/ui/components/landing/text-effect";
+import { transitionVariants } from "@/lib/animations";
+import { detectPlatform, type Platform } from "@/lib/detect-platform";
+import { platformConfig } from "./platform-mappings";
+import type { ReleaseData } from "@/lib/github-releases";
+import PlatformCards from "../components/platform-cards";
+import { siteConfig } from "@workspace/core/config/site";
 
 interface DownloadContentProps {
-  release: ReleaseData | null
+  release: ReleaseData | null;
 }
 
 export default function DownloadContent({ release }: DownloadContentProps) {
-  const [platform, setPlatform] = useState<Platform>("unknown")
+  const [platform, setPlatform] = useState<Platform>("unknown");
 
   useEffect(() => {
-    setPlatform(detectPlatform())
-  }, [])
+    setPlatform(detectPlatform());
+  }, []);
 
   const scrollToPlatforms = useCallback((e: React.MouseEvent) => {
-    e.preventDefault()
-    document.getElementById("platforms")?.scrollIntoView({ behavior: "smooth" })
-  }, [])
+    e.preventDefault();
+    document
+      .getElementById("platforms")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
-  const { label, icon, primaryAssetKey } = platformConfig[platform]
+  const { label, icon, primaryAssetKey } = platformConfig[platform];
 
   const primaryUrl =
     (release?.assets && primaryAssetKey && release.assets[primaryAssetKey]) ||
-    "#"
+    "#";
 
   return (
     <main className="overflow-hidden">
@@ -176,5 +178,5 @@ export default function DownloadContent({ release }: DownloadContentProps) {
         </AnimatedGroup>
       </section>
     </main>
-  )
+  );
 }

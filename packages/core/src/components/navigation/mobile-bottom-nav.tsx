@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import type { ComponentType } from "react"
-import type { LucideIcon } from "lucide-react"
-import { motion, AnimatePresence } from "motion/react"
-import { cn } from "@workspace/ui/lib/utils"
-import { useTranslations } from "@workspace/i18n"
-import { useProfileDrawerStore } from "@workspace/core/stores/profile-drawer-store"
-import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store"
-import { BorderBeam } from "@workspace/ui/components/landing/border-beam"
+import type { ComponentType } from "react";
+import type { LucideIcon } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { cn } from "@workspace/ui/lib/utils";
+import { useTranslations } from "@workspace/i18n";
+import { useProfileDrawerStore } from "@workspace/core/stores/profile-drawer-store";
+import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
+import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
 
 export interface MobileBottomNavItem {
-  href?: string
-  icon: LucideIcon
-  isActive?: boolean
-  title: string
-  translationKey: string
-  url: string
+  href?: string;
+  icon: LucideIcon;
+  isActive?: boolean;
+  title: string;
+  translationKey: string;
+  url: string;
 }
 
 export interface MobileBottomNavProps {
-  className?: string
-  items: MobileBottomNavItem[]
+  className?: string;
+  items: MobileBottomNavItem[];
   LinkComponent?:
     | ComponentType<{
-        href: string
-        children: React.ReactNode
-        onClick?: () => void
-        className?: string
+        href: string;
+        children: React.ReactNode;
+        onClick?: () => void;
+        className?: string;
       }>
-    | "a"
-  pathname: string
+    | "a";
+  pathname: string;
 }
 
 const buttonVariants = {
@@ -37,20 +37,20 @@ const buttonVariants = {
   animate: (isSelected: boolean) => ({
     gap: isSelected ? ".5rem" : 0,
   }),
-}
+};
 
 const spanVariants = {
   initial: { width: 0, opacity: 0 },
   animate: { width: "auto", opacity: 1 },
   exit: { width: 0, opacity: 0 },
-}
+};
 
 const transition = {
   delay: 0.1,
   type: "spring" as const,
   bounce: 0,
   duration: 0.6,
-}
+};
 
 export function MobileBottomNav({
   items,
@@ -58,9 +58,9 @@ export function MobileBottomNav({
   className,
   LinkComponent = "a",
 }: MobileBottomNavProps) {
-  const t = useTranslations("Navigation")
-  const { open: openCommandPalette } = useCommandPaletteStore()
-  const { open: openProfileDrawer } = useProfileDrawerStore()
+  const t = useTranslations("Navigation");
+  const { open: openCommandPalette } = useCommandPaletteStore();
+  const { open: openProfileDrawer } = useProfileDrawerStore();
 
   return (
     <nav
@@ -79,22 +79,22 @@ export function MobileBottomNav({
       )}
     >
       {items.map((item) => {
-        const Icon = item.icon
+        const Icon = item.icon;
         const isActive =
           pathname === item.url ||
-          (item.url !== "/" && pathname.startsWith(item.url))
-        const href = item.href ?? item.url
+          (item.url !== "/" && pathname.startsWith(item.url));
+        const href = item.href ?? item.url;
 
         const handleClick = (e?: { preventDefault?: () => void }) => {
           if (item.url === "#search") {
-            e?.preventDefault?.()
-            openCommandPalette()
+            e?.preventDefault?.();
+            openCommandPalette();
           }
           if (item.url === "#profile") {
-            e?.preventDefault?.()
-            openProfileDrawer()
+            e?.preventDefault?.();
+            openProfileDrawer();
           }
-        }
+        };
 
         return (
           <LinkComponent
@@ -161,8 +161,8 @@ export function MobileBottomNav({
               </AnimatePresence>
             </motion.div>
           </LinkComponent>
-        )
+        );
       })}
     </nav>
-  )
+  );
 }

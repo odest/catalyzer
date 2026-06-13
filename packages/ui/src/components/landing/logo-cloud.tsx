@@ -1,14 +1,14 @@
-import { InfiniteSlider } from "@workspace/ui/components/landing/infinite-slider"
-import { ProgressiveBlur } from "@workspace/ui/components/landing/progressive-blur"
-import { Nextjs } from "@workspace/ui/components/svgs/nextjs"
-import { Tauri } from "@workspace/ui/components/svgs/tauri"
-import { Rust } from "@workspace/ui/components/svgs/rust"
-import { Tailwindcss } from "@workspace/ui/components/svgs/tailwindcss"
-import { React } from "@workspace/ui/components/svgs/react"
-import { Turborepo } from "@workspace/ui/components/svgs/turborepo"
-import { RadixUi } from "@workspace/ui/components/svgs/radixUi"
-import { Motion } from "@workspace/ui/components/svgs/motion"
-import { Biome } from "@workspace/ui/components/svgs/biome"
+import { InfiniteSlider } from "@workspace/ui/components/landing/infinite-slider";
+import { ProgressiveBlur } from "@workspace/ui/components/landing/progressive-blur";
+import { Nextjs } from "@workspace/ui/components/svgs/nextjs";
+import { Tauri } from "@workspace/ui/components/svgs/tauri";
+import { Rust } from "@workspace/ui/components/svgs/rust";
+import { Tailwindcss } from "@workspace/ui/components/svgs/tailwindcss";
+import { React } from "@workspace/ui/components/svgs/react";
+import { Turborepo } from "@workspace/ui/components/svgs/turborepo";
+import { RadixUi } from "@workspace/ui/components/svgs/radixUi";
+import { Motion } from "@workspace/ui/components/svgs/motion";
+import { Biome } from "@workspace/ui/components/svgs/biome";
 
 export const LogoCloud = () => (
   <section className="bg-background pt-16 pb-16 md:pb-32">
@@ -52,4 +52,4 @@ export const LogoCloud = () => (
       </div>
     </div>
   </section>
-)
+);

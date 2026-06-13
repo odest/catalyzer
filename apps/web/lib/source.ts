@@ -1,8 +1,8 @@
-import { docs } from "fumadocs-mdx:collections/server"
-import { loader } from "fumadocs-core/source"
-import { createElement } from "react"
-import { icons } from "lucide-react"
-import { locales, routing } from "@workspace/i18n/routing"
+import { docs } from "fumadocs-mdx:collections/server";
+import { loader } from "fumadocs-core/source";
+import { createElement } from "react";
+import { icons } from "lucide-react";
+import { locales, routing } from "@workspace/i18n/routing";
 
 export const source = loader({
   baseUrl: "/docs",
@@ -14,9 +14,9 @@ export const source = loader({
   },
   icon(iconString) {
     if (iconString && iconString in icons) {
-      const Icon = icons[iconString as keyof typeof icons]
-      return createElement(Icon)
+      const Icon = icons[iconString as keyof typeof icons];
+      return createElement(Icon);
     }
-    return
+    return;
   },
-})
+});

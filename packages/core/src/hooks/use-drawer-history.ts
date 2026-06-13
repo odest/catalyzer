@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
+import { useEffect } from "react";
 
 export function useDrawerHistory(
   isOpen: boolean,
   onOpenChange: (open: boolean) => void
 ) {
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) return;
 
-    window.history.pushState({ drawer: "open" }, "")
+    window.history.pushState({ drawer: "open" }, "");
 
     const handlePopState = () => {
-      onOpenChange(false)
-    }
+      onOpenChange(false);
+    };
 
-    window.addEventListener("popstate", handlePopState)
+    window.addEventListener("popstate", handlePopState);
 
     return () => {
-      window.removeEventListener("popstate", handlePopState)
+      window.removeEventListener("popstate", handlePopState);
       if (window.history.state?.drawer === "open") {
-        window.history.back()
+        window.history.back();
       }
-    }
-  }, [isOpen, onOpenChange])
+    };
+  }, [isOpen, onOpenChange]);
 }

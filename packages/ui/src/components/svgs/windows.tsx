@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Windows = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 88 88">
@@ -7,6 +7,6 @@ const Windows = (props: SVGProps<SVGSVGElement>) => (
       fill="currentColor"
     />
   </svg>
-)
+);
 
-export { Windows }
+export { Windows };

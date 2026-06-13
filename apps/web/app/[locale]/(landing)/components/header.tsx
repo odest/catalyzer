@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import React from "react"
-import Link from "next/link"
-import { Menu, X, Github } from "lucide-react"
-import { cn } from "@workspace/ui/lib/utils"
-import { Button } from "@workspace/ui/components/button"
-import { Logo } from "@workspace/ui/components/landing/logo"
-import { siteConfig } from "@workspace/core/config/site"
+import React from "react";
+import Link from "next/link";
+import { Menu, X, Github } from "lucide-react";
+import { cn } from "@workspace/ui/lib/utils";
+import { Button } from "@workspace/ui/components/button";
+import { Logo } from "@workspace/ui/components/landing/logo";
+import { siteConfig } from "@workspace/core/config/site";
 
 const menuItems = [
   { name: "Docs", href: "/docs" },
   { name: "Pricing", href: "/" },
   { name: "Download", href: "/download" },
   { name: "Showcase", href: "/" },
-]
+];
 
 export const HeroHeader = () => {
-  const [menuState, setMenuState] = React.useState(false)
-  const [isScrolled, setIsScrolled] = React.useState(false)
+  const [menuState, setMenuState] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <header>
       <nav
@@ -106,5 +106,5 @@ export const HeroHeader = () => {
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};

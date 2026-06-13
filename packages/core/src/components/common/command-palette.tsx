@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React, { useCallback } from "react"
-import { useTranslations } from "@workspace/i18n"
+import React, { useCallback } from "react";
+import { useTranslations } from "@workspace/i18n";
 import {
   Command,
   CommandEmpty,
@@ -11,36 +11,36 @@ import {
   CommandList,
   CommandShortcut,
   CommandSeparator,
-} from "@workspace/ui/components/command"
+} from "@workspace/ui/components/command";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@workspace/ui/components/dialog"
+} from "@workspace/ui/components/dialog";
 import {
   Drawer,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-} from "@workspace/ui/components/drawer"
-import { Kbd } from "@workspace/ui/components/kbd"
-import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store"
-import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store"
-import { useSidebarStore } from "@workspace/core/stores/sidebar-store"
-import { useThemeStore } from "@workspace/core/stores/theme-store"
-import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition"
-import { useIsMobile } from "@workspace/ui/hooks/use-mobile"
-import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history"
-import { useSidebar } from "@workspace/ui/components/sidebar"
-import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher"
-import { routing, localeConfig } from "@workspace/i18n/routing"
-import { themes } from "@workspace/core/config/themes"
-import { hotkeys } from "@workspace/core/config/hotkeys"
-import { formatHotkeyDisplay } from "@workspace/core/lib/utils"
-import { cn } from "@workspace/ui/lib/utils"
+} from "@workspace/ui/components/drawer";
+import { Kbd } from "@workspace/ui/components/kbd";
+import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
+import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store";
+import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
+import { useThemeStore } from "@workspace/core/stores/theme-store";
+import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
+import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history";
+import { useSidebar } from "@workspace/ui/components/sidebar";
+import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher";
+import { routing, localeConfig } from "@workspace/i18n/routing";
+import { themes } from "@workspace/core/config/themes";
+import { hotkeys } from "@workspace/core/config/hotkeys";
+import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
+import { cn } from "@workspace/ui/lib/utils";
 import {
   Sun,
   Moon,
@@ -58,15 +58,15 @@ import {
   LayoutTemplate,
   LayoutDashboard,
   CornerDownLeftIcon,
-} from "lucide-react"
+} from "lucide-react";
 
 function CommandMenuItem({
   children,
   className,
   ...props
 }: React.ComponentProps<typeof CommandItem> & {
-  "data-selected"?: string
-  "aria-selected"?: string
+  "data-selected"?: string;
+  "aria-selected"?: string;
 }) {
   return (
     <CommandItem
@@ -78,44 +78,44 @@ function CommandMenuItem({
     >
       {children}
     </CommandItem>
-  )
+  );
 }
 
 export function CommandPalette({
   navigate,
 }: {
-  navigate: (path: string) => void
+  navigate: (path: string) => void;
 }) {
-  const t = useTranslations("CommandPalette")
-  const { isOpen, close } = useCommandPaletteStore()
-  useDrawerHistory(isOpen, close)
-  const isMobile = useIsMobile()
+  const t = useTranslations("CommandPalette");
+  const { isOpen, close } = useCommandPaletteStore();
+  useDrawerHistory(isOpen, close);
+  const isMobile = useIsMobile();
   const {
     theme: activeMode,
     resolvedTheme,
     handleThemeChange,
-  } = useThemeTransition()
-  const { toggleSidebar } = useSidebar()
-  const { variant, setVariant } = useSidebarStore()
-  const { selectedTheme, setSelectedTheme } = useThemeStore()
-  const toggleHotkeysDialog = useHotkeysDialogStore((s) => s.toggle)
-  const { locale, isPending, changeLanguage } = useLanguageSwitcher()
+  } = useThemeTransition();
+  const { toggleSidebar } = useSidebar();
+  const { variant, setVariant } = useSidebarStore();
+  const { selectedTheme, setSelectedTheme } = useThemeStore();
+  const toggleHotkeysDialog = useHotkeysDialogStore((s) => s.toggle);
+  const { locale, isPending, changeLanguage } = useLanguageSwitcher();
 
   const runCommand = useCallback(
     (command: () => unknown) => {
-      close()
+      close();
       setTimeout(() => {
-        command()
-      }, 300)
+        command();
+      }, 300);
     },
     [close]
-  )
+  );
 
   const getKeysDisplay = (id: string) => {
-    const hk = hotkeys.find((h) => h.id === id)
-    if (!hk) return null
-    const keys = formatHotkeyDisplay(hk.keys)
-    const isSequence = hk.keys.includes(">")
+    const hk = hotkeys.find((h) => h.id === id);
+    if (!hk) return null;
+    const keys = formatHotkeyDisplay(hk.keys);
+    const isSequence = hk.keys.includes(">");
     return (
       <CommandShortcut className="ml-auto hidden items-center gap-1 md:flex">
         {keys.map((key, i) => (
@@ -129,11 +129,11 @@ export function CommandPalette({
           </React.Fragment>
         ))}
       </CommandShortcut>
-    )
-  }
+    );
+  };
 
   const groupClasses =
-    "p-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!"
+    "p-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!";
 
   const paletteContent = (
     <>
@@ -249,7 +249,7 @@ export function CommandPalette({
 
           <CommandGroup className={groupClasses} heading={t("language")}>
             {routing.locales.map((loc) => {
-              const config = localeConfig[loc as keyof typeof localeConfig]
+              const config = localeConfig[loc as keyof typeof localeConfig];
               return (
                 <CommandMenuItem
                   data-checked={locale === loc}
@@ -261,7 +261,7 @@ export function CommandPalette({
                   <span className="mr-2 text-base">{config.flag}</span>
                   <span>{config.nativeName}</span>
                 </CommandMenuItem>
-              )
+              );
             })}
           </CommandGroup>
 
@@ -298,7 +298,7 @@ export function CommandPalette({
                 (activeMode === "system" ? resolvedTheme : activeMode) ===
                 "dark"
                   ? themeItem.darkPalette
-                  : themeItem.lightPalette
+                  : themeItem.lightPalette;
               return (
                 <CommandMenuItem
                   key={themeItem.name}
@@ -319,7 +319,7 @@ export function CommandPalette({
                     ))}
                   </div>
                 </CommandMenuItem>
-              )
+              );
             })}
           </CommandGroup>
         </CommandList>
@@ -345,7 +345,7 @@ export function CommandPalette({
         </div>
       </div>
     </>
-  )
+  );
 
   if (isMobile) {
     return (
@@ -361,7 +361,7 @@ export function CommandPalette({
           {paletteContent}
         </DrawerContent>
       </Drawer>
-    )
+    );
   }
 
   return (
@@ -377,5 +377,5 @@ export function CommandPalette({
         {paletteContent}
       </DialogContent>
     </Dialog>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Biome = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} version="1.0" viewBox="0 0 64 55.425">
@@ -11,6 +11,6 @@ const Biome = (props: SVGProps<SVGSVGElement>) => (
       style={{ paintOrder: "markers fill stroke" }}
     />
   </svg>
-)
+);
 
-export { Biome }
+export { Biome };

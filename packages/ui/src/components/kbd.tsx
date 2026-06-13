@@ -1,4 +1,4 @@
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@workspace/ui/lib/utils";
 
 function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
@@ -10,7 +10,7 @@ function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
       data-slot="kbd"
       {...props}
     />
-  )
+  );
 }
 
 function KbdGroup({ className, ...props }: React.ComponentProps<"div">) {
@@ -20,7 +20,7 @@ function KbdGroup({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="kbd-group"
       {...props}
     />
-  )
+  );
 }
 
-export { Kbd, KbdGroup }
+export { Kbd, KbdGroup };

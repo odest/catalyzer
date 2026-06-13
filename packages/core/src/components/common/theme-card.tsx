@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { Card } from "@workspace/ui/components/card"
-import { cn } from "@workspace/ui/lib/utils"
-import { Button } from "@workspace/ui/components/button"
-import { useThemeStore } from "@workspace/core/stores/theme-store"
-import type { Themes } from "@workspace/core/config/themes"
+import { Card } from "@workspace/ui/components/card";
+import { cn } from "@workspace/ui/lib/utils";
+import { Button } from "@workspace/ui/components/button";
+import { useThemeStore } from "@workspace/core/stores/theme-store";
+import type { Themes } from "@workspace/core/config/themes";
 
 interface ThemeCardProps {
-  palette: string[]
-  themeLabel: string
-  themeName: Themes
+  palette: string[];
+  themeLabel: string;
+  themeName: Themes;
 }
 
 const swatchDefinitions = [
@@ -18,14 +18,14 @@ const swatchDefinitions = [
   { name: "Accent", index: 2 },
   { name: "Muted", index: 3 },
   { name: "Background", index: 4 },
-]
+];
 
 export function ThemeCard({ themeLabel, themeName, palette }: ThemeCardProps) {
   const colorSwatches = swatchDefinitions.map((definition) => ({
     name: definition.name,
     bg: palette[definition.index],
-  }))
-  const { selectedTheme, setSelectedTheme } = useThemeStore()
+  }));
+  const { selectedTheme, setSelectedTheme } = useThemeStore();
 
   return (
     <Card
@@ -72,5 +72,5 @@ export function ThemeCard({ themeLabel, themeName, palette }: ThemeCardProps) {
         {themeLabel}
       </Button>
     </Card>
-  )
+  );
 }

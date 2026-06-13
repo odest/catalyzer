@@ -1,32 +1,32 @@
-"use client"
+"use client";
 
-import React from "react"
+import React from "react";
 import {
   Drawer,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-} from "@workspace/ui/components/drawer"
+} from "@workspace/ui/components/drawer";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@workspace/ui/components/dialog"
-import { Kbd, KbdGroup } from "@workspace/ui/components/kbd"
-import { Separator } from "@workspace/ui/components/separator"
-import { useTranslations } from "@workspace/i18n"
-import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store"
-import { hotkeys, type HotkeyDefinition } from "@workspace/core/config/hotkeys"
-import { formatHotkeyDisplay } from "@workspace/core/lib/utils"
-import { useIsMobile } from "@workspace/ui/hooks/use-mobile"
+} from "@workspace/ui/components/dialog";
+import { Kbd, KbdGroup } from "@workspace/ui/components/kbd";
+import { Separator } from "@workspace/ui/components/separator";
+import { useTranslations } from "@workspace/i18n";
+import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store";
+import { hotkeys, type HotkeyDefinition } from "@workspace/core/config/hotkeys";
+import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 
 function HotkeyRow({ hotkey }: { hotkey: HotkeyDefinition }) {
-  const t = useTranslations("HotkeysDialog")
-  const keys = formatHotkeyDisplay(hotkey.keys)
-  const isSequence = hotkey.keys.includes(">")
+  const t = useTranslations("HotkeysDialog");
+  const keys = formatHotkeyDisplay(hotkey.keys);
+  const isSequence = hotkey.keys.includes(">");
 
   return (
     <div className="flex items-center justify-between py-2">
@@ -44,14 +44,14 @@ function HotkeyRow({ hotkey }: { hotkey: HotkeyDefinition }) {
         ))}
       </KbdGroup>
     </div>
-  )
+  );
 }
 
 function HotkeysList() {
-  const t = useTranslations("HotkeysDialog")
+  const t = useTranslations("HotkeysDialog");
 
-  const generalHotkeys = hotkeys.filter((h) => h.category === "general")
-  const navigationHotkeys = hotkeys.filter((h) => h.category === "navigation")
+  const generalHotkeys = hotkeys.filter((h) => h.category === "general");
+  const navigationHotkeys = hotkeys.filter((h) => h.category === "navigation");
 
   return (
     <div className="space-y-4">
@@ -85,13 +85,13 @@ function HotkeysList() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 export function HotkeysDialog() {
-  const { isOpen, close } = useHotkeysDialogStore()
-  const t = useTranslations("HotkeysDialog")
-  const isMobile = useIsMobile()
+  const { isOpen, close } = useHotkeysDialogStore();
+  const t = useTranslations("HotkeysDialog");
+  const isMobile = useIsMobile();
 
   if (isMobile) {
     return (
@@ -106,7 +106,7 @@ export function HotkeysDialog() {
           </div>
         </DrawerContent>
       </Drawer>
-    )
+    );
   }
 
   return (
@@ -121,5 +121,5 @@ export function HotkeysDialog() {
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

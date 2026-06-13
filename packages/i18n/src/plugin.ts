@@ -1,1 +1,1 @@
-export { default } from "next-intl/plugin"
+export { default } from "next-intl/plugin";

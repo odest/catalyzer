@@ -1,42 +1,42 @@
-"use client"
+"use client";
 
-import { use, useEffect, useId, useState } from "react"
-import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition"
+import { use, useEffect, useId, useState } from "react";
+import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
 
 export function Mermaid({ chart }: { chart: string }) {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
-  return <MermaidContent chart={chart} />
+  return <MermaidContent chart={chart} />;
 }
 
-const cache = new Map<string, Promise<unknown>>()
+const cache = new Map<string, Promise<unknown>>();
 
 function cachePromise<T>(
   key: string,
   setPromise: () => Promise<T>
 ): Promise<T> {
-  const cached = cache.get(key)
-  if (cached) return cached as Promise<T>
-  const promise = setPromise()
-  cache.set(key, promise)
-  return promise
+  const cached = cache.get(key);
+  if (cached) return cached as Promise<T>;
+  const promise = setPromise();
+  cache.set(key, promise);
+  return promise;
 }
 
 function MermaidContent({ chart }: { chart: string }) {
-  const id = useId()
-  const { resolvedTheme } = useThemeTransition()
+  const id = useId();
+  const { resolvedTheme } = useThemeTransition();
 
   // Asynchronously load mermaid to prevent SSR issues and reduce bundle size
   const { default: mermaid } = use(
     cachePromise("mermaid", () => import("mermaid"))
     // biome-ignore lint/suspicious/noExplicitAny: type overrides
-  ) as any
+  ) as any;
 
   mermaid.initialize({
     startOnLoad: false,
@@ -44,21 +44,21 @@ function MermaidContent({ chart }: { chart: string }) {
     fontFamily: "inherit",
     themeCSS: "margin: 1.5rem auto 0;",
     theme: resolvedTheme === "dark" ? "dark" : "default",
-  })
+  });
 
   const { svg, bindFunctions } = use(
     cachePromise(`${chart}-${resolvedTheme}`, () =>
       mermaid.render(id, chart.replaceAll("\\\\n", "\\n"))
     )
     // biome-ignore lint/suspicious/noExplicitAny: type overrides
-  ) as any
+  ) as any;
 
   return (
     <div
       dangerouslySetInnerHTML={{ __html: svg }}
       ref={(container) => {
-        if (container) bindFunctions?.(container)
+        if (container) bindFunctions?.(container);
       }}
     />
-  )
+  );
 }

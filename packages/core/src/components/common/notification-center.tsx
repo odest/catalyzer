@@ -1,41 +1,41 @@
-"use client"
+"use client";
 
-import { Bell } from "lucide-react"
+import { Bell } from "lucide-react";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@workspace/ui/components/tabs"
+} from "@workspace/ui/components/tabs";
 import {
   Empty,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@workspace/ui/components/empty"
+} from "@workspace/ui/components/empty";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@workspace/ui/components/avatar"
+} from "@workspace/ui/components/avatar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@workspace/ui/components/popover"
-import { Button } from "@workspace/ui/components/button"
-import { ScrollArea } from "@workspace/ui/components/scroll-area"
+} from "@workspace/ui/components/popover";
+import { Button } from "@workspace/ui/components/button";
+import { ScrollArea } from "@workspace/ui/components/scroll-area";
 import {
   notifications,
   type NotificationItem,
-} from "@workspace/core/config/notifications"
-import { useTranslations } from "@workspace/i18n"
+} from "@workspace/core/config/notifications";
+import { useTranslations } from "@workspace/i18n";
 
 export function NotificationCenter() {
-  const t = useTranslations("NotificationCenter")
-  const unreadNotifications = notifications.filter((item) => item.unread)
-  const hasUnread = unreadNotifications.length > 0
+  const t = useTranslations("NotificationCenter");
+  const unreadNotifications = notifications.filter((item) => item.unread);
+  const hasUnread = unreadNotifications.length > 0;
 
   return (
     <Popover>
@@ -94,11 +94,11 @@ export function NotificationCenter() {
         </div>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
 function NotificationList({ items }: { items: NotificationItem[] }) {
-  const t = useTranslations("NotificationCenter")
+  const t = useTranslations("NotificationCenter");
 
   if (!items.length) {
     return (
@@ -111,7 +111,7 @@ function NotificationList({ items }: { items: NotificationItem[] }) {
           <EmptyDescription>{t("emptyDescription")}</EmptyDescription>
         </EmptyHeader>
       </Empty>
-    )
+    );
   }
 
   return (
@@ -160,5 +160,5 @@ function NotificationList({ items }: { items: NotificationItem[] }) {
         </button>
       ))}
     </div>
-  )
+  );
 }

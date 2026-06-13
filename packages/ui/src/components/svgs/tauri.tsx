@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Tauri = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} preserveAspectRatio="xMidYMid" viewBox="0 0 256 289">
@@ -22,6 +22,6 @@ const Tauri = (props: SVGProps<SVGSVGElement>) => (
       fill="#24C8DB"
     />
   </svg>
-)
+);
 
-export { Tauri }
+export { Tauri };

@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useTranslations } from "@workspace/i18n"
+import { useTranslations } from "@workspace/i18n";
 
 export function AnalyticsPage() {
-  const t = useTranslations("AnalyticsPage")
+  const t = useTranslations("AnalyticsPage");
 
   return (
     <div className="flex flex-1 items-center justify-center p-4">
@@ -11,5 +11,5 @@ export function AnalyticsPage() {
         {t("title")}
       </h1>
     </div>
-  )
+  );
 }

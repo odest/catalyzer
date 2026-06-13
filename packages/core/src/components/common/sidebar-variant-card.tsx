@@ -1,38 +1,38 @@
-"use client"
+"use client";
 
-import { useMemo } from "react"
-import { PanelLeft, Layout, LayoutTemplate } from "lucide-react"
+import { useMemo } from "react";
+import { PanelLeft, Layout, LayoutTemplate } from "lucide-react";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/card"
-import { Label } from "@workspace/ui/components/label"
+} from "@workspace/ui/components/card";
+import { Label } from "@workspace/ui/components/label";
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@workspace/ui/components/radio-group"
+} from "@workspace/ui/components/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@workspace/ui/components/select"
-import { useSidebar } from "@workspace/ui/components/sidebar"
-import { useMounted } from "@workspace/core/hooks/use-mounted"
-import { useSidebarStore } from "@workspace/core/stores/sidebar-store"
-import { SettingsCardSkeleton } from "@workspace/core/components/common/settings-card-skeleton"
-import { useTranslations } from "@workspace/i18n"
+} from "@workspace/ui/components/select";
+import { useSidebar } from "@workspace/ui/components/sidebar";
+import { useMounted } from "@workspace/core/hooks/use-mounted";
+import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
+import { SettingsCardSkeleton } from "@workspace/core/components/common/settings-card-skeleton";
+import { useTranslations } from "@workspace/i18n";
 
 export const SidebarVariantCard = () => {
-  const mounted = useMounted()
+  const mounted = useMounted();
   const { variant: sidebarVariant, setVariant: setSidebarVariant } =
-    useSidebarStore()
-  const { state } = useSidebar()
-  const t = useTranslations("SidebarVariantCard")
+    useSidebarStore();
+  const { state } = useSidebar();
+  const t = useTranslations("SidebarVariantCard");
 
   const gridClasses = useMemo(
     () =>
@@ -40,9 +40,9 @@ export const SidebarVariantCard = () => {
         ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
         : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6",
     [state]
-  )
+  );
 
-  if (!mounted) return <SettingsCardSkeleton gridClasses={gridClasses} />
+  if (!mounted) return <SettingsCardSkeleton gridClasses={gridClasses} />;
 
   return (
     <Card>
@@ -252,5 +252,5 @@ export const SidebarVariantCard = () => {
         </RadioGroup>
       </CardContent>
     </Card>
-  )
-}
+  );
+};

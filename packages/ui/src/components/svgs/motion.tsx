@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Motion = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 1103 386">
@@ -7,6 +7,6 @@ const Motion = (props: SVGProps<SVGSVGElement>) => (
       fill="#0F1115"
     />
   </svg>
-)
+);
 
-export { Motion }
+export { Motion };

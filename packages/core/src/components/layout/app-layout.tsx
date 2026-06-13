@@ -1,36 +1,39 @@
-"use client"
+"use client";
 
-import type { ReactNode, ComponentType } from "react"
-import { Toaster } from "@workspace/ui/components/sonner"
-import { AppSidebar } from "@workspace/core/components/layout/app-sidebar"
-import { AppHeader } from "@workspace/core/components/layout/app-header"
-import { HotkeysDialog } from "@workspace/core/components/common/hotkeys-dialog"
-import { CommandPalette } from "@workspace/core/components/common/command-palette"
-import { ProfileDrawer } from "@workspace/core/components/common/profile-drawer"
-import { MobileBottomNav } from "@workspace/core/components/navigation/mobile-bottom-nav"
-import { navigationData } from "@workspace/core/config/navigation"
-import { ThemeProvider } from "@workspace/core/providers/theme-provider"
-import { useAppHotkeys } from "@workspace/core/hooks/use-app-hotkeys"
-import { TooltipProvider } from "@workspace/ui/components/tooltip"
-import { SidebarInset, SidebarProvider } from "@workspace/ui/components/sidebar"
+import type { ReactNode, ComponentType } from "react";
+import { Toaster } from "@workspace/ui/components/sonner";
+import { AppSidebar } from "@workspace/core/components/layout/app-sidebar";
+import { AppHeader } from "@workspace/core/components/layout/app-header";
+import { HotkeysDialog } from "@workspace/core/components/common/hotkeys-dialog";
+import { CommandPalette } from "@workspace/core/components/common/command-palette";
+import { ProfileDrawer } from "@workspace/core/components/common/profile-drawer";
+import { MobileBottomNav } from "@workspace/core/components/navigation/mobile-bottom-nav";
+import { navigationData } from "@workspace/core/config/navigation";
+import { ThemeProvider } from "@workspace/core/providers/theme-provider";
+import { useAppHotkeys } from "@workspace/core/hooks/use-app-hotkeys";
+import { TooltipProvider } from "@workspace/ui/components/tooltip";
+import {
+  SidebarInset,
+  SidebarProvider,
+} from "@workspace/ui/components/sidebar";
 
 interface AppLayoutProps {
-  children: ReactNode
+  children: ReactNode;
   LinkComponent?:
     | ComponentType<{
-        href: string
-        children: React.ReactNode
-        onClick?: () => void
-        className?: string
+        href: string;
+        children: React.ReactNode;
+        onClick?: () => void;
+        className?: string;
       }>
-    | "a"
-  navigate: (path: string) => void
-  pathname: string
+    | "a";
+  navigate: (path: string) => void;
+  pathname: string;
 }
 
 function HotkeysRegistrar({ navigate }: { navigate: (path: string) => void }) {
-  useAppHotkeys({ navigate })
-  return null
+  useAppHotkeys({ navigate });
+  return null;
 }
 
 export function AppLayout({
@@ -67,5 +70,5 @@ export function AppLayout({
         </SidebarProvider>
       </TooltipProvider>
     </ThemeProvider>
-  )
+  );
 }

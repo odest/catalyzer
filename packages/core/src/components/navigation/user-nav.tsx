@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { ChevronsUpDown } from "lucide-react"
-import { navigationData } from "@workspace/core/config/navigation"
+import { ChevronsUpDown } from "lucide-react";
+import { navigationData } from "@workspace/core/config/navigation";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@workspace/ui/components/avatar"
+} from "@workspace/ui/components/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,26 +15,26 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@workspace/ui/components/dropdown-menu"
+} from "@workspace/ui/components/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@workspace/ui/components/sidebar"
-import { useTranslations } from "@workspace/i18n"
+} from "@workspace/ui/components/sidebar";
+import { useTranslations } from "@workspace/i18n";
 
 interface UserNavUser {
-  avatar: string
-  email: string
-  name: string
+  avatar: string;
+  email: string;
+  name: string;
 }
 
 interface UserNavProps {
-  user: UserNavUser
+  user: UserNavUser;
 }
 
 export function UserNav({ user }: UserNavProps) {
-  const t = useTranslations("Navigation")
+  const t = useTranslations("Navigation");
 
   return (
     <SidebarMenu>
@@ -83,13 +83,13 @@ export function UserNav({ user }: UserNavProps) {
               <div className="contents" key={group.id}>
                 <DropdownMenuGroup>
                   {group.items.map((item) => {
-                    const Icon = item.icon
+                    const Icon = item.icon;
                     return (
                       <DropdownMenuItem key={item.translationKey}>
                         <Icon strokeWidth={2} />
                         {t(item.translationKey as Parameters<typeof t>[0])}
                       </DropdownMenuItem>
-                    )
+                    );
                   })}
                 </DropdownMenuGroup>
                 {index < navigationData.navProfile.length - 1 && (
@@ -101,5 +101,5 @@ export function UserNav({ user }: UserNavProps) {
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }

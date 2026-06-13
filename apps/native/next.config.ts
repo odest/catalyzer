@@ -1,8 +1,8 @@
-import type { NextConfig } from "next"
-import createNextIntlPlugin from "@workspace/i18n/plugin"
+import type { NextConfig } from "next";
+import createNextIntlPlugin from "@workspace/i18n/plugin";
 
 // For Tauri static export, configure next-intl without server-side request config
-const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -13,6 +13,6 @@ const nextConfig: NextConfig = {
   },
   distDir: "dist",
   transpilePackages: ["@workspace/ui", "@workspace/core", "@workspace/i18n"],
-}
+};
 
-export default withNextIntl(nextConfig) as NextConfig
+export default withNextIntl(nextConfig) as NextConfig;

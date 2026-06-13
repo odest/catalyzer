@@ -1,15 +1,15 @@
-import Link from "next/link"
-import { Card, CardContent, CardHeader } from "@workspace/ui/components/card"
-import { Button } from "@workspace/ui/components/button"
-import type { ReactNode } from "react"
+import Link from "next/link";
+import { Card, CardContent, CardHeader } from "@workspace/ui/components/card";
+import { Button } from "@workspace/ui/components/button";
+import type { ReactNode } from "react";
 import {
   platformCards,
   type PlatformCardData,
-} from "../download/platform-mappings"
-import { siteConfig } from "@workspace/core/config/site"
+} from "../download/platform-mappings";
+import { siteConfig } from "@workspace/core/config/site";
 
 interface PlatformCardsProps {
-  assets: Record<string, string>
+  assets: Record<string, string>;
 }
 
 function DownloadButton({
@@ -17,12 +17,12 @@ function DownloadButton({
   label,
   ext,
 }: {
-  href: string | undefined
-  label: string
-  ext: string
+  href: string | undefined;
+  label: string;
+  ext: string;
 }) {
-  if (!href) return null
-  const isExternal = href.startsWith("http")
+  if (!href) return null;
+  const isExternal = href.startsWith("http");
   return (
     <Button
       asChild={true}
@@ -38,20 +38,20 @@ function DownloadButton({
         <span className="font-mono text-muted-foreground text-xs">{ext}</span>
       </Link>
     </Button>
-  )
+  );
 }
 
 const colSpanClass = {
   2: "lg:col-span-2",
   3: "lg:col-span-3",
-} as const
+} as const;
 
 function PlatformCard({
   platform,
   assets,
 }: {
-  platform: PlatformCardData
-  assets: Record<string, string>
+  platform: PlatformCardData;
+  assets: Record<string, string>;
 }) {
   return (
     <Card
@@ -80,7 +80,7 @@ function PlatformCard({
         )}
       </CardContent>
     </Card>
-  )
+  );
 }
 
 export default function PlatformCards({ assets }: PlatformCardsProps) {
@@ -106,7 +106,7 @@ export default function PlatformCards({ assets }: PlatformCardsProps) {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 const CardDecorator = ({ children }: { children: ReactNode }) => (
@@ -120,4 +120,4 @@ const CardDecorator = ({ children }: { children: ReactNode }) => (
       {children}
     </div>
   </div>
-)
+);

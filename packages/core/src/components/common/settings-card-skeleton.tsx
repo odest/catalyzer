@@ -1,9 +1,9 @@
-import { Card, CardContent, CardHeader } from "@workspace/ui/components/card"
-import { Skeleton } from "@workspace/ui/components/skeleton"
+import { Card, CardContent, CardHeader } from "@workspace/ui/components/card";
+import { Skeleton } from "@workspace/ui/components/skeleton";
 
 interface SettingsCardSkeletonProps {
-  gridClasses: string
-  itemCount?: number
+  gridClasses: string;
+  itemCount?: number;
 }
 
 export const SettingsCardSkeleton = ({
@@ -36,4 +36,4 @@ export const SettingsCardSkeleton = ({
       </div>
     </CardContent>
   </Card>
-)
+);

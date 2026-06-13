@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { motion, useReducedMotion } from "motion/react"
-import type { ReactNode } from "react"
+import { motion, useReducedMotion } from "motion/react";
+import type { ReactNode } from "react";
 
 export function AnimatedContainer({
   className,
   delay = 0.1,
   children,
 }: {
-  delay?: number
-  className?: string
-  children: ReactNode
+  delay?: number;
+  className?: string;
+  children: ReactNode;
 }) {
-  const shouldReduceMotion = useReducedMotion()
+  const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
-    return children
+    return children;
   }
 
   return (
@@ -28,5 +28,5 @@ export function AnimatedContainer({
     >
       {children}
     </motion.div>
-  )
+  );
 }

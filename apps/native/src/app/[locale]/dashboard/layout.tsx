@@ -1,7 +1,7 @@
-import { DashboardTabsNav } from "@workspace/core/components/navigation/dashboard-tabs-nav"
+import { DashboardTabsNav } from "@workspace/core/components/navigation/dashboard-tabs-nav";
 
 interface DashboardLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
@@ -10,5 +10,5 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <DashboardTabsNav />
       {children}
     </div>
-  )
+  );
 }

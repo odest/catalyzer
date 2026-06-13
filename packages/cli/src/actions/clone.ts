@@ -1,5 +1,5 @@
-import { downloadTemplate } from "giget"
-import { TEMPLATE_SOURCE } from "../consts.js"
+import { downloadTemplate } from "giget";
+import { TEMPLATE_SOURCE } from "../consts.js";
 
 export async function cloneTemplate(
   directory: string,
@@ -8,6 +8,6 @@ export async function cloneTemplate(
   const { dir } = await downloadTemplate(`${TEMPLATE_SOURCE}#${branch}`, {
     dir: directory,
     force: true,
-  })
-  return dir
+  });
+  return dir;
 }

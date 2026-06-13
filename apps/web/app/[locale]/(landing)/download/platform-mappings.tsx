@@ -1,11 +1,11 @@
-import type React from "react"
-import { Download, Github } from "lucide-react"
-import { siteConfig } from "@workspace/core/config/site"
-import { Windows } from "@workspace/ui/components/svgs/windows"
-import { Linux } from "@workspace/ui/components/svgs/linux"
-import { Apple } from "@workspace/ui/components/svgs/apple"
-import { Android } from "@workspace/ui/components/svgs/android"
-import type { Platform } from "@/lib/detect-platform"
+import type React from "react";
+import { Download, Github } from "lucide-react";
+import { siteConfig } from "@workspace/core/config/site";
+import { Windows } from "@workspace/ui/components/svgs/windows";
+import { Linux } from "@workspace/ui/components/svgs/linux";
+import { Apple } from "@workspace/ui/components/svgs/apple";
+import { Android } from "@workspace/ui/components/svgs/android";
+import type { Platform } from "@/lib/detect-platform";
 
 // Per-platform UI config for the primary download button
 export const platformConfig: Record<
@@ -42,19 +42,19 @@ export const platformConfig: Record<
     icon: <Download className="size-5" />,
     primaryAssetKey: "",
   },
-}
+};
 
 export interface DownloadOption {
-  assetKey: string
-  ext: string
-  label: string
+  assetKey: string;
+  ext: string;
+  label: string;
 }
 
 export interface PlatformCardData {
-  colSpan: 2 | 3
-  downloads: DownloadOption[]
-  icon: React.ReactNode
-  name: string
+  colSpan: 2 | 3;
+  downloads: DownloadOption[];
+  icon: React.ReactNode;
+  name: string;
 }
 
 // Platform cards data
@@ -116,4 +116,4 @@ export const platformCards: PlatformCardData[] = [
       },
     ],
   },
-]
+];

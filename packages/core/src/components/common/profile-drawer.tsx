@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import { useTranslations } from "@workspace/i18n"
+import { useTranslations } from "@workspace/i18n";
 import {
   Drawer,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
   DrawerDescription,
-} from "@workspace/ui/components/drawer"
+} from "@workspace/ui/components/drawer";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@workspace/ui/components/avatar"
-import { Separator } from "@workspace/ui/components/separator"
-import { Button } from "@workspace/ui/components/button"
-import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history"
-import { useProfileDrawerStore } from "@workspace/core/stores/profile-drawer-store"
+} from "@workspace/ui/components/avatar";
+import { Separator } from "@workspace/ui/components/separator";
+import { Button } from "@workspace/ui/components/button";
+import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history";
+import { useProfileDrawerStore } from "@workspace/core/stores/profile-drawer-store";
 import {
   type UserNavItem,
   navigationData,
-} from "@workspace/core/config/navigation"
+} from "@workspace/core/config/navigation";
 
 interface ProfileDrawerProps {
-  user: UserNavItem
+  user: UserNavItem;
 }
 
 export function ProfileDrawer({ user }: ProfileDrawerProps) {
-  const { isOpen, setOpen } = useProfileDrawerStore()
-  useDrawerHistory(isOpen, setOpen)
-  const t = useTranslations("Navigation")
+  const { isOpen, setOpen } = useProfileDrawerStore();
+  useDrawerHistory(isOpen, setOpen);
+  const t = useTranslations("Navigation");
 
   return (
     <Drawer onOpenChange={setOpen} open={isOpen}>
@@ -55,7 +55,7 @@ export function ProfileDrawer({ user }: ProfileDrawerProps) {
           {navigationData.navProfile.map((group, index) => (
             <div className="contents" key={group.id}>
               {group.items.map((item) => {
-                const Icon = item.icon
+                const Icon = item.icon;
                 return (
                   <Button
                     className="justify-start"
@@ -66,7 +66,7 @@ export function ProfileDrawer({ user }: ProfileDrawerProps) {
                     <Icon strokeWidth={2} />
                     {t(item.translationKey as Parameters<typeof t>[0])}
                   </Button>
-                )
+                );
               })}
               {index < navigationData.navProfile.length - 1 && <Separator />}
             </div>
@@ -74,5 +74,5 @@ export function ProfileDrawer({ user }: ProfileDrawerProps) {
         </div>
       </DrawerContent>
     </Drawer>
-  )
+  );
 }

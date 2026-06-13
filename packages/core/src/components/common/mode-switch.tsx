@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { LayoutGroup, motion } from "motion/react"
-import { Monitor, Sun, Moon } from "lucide-react"
-import { cn } from "@workspace/ui/lib/utils"
-import { useMounted } from "@workspace/core/hooks/use-mounted"
-import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition"
+import { LayoutGroup, motion } from "motion/react";
+import { Monitor, Sun, Moon } from "lucide-react";
+import { cn } from "@workspace/ui/lib/utils";
+import { useMounted } from "@workspace/core/hooks/use-mounted";
+import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
 
-type Mode = "system" | "light" | "dark"
+type Mode = "system" | "light" | "dark";
 
 const modes: { value: Mode; icon: typeof Monitor }[] = [
   { value: "system", icon: Monitor },
   { value: "light", icon: Sun },
   { value: "dark", icon: Moon },
-]
+];
 
 export function ModeSwitch({ className }: { className?: string }) {
-  const mounted = useMounted()
-  const { theme, handleThemeChange } = useThemeTransition()
+  const mounted = useMounted();
+  const { theme, handleThemeChange } = useThemeTransition();
 
-  const selected = (theme as Mode) ?? "system"
+  const selected = (theme as Mode) ?? "system";
 
   if (!mounted) {
-    return <></>
+    return <></>;
   }
 
   return (
@@ -33,8 +33,8 @@ export function ModeSwitch({ className }: { className?: string }) {
         )}
       >
         {modes.map((mode) => {
-          const Icon = mode.icon
-          const isActive = selected === mode.value
+          const Icon = mode.icon;
+          const isActive = selected === mode.value;
 
           return (
             <button
@@ -62,9 +62,9 @@ export function ModeSwitch({ className }: { className?: string }) {
               )}
               <Icon className="relative z-10 h-4 w-4" />
             </button>
-          )
+          );
         })}
       </div>
     </LayoutGroup>
-  )
+  );
 }

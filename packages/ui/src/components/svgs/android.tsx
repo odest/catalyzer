@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Android = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} preserveAspectRatio="xMidYMid" viewBox="0 0 256 150">
@@ -11,6 +11,6 @@ const Android = (props: SVGProps<SVGSVGElement>) => (
       fill="background"
     />
   </svg>
-)
+);
 
-export { Android }
+export { Android };

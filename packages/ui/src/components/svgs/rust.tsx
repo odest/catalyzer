@@ -1,4 +1,4 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const Rust = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} fill="none" viewBox="0 0 224 224">
@@ -7,6 +7,6 @@ const Rust = (props: SVGProps<SVGSVGElement>) => (
       fill="#000"
     />
   </svg>
-)
+);
 
-export { Rust }
+export { Rust };
