@@ -120,6 +120,7 @@ function NotificationList({ items }: { items: NotificationItem[] }) {
         <button
           className="flex w-full items-start gap-2 rounded-md border p-2 text-left transition-colors hover:bg-muted/50"
           key={item.id}
+          type="button"
         >
           <Avatar className="size-9 shrink-0">
             {item.avatar && <AvatarImage alt={item.title} src={item.avatar} />}

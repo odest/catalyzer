@@ -2,9 +2,11 @@ import { cn } from "@workspace/ui/lib/utils";
 
 export const Logo = ({ className }: { className?: string }) => (
   <svg
+    aria-label="Logo icon"
     className={cn(className)}
     fill="currentColor"
     height="24"
+    role="img"
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"

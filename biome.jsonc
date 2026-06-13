@@ -18,7 +18,6 @@
     "enabled": true,
     "rules": {
       "recommended": false,
-      "a11y": "warn",
       "complexity": "warn",
       "performance": "warn",
       "security": "warn",

@@ -53,6 +53,7 @@ export default function OfflinePage() {
 
       <div className="icon">
         <svg
+          aria-hidden="true"
           className="lucide lucide-wifi-off-icon lucide-wifi-off"
           fill="none"
           height="80"

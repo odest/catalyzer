@@ -1,7 +1,13 @@
 import type { SVGProps } from "react";
 
 const Nextjs = (props: SVGProps<SVGSVGElement>) => (
-  <svg {...props} fill="none" viewBox="0 0 394 80">
+  <svg
+    aria-label="Nextjs icon"
+    role="img"
+    {...props}
+    fill="none"
+    viewBox="0 0 394 80"
+  >
     <path
       d="M261.919 0.0330722H330.547V12.7H303.323V79.339H289.71V12.7H261.919V0.0330722Z"
       fill="black"

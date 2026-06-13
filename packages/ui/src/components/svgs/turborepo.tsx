@@ -1,7 +1,13 @@
 import type { SVGProps } from "react";
 
 const Turborepo = (props: SVGProps<SVGSVGElement>) => (
-  <svg {...props} fill="none" viewBox="0 0 100 100">
+  <svg
+    aria-label="Turborepo icon"
+    role="img"
+    {...props}
+    fill="none"
+    viewBox="0 0 100 100"
+  >
     <path
       d="M49.96 17.482C32.046 17.482 17.47 32.07 17.47 50S32.045 82.518 49.96 82.518c17.916 0 32.492-14.588 32.492-32.518S67.877 17.482 49.961 17.482Zm0 49.346c-9.287 0-16.814-7.533-16.814-16.828 0-9.295 7.527-16.828 16.815-16.828S66.776 40.705 66.776 50c0 9.295-7.527 16.828-16.815 16.828Z"
       fill="#000"

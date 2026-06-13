@@ -1,7 +1,13 @@
 import type { SVGProps } from "react";
 
 const Tauri = (props: SVGProps<SVGSVGElement>) => (
-  <svg {...props} preserveAspectRatio="xMidYMid" viewBox="0 0 256 289">
+  <svg
+    aria-label="Tauri icon"
+    role="img"
+    {...props}
+    preserveAspectRatio="xMidYMid"
+    viewBox="0 0 256 289"
+  >
     <path
       d="M178.497 104.93c0 15.155-12.285 27.44-27.44 27.44-15.153 0-27.438-12.285-27.438-27.44 0-15.153 12.285-27.438 27.439-27.438s27.439 12.285 27.439 27.439Z"
       fill="#FFC131"

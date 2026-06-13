@@ -58,6 +58,8 @@ function BreadcrumbLink({
 
 function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
   return (
+    // biome-ignore lint/a11y/useFocusableInteractive: Breadcrumb page is intentionally not focusable
+    // biome-ignore lint/a11y/useSemanticElements: Breadcrumb page is intentionally not an anchor
     <span
       aria-current="page"
       aria-disabled="true"

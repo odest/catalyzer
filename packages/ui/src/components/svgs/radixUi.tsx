@@ -2,6 +2,8 @@ import type { SVGProps } from "react";
 
 const RadixUi = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    aria-label="RadixUi icon"
+    role="img"
     {...props}
     fill="#121212"
     style={{ marginRight: "3px" }}

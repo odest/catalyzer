@@ -29,8 +29,10 @@ export const TextHoverEffect = ({
 
   return (
     <svg
+      aria-hidden="true"
       className="select-none"
       height="100%"
+      // biome-ignore lint/a11y/noNoninteractiveElementInteractions: This is purely a visual mouse-tracking effect
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
