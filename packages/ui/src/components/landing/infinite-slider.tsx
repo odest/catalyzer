@@ -30,7 +30,7 @@ export function InfiniteSlider({
   const [_key, setKey] = useState(0);
 
   useEffect(() => {
-    let controls;
+    let controls: ReturnType<typeof animate> | undefined;
     const size = direction === "horizontal" ? width : height;
     const contentSize = size + gap;
     const from = reverse ? -contentSize / 2 : 0;

@@ -47,6 +47,7 @@ export function ProgressiveBlur({
         return (
           <motion.div
             className="pointer-events-none absolute inset-0 rounded-[inherit]"
+            // biome-ignore lint/suspicious/noArrayIndexKey: Layers are static
             key={index}
             style={{
               maskImage: gradient,

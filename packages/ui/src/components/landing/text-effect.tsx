@@ -139,6 +139,7 @@ const AnimationComponent: React.FC<{
           <motion.span
             aria-hidden="true"
             className="inline-block whitespace-pre"
+            // biome-ignore lint/suspicious/noArrayIndexKey: Characters are static
             key={`char-${charIndex}`}
             variants={variants}
           >
@@ -290,6 +291,7 @@ export function TextEffect({
           {per === "line" ? null : <span className="sr-only">{children}</span>}
           {segments.map((segment, index) => (
             <AnimationComponent
+              // biome-ignore lint/suspicious/noArrayIndexKey: Segments are static
               key={`${per}-${index}-${segment}`}
               per={per}
               segment={segment}
