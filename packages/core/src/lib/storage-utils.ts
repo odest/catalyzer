@@ -1,9 +1,13 @@
 export function getStorageItem<T>(key: string, fallback: T): T {
-  if (typeof window === "undefined") return fallback;
+  if (typeof window === "undefined") {
+    return fallback;
+  }
 
   try {
     const item = localStorage.getItem(key);
-    if (!item) return fallback;
+    if (!item) {
+      return fallback;
+    }
 
     const parsed = JSON.parse(item);
     return parsed?.state ?? fallback;

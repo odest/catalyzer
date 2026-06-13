@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { Geist, Geist_Mono } from "next/font/google";
-import { AppLayout } from "./components/AppLayout";
+import { AppLayout } from "./components/app-layout";
 import { themeInitScript } from "@workspace/core/scripts/theme-init";
 import { NextIntlClientProvider, hasLocale, messages } from "@workspace/i18n";
 import { siteConfig } from "@workspace/core/config/site";

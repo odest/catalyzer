@@ -20,7 +20,9 @@ export async function walkFiles(dir: string): Promise<string[]> {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
-    if (shouldSkip(fullPath)) continue;
+    if (shouldSkip(fullPath)) {
+      continue;
+    }
     if (entry.isDirectory()) {
       results.push(...(await walkFiles(fullPath)));
     } else if (entry.isFile()) {
@@ -48,7 +50,9 @@ export async function findDirsByName(
   const results: string[] = [];
   const entries = await fs.readdir(root, { withFileTypes: true });
   for (const entry of entries) {
-    if (!entry.isDirectory()) continue;
+    if (!entry.isDirectory()) {
+      continue;
+    }
     const full = path.join(root, entry.name);
     if (entry.name === targetName) {
       results.push(full);
@@ -63,7 +67,9 @@ export async function removeEmptyParents(
   dir: string,
   stopAt: string
 ): Promise<void> {
-  if (dir === stopAt || !dir.startsWith(stopAt)) return;
+  if (dir === stopAt || !dir.startsWith(stopAt)) {
+    return;
+  }
   try {
     const entries = await fs.readdir(dir);
     if (entries.length === 0) {
@@ -84,7 +90,9 @@ export async function findFilesByName(
   for (const entry of entries) {
     const full = path.join(root, entry.name);
     if (entry.isDirectory()) {
-      if (shouldSkip(full)) continue;
+      if (shouldSkip(full)) {
+        continue;
+      }
       results.push(...(await findFilesByName(full, name)));
     } else if (entry.name === name) {
       results.push(full);

@@ -12,7 +12,9 @@ export async function cleanFiles(projectDir: string): Promise<void> {
   // Remove packages/cli references from JSON config files
   for (const configFile of CLI_CONFIG_REFS) {
     const filePath = path.join(projectDir, configFile);
-    if (!(await fs.pathExists(filePath))) continue;
+    if (!(await fs.pathExists(filePath))) {
+      continue;
+    }
     try {
       const json = await fs.readJson(filePath);
       let modified = false;

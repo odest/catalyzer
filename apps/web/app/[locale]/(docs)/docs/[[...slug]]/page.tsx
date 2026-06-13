@@ -18,7 +18,9 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const page = source.getPage(params.slug, params.locale);
-  if (!page) notFound();
+  if (!page) {
+    notFound();
+  }
 
   const Mdx = page.data.body;
   const neighbours = findNeighbour(source.getPageTree(params.locale), page.url);
@@ -54,7 +56,9 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params;
   const page = source.getPage(params.slug, params.locale);
-  if (!page) notFound();
+  if (!page) {
+    notFound();
+  }
 
   return {
     title: page.data.title,

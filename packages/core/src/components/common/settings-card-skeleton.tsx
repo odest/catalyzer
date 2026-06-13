@@ -24,7 +24,7 @@ export const SettingsCardSkeleton = ({
 
     <CardContent className="hidden md:block">
       <div className={gridClasses}>
-        {[...Array(itemCount)].map((_, i) => (
+        {[...new Array(itemCount)].map((_, i) => (
           <div className="flex flex-col gap-3" key={i}>
             <Skeleton className="aspect-video rounded-lg" />
             <div className="flex items-center gap-2">

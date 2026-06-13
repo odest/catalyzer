@@ -24,7 +24,9 @@ export async function updateNativeFiles(
   opts: ScaffoldOptions
 ) {
   const nativeDir = path.join(projectDir, "apps", "native", "src-tauri");
-  if (!(await fs.pathExists(nativeDir))) return;
+  if (!(await fs.pathExists(nativeDir))) {
+    return;
+  }
 
   const map = buildNativeReplacementMap(opts);
   const files = await walkFiles(nativeDir);
@@ -57,7 +59,9 @@ export async function updateCargoMetadata(
     "src-tauri",
     "Cargo.toml"
   );
-  if (!(await fs.pathExists(cargoPath))) return;
+  if (!(await fs.pathExists(cargoPath))) {
+    return;
+  }
 
   try {
     let content = await fs.readFile(cargoPath, "utf-8");
@@ -92,14 +96,18 @@ export async function renameAndroidDirs(
     "gen",
     "android"
   );
-  if (!(await fs.pathExists(androidGenDir))) return;
+  if (!(await fs.pathExists(androidGenDir))) {
+    return;
+  }
 
   // Find every `java` directory under the Android gen tree
   const javaDirs = await findDirsByName(androidGenDir, "java");
 
   for (const javaDir of javaDirs) {
     const oldDir = path.join(javaDir, ...oldSegments);
-    if (!(await fs.pathExists(oldDir))) continue;
+    if (!(await fs.pathExists(oldDir))) {
+      continue;
+    }
 
     const newDir = path.join(javaDir, ...newSegments);
     await fs.ensureDir(path.dirname(newDir));
@@ -122,7 +130,9 @@ export async function renameAppleDirsAndFiles(
     "gen",
     "apple"
   );
-  if (!(await fs.pathExists(appleGenDir))) return;
+  if (!(await fs.pathExists(appleGenDir))) {
+    return;
+  }
 
   // Find all files and directories under appleGenDir
   const allPaths: string[] = [];
@@ -142,7 +152,9 @@ export async function renameAppleDirsAndFiles(
   allPaths.sort((a, b) => b.length - a.length);
 
   for (const pPath of allPaths) {
-    if (!(await fs.pathExists(pPath))) continue; // skip if already moved by parent
+    if (!(await fs.pathExists(pPath))) {
+      continue; // skip if already moved by parent
+    }
 
     const basename = path.basename(pPath);
     let newBasename = basename;

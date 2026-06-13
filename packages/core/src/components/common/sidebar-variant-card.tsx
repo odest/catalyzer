@@ -42,7 +42,9 @@ export const SidebarVariantCard = () => {
     [state]
   );
 
-  if (!mounted) return <SettingsCardSkeleton gridClasses={gridClasses} />;
+  if (!mounted) {
+    return <SettingsCardSkeleton gridClasses={gridClasses} />;
+  }
 
   return (
     <Card>

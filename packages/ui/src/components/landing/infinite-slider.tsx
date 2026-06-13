@@ -4,15 +4,15 @@ import { useMotionValue, animate, motion } from "motion/react";
 import { useState, useEffect } from "react";
 import useMeasure from "react-use-measure";
 
-export type InfiniteSliderProps = {
+export interface InfiniteSliderProps {
   children: React.ReactNode;
+  className?: string;
+  direction?: "horizontal" | "vertical";
   gap?: number;
+  reverse?: boolean;
   speed?: number;
   speedOnHover?: number;
-  direction?: "horizontal" | "vertical";
-  reverse?: boolean;
-  className?: string;
-};
+}
 
 export function InfiniteSlider({
   children,

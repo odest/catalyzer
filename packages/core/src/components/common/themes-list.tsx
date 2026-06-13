@@ -71,7 +71,7 @@ export const ThemesList = () => {
     setFilteredThemes(sorted);
   }, [searchTerm, sortOption]);
 
-  if (!mounted)
+  if (!mounted) {
     return (
       <Card>
         <CardHeader className="space-y-4">
@@ -92,7 +92,7 @@ export const ThemesList = () => {
 
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 md:gap-4">
-            {[...Array(6)].map((_, i) => (
+            {[...new Array(6)].map((_, i) => (
               <div className="space-y-3" key={i}>
                 <Skeleton className="aspect-video rounded-lg" />
                 <div className="space-y-2">
@@ -105,6 +105,7 @@ export const ThemesList = () => {
         </CardContent>
       </Card>
     );
+  }
 
   return (
     <Card>

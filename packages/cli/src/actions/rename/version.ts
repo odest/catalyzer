@@ -98,7 +98,9 @@ export async function replaceVersions(
   if (await fs.pathExists(tauriConf)) {
     try {
       const conf = await fs.readJson(tauriConf);
-      if (conf.version) conf.version = opts.version;
+      if (conf.version) {
+        conf.version = opts.version;
+      }
       await fs.writeJson(tauriConf, conf, { spaces: 2 });
     } catch (err: unknown) {
       p.log.warn(

@@ -48,7 +48,9 @@ export async function runPrompts(
       message: "App identifier (reverse-domain)?",
       placeholder: defaultIdentifier,
       validate: (val) => {
-        if (!val) return;
+        if (!val) {
+          return;
+        }
         return validateIdentifier(val);
       },
     });
@@ -72,7 +74,9 @@ export async function runPrompts(
       message: "Initial version?",
       placeholder: DEFAULT_VERSION,
       validate: (val) => {
-        if (!val) return;
+        if (!val) {
+          return;
+        }
         return validateVersion(val);
       },
     });

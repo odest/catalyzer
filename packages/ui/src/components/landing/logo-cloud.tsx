@@ -6,7 +6,7 @@ import { Rust } from "@workspace/ui/components/svgs/rust";
 import { Tailwindcss } from "@workspace/ui/components/svgs/tailwindcss";
 import { React } from "@workspace/ui/components/svgs/react";
 import { Turborepo } from "@workspace/ui/components/svgs/turborepo";
-import { RadixUi } from "@workspace/ui/components/svgs/radixUi";
+import { RadixUi } from "@workspace/ui/components/svgs/radix-ui";
 import { Motion } from "@workspace/ui/components/svgs/motion";
 import { Biome } from "@workspace/ui/components/svgs/biome";
 

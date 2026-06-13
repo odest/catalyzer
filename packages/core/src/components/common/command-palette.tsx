@@ -113,7 +113,9 @@ export function CommandPalette({
 
   const getKeysDisplay = (id: string) => {
     const hk = hotkeys.find((h) => h.id === id);
-    if (!hk) return null;
+    if (!hk) {
+      return null;
+    }
     const keys = formatHotkeyDisplay(hk.keys);
     const isSequence = hk.keys.includes(">");
     return (
@@ -256,7 +258,7 @@ export function CommandPalette({
                   disabled={isPending}
                   key={loc}
                   onSelect={() => runCommand(() => changeLanguage(loc))}
-                  value={config.nativeName + " " + config.label}
+                  value={`${config.nativeName} ${config.label}`}
                 >
                   <span className="mr-2 text-base">{config.flag}</span>
                   <span>{config.nativeName}</span>

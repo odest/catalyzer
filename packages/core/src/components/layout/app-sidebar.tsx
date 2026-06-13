@@ -50,7 +50,9 @@ export function AppSidebar({
     }
   }, [isMobile, setOpenMobile]);
 
-  if (!mounted) return <></>;
+  if (!mounted) {
+    return <></>;
+  }
 
   return (
     <Sidebar collapsible="icon" variant={variant} {...props}>

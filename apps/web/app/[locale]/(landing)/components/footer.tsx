@@ -16,17 +16,17 @@ import { TextHoverEffect } from "@workspace/ui/components/landing/text-hover-eff
 import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
 import { siteConfig } from "@workspace/core/config/site";
 
-type FooterLink = {
-  title: string;
+interface FooterLink {
   href: string;
-  isExternal: boolean;
   icon?: ReactNode;
-};
+  isExternal: boolean;
+  title: string;
+}
 
-type FooterSection = {
+interface FooterSection {
   label: string;
   links: FooterLink[];
-};
+}
 
 const footerLinks: FooterSection[] = [
   {

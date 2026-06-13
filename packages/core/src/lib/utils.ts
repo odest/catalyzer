@@ -3,7 +3,9 @@ import { siteConfig } from "@workspace/core/config/site";
 export async function fetchLatestGithubVersion(): Promise<string | null> {
   try {
     const res = await fetch(siteConfig.links.githubApi);
-    if (!res.ok) return null;
+    if (!res.ok) {
+      return null;
+    }
     const releases: {
       tag_name: string;
       prerelease: boolean;

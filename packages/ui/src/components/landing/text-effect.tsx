@@ -13,27 +13,27 @@ export type PresetType = "blur" | "fade-in-blur" | "scale" | "fade" | "slide";
 
 export type PerType = "word" | "char" | "line";
 
-export type TextEffectProps = {
-  children: string;
-  per?: PerType;
+export interface TextEffectProps {
   as?: keyof React.JSX.IntrinsicElements;
+  children: string;
+  className?: string;
+  containerTransition?: Transition;
+  delay?: number;
+  onAnimationComplete?: () => void;
+  onAnimationStart?: () => void;
+  per?: PerType;
+  preset?: PresetType;
+  segmentTransition?: Transition;
+  segmentWrapperClassName?: string;
+  speedReveal?: number;
+  speedSegment?: number;
+  style?: React.CSSProperties;
+  trigger?: boolean;
   variants?: {
     container?: Variants;
     item?: Variants;
   };
-  className?: string;
-  preset?: PresetType;
-  delay?: number;
-  speedReveal?: number;
-  speedSegment?: number;
-  trigger?: boolean;
-  onAnimationComplete?: () => void;
-  onAnimationStart?: () => void;
-  segmentWrapperClassName?: string;
-  containerTransition?: Transition;
-  segmentTransition?: Transition;
-  style?: React.CSSProperties;
-};
+}
 
 const defaultStaggerTimes: Record<PerType, number> = {
   char: 0.03,
@@ -114,12 +114,16 @@ const AnimationComponent: React.FC<{
   per: "line" | "word" | "char";
   segmentWrapperClassName?: string;
 }> = React.memo(({ segment, variants, per, segmentWrapperClassName }) => {
-  const content =
-    per === "line" ? (
+  let content: React.ReactNode;
+
+  if (per === "line") {
+    content = (
       <motion.span className="block" variants={variants}>
         {segment}
       </motion.span>
-    ) : per === "word" ? (
+    );
+  } else if (per === "word") {
+    content = (
       <motion.span
         aria-hidden="true"
         className="inline-block whitespace-pre"
@@ -127,7 +131,9 @@ const AnimationComponent: React.FC<{
       >
         {segment}
       </motion.span>
-    ) : (
+    );
+  } else {
+    content = (
       <motion.span className="inline-block whitespace-pre">
         {segment.split("").map((char, charIndex) => (
           <motion.span
@@ -141,6 +147,7 @@ const AnimationComponent: React.FC<{
         ))}
       </motion.span>
     );
+  }
 
   if (!segmentWrapperClassName) {
     return content;
@@ -158,14 +165,18 @@ const AnimationComponent: React.FC<{
 AnimationComponent.displayName = "AnimationComponent";
 
 const splitText = (text: string, per: PerType) => {
-  if (per === "line") return text.split("\n");
+  if (per === "line") {
+    return text.split("\n");
+  }
   return text.split(/(\s+)/);
 };
 
 const hasTransition = (
   variant?: Variant
 ): variant is TargetAndTransition & { transition?: Transition } => {
-  if (!variant) return false;
+  if (!variant) {
+    return false;
+  }
   return typeof variant === "object" && "transition" in variant;
 };
 
@@ -173,7 +184,9 @@ const createVariantsWithTransition = (
   baseVariants: Variants,
   transition?: Transition & { exit?: Transition }
 ): Variants => {
-  if (!transition) return baseVariants;
+  if (!transition) {
+    return baseVariants;
+  }
 
   // biome-ignore lint/correctness/noUnusedVariables: needed for rest omit
   const { exit: _, ...mainTransition } = transition;

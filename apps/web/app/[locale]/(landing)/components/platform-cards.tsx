@@ -21,7 +21,9 @@ function DownloadButton({
   label: string;
   ext: string;
 }) {
-  if (!href) return null;
+  if (!href) {
+    return null;
+  }
   const isExternal = href.startsWith("http");
   return (
     <Button

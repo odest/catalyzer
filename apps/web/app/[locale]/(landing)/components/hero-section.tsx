@@ -16,7 +16,9 @@ export default function HeroSection() {
 
   useEffect(() => {
     fetchLatestGithubVersion().then((tag) => {
-      if (tag) setLatestTag(tag);
+      if (tag) {
+        setLatestTag(tag);
+      }
     });
   }, []);
 

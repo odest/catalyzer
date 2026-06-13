@@ -7,7 +7,9 @@ export function useDrawerHistory(
   onOpenChange: (open: boolean) => void
 ) {
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      return;
+    }
 
     window.history.pushState({ drawer: "open" }, "");
 

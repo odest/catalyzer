@@ -15,7 +15,9 @@ export async function updateSiteConfig(
     "config",
     "site.ts"
   );
-  if (!(await fs.pathExists(sitePath))) return;
+  if (!(await fs.pathExists(sitePath))) {
+    return;
+  }
 
   let content = await fs.readFile(sitePath, "utf-8");
 
@@ -36,7 +38,9 @@ export async function updateRootPackageJson(
   opts: ScaffoldOptions
 ) {
   const rootPkgPath = path.join(projectDir, "package.json");
-  if (!(await fs.pathExists(rootPkgPath))) return;
+  if (!(await fs.pathExists(rootPkgPath))) {
+    return;
+  }
 
   try {
     const pkg = await fs.readJson(rootPkgPath);
@@ -54,7 +58,9 @@ export async function updateReleasePleaseConfig(
   opts: ScaffoldOptions
 ) {
   const configPath = path.join(projectDir, "release-please-config.json");
-  if (!(await fs.pathExists(configPath))) return;
+  if (!(await fs.pathExists(configPath))) {
+    return;
+  }
 
   try {
     const config = await fs.readJson(configPath);

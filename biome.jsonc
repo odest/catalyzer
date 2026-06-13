@@ -21,7 +21,6 @@
       "complexity": "warn",
       "performance": "warn",
       "security": "warn",
-      "style": "warn",
       "suspicious": "warn"
     },
     "includes": ["**", "!dist/**", "!.next/**", "!.source/**", "!.turbo/**"]
