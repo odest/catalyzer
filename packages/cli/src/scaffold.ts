@@ -22,124 +22,150 @@ import type { ScaffoldOptions } from "./prompts.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+async function guardDirectory(opts: ScaffoldOptions): Promise<void> {
+  const projectDir = path.resolve(opts.directory);
+  if (!(await fs.pathExists(projectDir))) {
+    return;
+  }
+  const entries = await fs.readdir(projectDir);
+  if (entries.length === 0) {
+    return;
+  }
+  const overwrite = await confirm({
+    message: `Directory ${opts.directory} is not empty. Overwrite?`,
+    initialValue: false,
+  });
+  if (isCancel(overwrite) || !overwrite) {
+    cancel("Setup cancelled.");
+    process.exit(1);
+  }
+}
+
+async function downloadFiles(
+  projectDir: string,
+  branch: string,
+  s: ReturnType<typeof spinner>
+): Promise<void> {
+  s.start("Downloading project files…");
+  try {
+    await cloneTemplate(projectDir, branch);
+  } catch (err) {
+    throw new Error(
+      err instanceof Error ? err.message : "Failed to download project files."
+    );
+  }
+  s.stop("Project files downloaded.");
+}
+
+async function applyTemplates(
+  projectDir: string,
+  projectName: string,
+  s: ReturnType<typeof spinner>
+): Promise<void> {
+  s.start("Applying project templates…");
+  const templatesDir = path.resolve(__dirname, "..", "templates");
+
+  const docsTarget = path.join(projectDir, "apps", "web", "content", "docs");
+  await fs.remove(docsTarget);
+  await fs.copy(path.join(templatesDir, "docs"), docsTarget);
+
+  const readmeTemplate = await fs.readFile(
+    path.join(templatesDir, "README.md"),
+    "utf-8"
+  );
+  await fs.writeFile(
+    path.join(projectDir, "README.md"),
+    readmeTemplate.replace(/\{\{PROJECT_NAME\}\}/g, projectName)
+  );
+
+  const agentsTemplate = await fs.readFile(
+    path.join(templatesDir, "AGENTS.md"),
+    "utf-8"
+  );
+  await fs.writeFile(
+    path.join(projectDir, "AGENTS.md"),
+    agentsTemplate.replace(/\{\{PROJECT_NAME\}\}/g, projectName)
+  );
+  s.stop("Templates applied.");
+}
+
+async function tryInitGit(
+  projectDir: string,
+  s: ReturnType<typeof spinner>
+): Promise<void> {
+  s.start("Initialising git…");
+  try {
+    await initGit(projectDir);
+    s.stop("Git ready.");
+  } catch (err: unknown) {
+    s.stop("Skipped git init.");
+    log.warn(
+      `Could not initialize git: ${err instanceof Error ? err.message : String(err)}`
+    );
+  }
+}
+
+async function tryInstallDeps(
+  projectDir: string,
+  s: ReturnType<typeof spinner>
+): Promise<boolean> {
+  s.start("Checking environment…");
+  let pnpmFound = true;
+  try {
+    execSync("pnpm --version", { stdio: "ignore" });
+    s.stop("Environment ok.");
+  } catch {
+    s.stop("pnpm not found.");
+    pnpmFound = false;
+  }
+
+  if (!pnpmFound) {
+    log.warn(
+      "Your project is created! However, dependencies could not be installed because pnpm was not found on your system. Once you install pnpm, you can run `pnpm install` inside the project directory."
+    );
+    return false;
+  }
+
+  s.start("Installing dependencies…");
+  try {
+    await installDeps(projectDir);
+    s.stop("Dependencies installed.");
+    return true;
+  } catch (err: unknown) {
+    s.stop("Dependency installation failed.");
+    log.warn(
+      `Could not install dependencies: ${err instanceof Error ? err.message : String(err)}`
+    );
+    return false;
+  }
+}
+
 export async function scaffold(opts: ScaffoldOptions): Promise<void> {
   const projectDir = path.resolve(opts.directory);
 
-  // Guard: target directory must be empty
-  if (await fs.pathExists(projectDir)) {
-    const entries = await fs.readdir(projectDir);
-    if (entries.length > 0) {
-      const overwrite = await confirm({
-        message: `Directory ${opts.directory} is not empty. Overwrite?`,
-        initialValue: false,
-      });
-
-      if (isCancel(overwrite) || !overwrite) {
-        cancel("Setup cancelled.");
-        process.exit(1);
-      }
-    }
-  }
+  await guardDirectory(opts);
 
   const s = spinner();
-
   let depsInstalled = false;
 
   try {
-    // 1. Download
-    s.start("Downloading project files…");
-    try {
-      await cloneTemplate(projectDir, opts.branch);
-    } catch (err) {
-      throw new Error(
-        err instanceof Error ? err.message : "Failed to download project files."
-      );
-    }
-    s.stop("Project files downloaded.");
+    await downloadFiles(projectDir, opts.branch, s);
+    await applyTemplates(projectDir, opts.projectName, s);
 
-    // 2. Shadow template swap — replace branded content with clean starters
-    s.start("Applying project templates…");
-    const templatesDir = path.resolve(__dirname, "..", "templates");
-
-    // Replace docs with clean starter docs
-    const docsTarget = path.join(projectDir, "apps", "web", "content", "docs");
-    await fs.remove(docsTarget);
-    await fs.copy(path.join(templatesDir, "docs"), docsTarget);
-
-    // Replace root README with project template
-    const readmeTemplate = await fs.readFile(
-      path.join(templatesDir, "README.md"),
-      "utf-8"
-    );
-    await fs.writeFile(
-      path.join(projectDir, "README.md"),
-      readmeTemplate.replace(/\{\{PROJECT_NAME\}\}/g, opts.projectName)
-    );
-
-    // Replace root AGENTS.md with project template
-    const agentsTemplate = await fs.readFile(
-      path.join(templatesDir, "AGENTS.md"),
-      "utf-8"
-    );
-    await fs.writeFile(
-      path.join(projectDir, "AGENTS.md"),
-      agentsTemplate.replace(/\{\{PROJECT_NAME\}\}/g, opts.projectName)
-    );
-    s.stop("Templates applied.");
-
-    // 3. Rename
     s.start("Configuring project…");
     await renameProject(projectDir, opts);
     s.stop("Project configured.");
 
-    // 4. Clean
     s.start("Cleaning up…");
     await cleanFiles(projectDir);
     s.stop("Done.");
 
-    // 5. Git
     if (opts.initGit) {
-      s.start("Initialising git…");
-      try {
-        await initGit(projectDir);
-        s.stop("Git ready.");
-      } catch (err: unknown) {
-        s.stop("Skipped git init.");
-        log.warn(
-          `Could not initialize git: ${err instanceof Error ? err.message : String(err)}`
-        );
-      }
+      await tryInitGit(projectDir, s);
     }
 
-    // 6. Install
     if (opts.installDeps) {
-      s.start("Checking environment…");
-      let pnpmFound = true;
-      try {
-        execSync("pnpm --version", { stdio: "ignore" });
-        s.stop("Environment ok.");
-      } catch {
-        s.stop("pnpm not found.");
-        pnpmFound = false;
-      }
-
-      if (pnpmFound) {
-        s.start("Installing dependencies…");
-        try {
-          await installDeps(projectDir);
-          s.stop("Dependencies installed.");
-          depsInstalled = true;
-        } catch (err: unknown) {
-          s.stop("Dependency installation failed.");
-          log.warn(
-            `Could not install dependencies: ${err instanceof Error ? err.message : String(err)}`
-          );
-        }
-      } else {
-        log.warn(
-          "Your project is created! However, dependencies could not be installed because pnpm was not found on your system. Once you install pnpm, you can run `pnpm install` inside the project directory."
-        );
-      }
+      depsInstalled = await tryInstallDeps(projectDir, s);
     }
   } catch (err: unknown) {
     s.stop("Setup failed.");

@@ -23,28 +23,29 @@ export interface ScaffoldOptions {
   version: string;
 }
 
-/**
- * Run interactive prompts and return the scaffold options.
- * If the user cancels at any point, the process exits.
- */
-export async function runPrompts(
-  defaultDir?: string
-): Promise<ScaffoldOptions> {
-  while (true) {
-    const projectName = await text({
+/** Exit gracefully when the user cancels a prompt. */
+function exitIfCancelled<T>(value: T | symbol): T {
+  if (isCancel(value)) {
+    cancel("Setup cancelled.");
+    process.exit(0);
+  }
+  return value;
+}
+
+async function collectProjectInfo(defaultDir?: string) {
+  const projectName = exitIfCancelled(
+    await text({
       message: "What is your project name?",
       placeholder: "my-awesome-app",
       validate: validateProjectName,
-    });
-    if (isCancel(projectName)) {
-      cancel("Setup cancelled.");
-      process.exit(0);
-    }
+    })
+  );
 
-    const directory = defaultDir ?? `./${projectName}`;
+  const directory = defaultDir ?? `./${projectName}`;
 
-    const defaultIdentifier = `com.${toSnakeCase(projectName)}.app`;
-    const identifierRaw = await text({
+  const defaultIdentifier = `com.${toSnakeCase(projectName)}.app`;
+  const identifierRaw = exitIfCancelled(
+    await text({
       message: "App identifier (reverse-domain)?",
       placeholder: defaultIdentifier,
       validate: (val) => {
@@ -53,24 +54,20 @@ export async function runPrompts(
         }
         return validateIdentifier(val);
       },
-    });
-    if (isCancel(identifierRaw)) {
-      cancel("Setup cancelled.");
-      process.exit(0);
-    }
-    const identifier = identifierRaw || defaultIdentifier;
+    })
+  );
+  const identifier = identifierRaw || defaultIdentifier;
 
-    const githubUserRaw = await text({
+  const githubUserRaw = exitIfCancelled(
+    await text({
       message: "GitHub username / org (optional)?",
       placeholder: "your-github-username",
-    });
-    if (isCancel(githubUserRaw)) {
-      cancel("Setup cancelled.");
-      process.exit(0);
-    }
-    const githubUser = githubUserRaw || "your-github-username";
+    })
+  );
+  const githubUser = githubUserRaw || "your-github-username";
 
-    const versionRaw = await text({
+  const versionRaw = exitIfCancelled(
+    await text({
       message: "Initial version?",
       placeholder: DEFAULT_VERSION,
       validate: (val) => {
@@ -79,41 +76,52 @@ export async function runPrompts(
         }
         return validateVersion(val);
       },
-    });
-    if (isCancel(versionRaw)) {
-      cancel("Setup cancelled.");
-      process.exit(0);
-    }
-    const version = versionRaw || DEFAULT_VERSION;
+    })
+  );
+  const version = versionRaw || DEFAULT_VERSION;
 
-    const installDeps = await confirm({
+  return { projectName, directory, identifier, githubUser, version };
+}
+
+async function collectFlags() {
+  const installDeps = exitIfCancelled(
+    await confirm({
       message: "Install dependencies?",
       initialValue: true,
-    });
-    if (isCancel(installDeps)) {
-      cancel("Setup cancelled.");
-      process.exit(0);
-    }
+    })
+  );
 
-    const initGit = await confirm({
+  const initGit = exitIfCancelled(
+    await confirm({
       message: "Initialize a new git repository?",
       initialValue: true,
-    });
-    if (isCancel(initGit)) {
-      cancel("Setup cancelled.");
-      process.exit(0);
-    }
+    })
+  );
+
+  return { installDeps, initGit };
+}
+
+/**
+ * Run interactive prompts and return the scaffold options.
+ * If the user cancels at any point, the process exits.
+ */
+export async function runPrompts(
+  defaultDir?: string
+): Promise<ScaffoldOptions> {
+  while (true) {
+    const info = await collectProjectInfo(defaultDir);
+    const flags = await collectFlags();
 
     const opts: ScaffoldOptions = {
-      projectName,
-      projectNamePascal: toPascalCase(projectName),
-      projectNameSnake: toSnakeCase(projectName),
-      directory,
-      githubUser,
-      identifier,
-      version,
-      installDeps,
-      initGit,
+      projectName: info.projectName,
+      projectNamePascal: toPascalCase(info.projectName),
+      projectNameSnake: toSnakeCase(info.projectName),
+      directory: info.directory,
+      githubUser: info.githubUser,
+      identifier: info.identifier,
+      version: info.version,
+      installDeps: flags.installDeps,
+      initGit: flags.initGit,
       branch: "master",
     };
 
@@ -131,15 +139,12 @@ export async function runPrompts(
       "Summary"
     );
 
-    const confirmed = await confirm({
-      message: "Proceed with these settings?",
-      initialValue: true,
-    });
-
-    if (isCancel(confirmed)) {
-      cancel("Setup cancelled.");
-      process.exit(0);
-    }
+    const confirmed = exitIfCancelled(
+      await confirm({
+        message: "Proceed with these settings?",
+        initialValue: true,
+      })
+    );
 
     if (confirmed) {
       return opts;

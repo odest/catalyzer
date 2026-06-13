@@ -6,12 +6,5 @@
     "ultracite/biome/next"
   ],
   "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
-  "files": { "ignoreUnknown": false },
-  "formatter": {
-    "includes": [
-      "**",
-      "!apps/web/content/docs/**/*.mdx",
-      "!packages/cli/templates/docs/**/*.mdx"
-    ]
-  }
+  "files": { "ignoreUnknown": false }
 }
