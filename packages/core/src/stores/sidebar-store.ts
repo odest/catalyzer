@@ -5,8 +5,8 @@ import { getStorageItem } from "@workspace/core/lib/storage-utils"
 export type SidebarVariant = "sidebar" | "floating" | "inset"
 
 interface SidebarState {
-  variant: SidebarVariant
   setVariant: (variant: SidebarVariant) => void
+  variant: SidebarVariant
 }
 
 export const useSidebarStore = create<SidebarState>()(

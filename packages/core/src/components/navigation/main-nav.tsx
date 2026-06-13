@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback } from "react"
-import { ComponentType } from "react"
+import type { ComponentType } from "react"
 import { ChevronRight, type LucideIcon } from "lucide-react"
 import {
   Collapsible,
@@ -23,22 +23,21 @@ import {
 import { useTranslations } from "@workspace/i18n"
 
 interface MainNavItem {
-  title: string
-  url: string
   href?: string
   icon: LucideIcon
   isActive?: boolean
-  translationKey: string
   items?: {
     title: string
     url: string
     translationKey: string
   }[]
+  title: string
+  translationKey: string
+  url: string
 }
 
 interface MainNavProps {
   items: MainNavItem[]
-  pathname: string
   LinkComponent?:
     | ComponentType<{
         href: string
@@ -47,6 +46,7 @@ interface MainNavProps {
         className?: string
       }>
     | "a"
+  pathname: string
 }
 
 export function MainNav({
@@ -74,19 +74,19 @@ export function MainNav({
           const href = item.href ?? item.url
           return (
             <Collapsible
-              key={`${item.title}-${active}`}
-              asChild
+              asChild={true}
               defaultOpen={active}
+              key={`${item.title}-${active}`}
             >
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  asChild
-                  tooltip={t(item.translationKey)}
+                  asChild={true}
                   isActive={active}
+                  tooltip={t(item.translationKey)}
                 >
                   <LinkComponent
-                    href={href}
                     data-active={active}
+                    href={href}
                     onClick={handleLinkClick}
                   >
                     <item.icon />
@@ -95,7 +95,7 @@ export function MainNav({
                 </SidebarMenuButton>
                 {item.items?.length ? (
                   <>
-                    <CollapsibleTrigger asChild>
+                    <CollapsibleTrigger asChild={true}>
                       <SidebarMenuAction className="data-[state=open]:rotate-90">
                         <ChevronRight />
                       </SidebarMenuAction>
@@ -110,7 +110,7 @@ export function MainNav({
                           return (
                             <SidebarMenuSubItem key={subItem.title}>
                               <SidebarMenuSubButton
-                                asChild
+                                asChild={true}
                                 isActive={subActive}
                               >
                                 <LinkComponent

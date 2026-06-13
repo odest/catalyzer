@@ -1,4 +1,4 @@
-import { routing, localeConfig } from "@workspace/i18n/routing"
+import { type routing, localeConfig } from "@workspace/i18n/routing"
 
 export type Locale = (typeof routing.locales)[number]
 

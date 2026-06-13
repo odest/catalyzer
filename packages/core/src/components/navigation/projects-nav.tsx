@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback } from "react"
-import { ComponentType } from "react"
+import type { ComponentType } from "react"
 import {
   Folder,
   MoreHorizontal,
@@ -29,15 +29,13 @@ import {
 import { useTranslations } from "@workspace/i18n"
 
 interface ProjectNavItem {
-  name: string
-  url: string
   icon: LucideIcon
+  name: string
   translationKey: string
+  url: string
 }
 
 interface ProjectsNavProps {
-  projects: ProjectNavItem[]
-  pathname: string
   LinkComponent?:
     | ComponentType<{
         href: string
@@ -46,6 +44,8 @@ interface ProjectsNavProps {
         className?: string
       }>
     | "a"
+  pathname: string
+  projects: ProjectNavItem[]
 }
 
 export function ProjectsNav({
@@ -72,10 +72,10 @@ export function ProjectsNav({
             (item.url !== "/" && pathname.startsWith(item.url))
           return (
             <SidebarMenuItem key={item.name}>
-              <SidebarMenuButton asChild isActive={active}>
+              <SidebarMenuButton asChild={true} isActive={active}>
                 <LinkComponent
-                  href={item.url}
                   data-tooltip={t(item.translationKey)}
+                  href={item.url}
                   onClick={handleLinkClick}
                 >
                   <item.icon />
@@ -83,15 +83,15 @@ export function ProjectsNav({
                 </LinkComponent>
               </SidebarMenuButton>
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <SidebarMenuAction showOnHover>
+                <DropdownMenuTrigger asChild={true}>
+                  <SidebarMenuAction showOnHover={true}>
                     <MoreHorizontal />
                   </SidebarMenuAction>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
+                  align={isMobile ? "end" : "start"}
                   className="w-48"
                   side={isMobile ? "bottom" : "right"}
-                  align={isMobile ? "end" : "start"}
                 >
                   <DropdownMenuItem>
                     <Folder className="text-muted-foreground" />

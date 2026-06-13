@@ -8,18 +8,19 @@ import {
   toPascalCase,
   toSnakeCase,
 } from "./utils/validate.js"
+import process from "node:process"
 
 export interface ScaffoldOptions {
-  projectName: string
-  projectNamePascal: string
-  projectNameSnake: string
+  branch: string
   directory: string
   githubUser: string
   identifier: string
-  version: string
-  installDeps: boolean
   initGit: boolean
-  branch: string
+  installDeps: boolean
+  projectName: string
+  projectNamePascal: string
+  projectNameSnake: string
+  version: string
 }
 
 /**
@@ -47,7 +48,7 @@ export async function runPrompts(
       message: "App identifier (reverse-domain)?",
       placeholder: defaultIdentifier,
       validate: (val) => {
-        if (!val) return undefined
+        if (!val) return
         return validateIdentifier(val)
       },
     })
@@ -71,7 +72,7 @@ export async function runPrompts(
       message: "Initial version?",
       placeholder: DEFAULT_VERSION,
       validate: (val) => {
-        if (!val) return undefined
+        if (!val) return
         return validateVersion(val)
       },
     })

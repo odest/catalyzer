@@ -1,13 +1,13 @@
 import { create } from "zustand"
 import { persist, createJSONStorage } from "zustand/middleware"
 import { getStorageItem } from "@workspace/core/lib/storage-utils"
-import { Themes } from "@workspace/core/config/themes"
+import type { Themes } from "@workspace/core/config/themes"
 
 interface ThemeState {
   selectedTheme: Themes
-  sortOption: string
   setSelectedTheme: (theme: Themes) => void
   setSortOption: (sortOption: string) => void
+  sortOption: string
 }
 
 export const applyTheme = (theme: Themes) => {

@@ -146,20 +146,19 @@ export function CommandPalette({
           isMobile && "h-full"
         )}
       >
-        <CommandInput placeholder={t("search")} autoFocus />
+        <CommandInput autoFocus={true} placeholder={t("search")} />
         <CommandList
           className={cn(
             "no-scrollbar scroll-pt-2 scroll-pb-1.5",
             isMobile ? "max-h-none min-h-0 flex-1" : "min-h-80"
           )}
         >
-          <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
+          <CommandEmpty className="py-12 text-center text-muted-foreground text-sm">
             {t("noResults")}
           </CommandEmpty>
 
-          <CommandGroup heading={t("general")} className={groupClasses}>
+          <CommandGroup className={groupClasses} heading={t("general")}>
             <CommandMenuItem
-              value="system dark light theme mode"
               onSelect={() =>
                 runCommand(() =>
                   handleThemeChange(
@@ -169,6 +168,7 @@ export function CommandPalette({
                   )
                 )
               }
+              value="system dark light theme mode"
             >
               {activeMode === "dark" ? <Moon /> : <Sun />}
               <span>{t("toggleMode")}</span>
@@ -198,7 +198,7 @@ export function CommandPalette({
 
           <CommandSeparator className="my-2" />
 
-          <CommandGroup heading={t("navigation")} className={groupClasses}>
+          <CommandGroup className={groupClasses} heading={t("navigation")}>
             <CommandMenuItem
               onSelect={() => runCommand(() => navigate("/home"))}
             >
@@ -247,16 +247,16 @@ export function CommandPalette({
 
           <CommandSeparator className="my-2" />
 
-          <CommandGroup heading={t("language")} className={groupClasses}>
+          <CommandGroup className={groupClasses} heading={t("language")}>
             {routing.locales.map((loc) => {
               const config = localeConfig[loc as keyof typeof localeConfig]
               return (
                 <CommandMenuItem
-                  key={loc}
-                  value={config.nativeName + " " + config.label}
-                  onSelect={() => runCommand(() => changeLanguage(loc))}
-                  disabled={isPending}
                   data-checked={locale === loc}
+                  disabled={isPending}
+                  key={loc}
+                  onSelect={() => runCommand(() => changeLanguage(loc))}
+                  value={config.nativeName + " " + config.label}
                 >
                   <span className="mr-2 text-base">{config.flag}</span>
                   <span>{config.nativeName}</span>
@@ -269,17 +269,17 @@ export function CommandPalette({
             <>
               <CommandSeparator className="my-2" />
               <CommandGroup
-                heading={t("sidebarVariants")}
                 className={groupClasses}
+                heading={t("sidebarVariants")}
               >
                 {(["sidebar", "floating", "inset"] as const).map(
                   (sidebarVariant) => (
                     <CommandMenuItem
+                      data-checked={variant === sidebarVariant}
                       key={sidebarVariant}
                       onSelect={() =>
                         runCommand(() => setVariant(sidebarVariant))
                       }
-                      data-checked={variant === sidebarVariant}
                     >
                       <LayoutTemplate />
                       <span className="capitalize">{t(sidebarVariant)}</span>
@@ -292,7 +292,7 @@ export function CommandPalette({
 
           <CommandSeparator className="my-2" />
 
-          <CommandGroup heading={t("themes")} className={groupClasses}>
+          <CommandGroup className={groupClasses} heading={t("themes")}>
             {themes.map((themeItem) => {
               const palette =
                 (activeMode === "system" ? resolvedTheme : activeMode) ===
@@ -311,9 +311,9 @@ export function CommandPalette({
                   <div className="ml-auto flex items-center gap-1">
                     {palette.slice(0, 5).map((color, i) => (
                       <div
-                        key={i}
                         className="h-3 w-3 rounded-full border border-border"
                         data-slot="command-shortcut"
+                        key={i}
                         style={{ backgroundColor: color }}
                       />
                     ))}
@@ -325,7 +325,7 @@ export function CommandPalette({
         </CommandList>
       </Command>
 
-      <div className="absolute inset-x-0 bottom-0 z-20 hidden h-10 items-center justify-between rounded-b-xl border-t border-border bg-muted/50 px-4 text-xs font-medium text-muted-foreground md:flex">
+      <div className="absolute inset-x-0 bottom-0 z-20 hidden h-10 items-center justify-between rounded-b-xl border-border border-t bg-muted/50 px-4 font-medium text-muted-foreground text-xs md:flex">
         <div className="flex items-center gap-2">
           <Kbd>
             <MoveUp />
@@ -349,7 +349,7 @@ export function CommandPalette({
 
   if (isMobile) {
     return (
-      <Drawer open={isOpen} onOpenChange={(open) => !open && close()}>
+      <Drawer onOpenChange={(open) => !open && close()} open={isOpen}>
         <DrawerContent
           className="h-[96dvh] overflow-hidden"
           onOpenAutoFocus={(e: Event) => e.preventDefault()}
@@ -365,7 +365,7 @@ export function CommandPalette({
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && close()}>
+    <Dialog onOpenChange={(open) => !open && close()} open={isOpen}>
       <DialogContent
         className="top-[15%] translate-y-0 overflow-hidden rounded-xl border-none bg-background bg-clip-padding p-0 pb-10 shadow-2xl ring-4 ring-border/80 sm:max-w-lg"
         showCloseButton={false}

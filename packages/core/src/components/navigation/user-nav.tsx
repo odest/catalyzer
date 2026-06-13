@@ -24,9 +24,9 @@ import {
 import { useTranslations } from "@workspace/i18n"
 
 interface UserNavUser {
-  name: string
-  email: string
   avatar: string
+  email: string
+  name: string
 }
 
 interface UserNavProps {
@@ -40,13 +40,13 @@ export function UserNav({ user }: UserNavProps) {
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          <DropdownMenuTrigger asChild={true}>
             <SidebarMenuButton
-              size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              size="lg"
             >
               <Avatar className="size-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarImage alt={user.name} src={user.avatar} />
                 <AvatarFallback className="rounded-lg">
                   {user.name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
@@ -59,15 +59,15 @@ export function UserNav({ user }: UserNavProps) {
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
+            align="end"
             className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
             side={"right"}
-            align="end"
             sideOffset={4}
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="size-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarImage alt={user.name} src={user.avatar} />
                   <AvatarFallback className="rounded-lg">
                     {user.name.slice(0, 2).toUpperCase()}
                   </AvatarFallback>
@@ -80,7 +80,7 @@ export function UserNav({ user }: UserNavProps) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             {navigationData.navProfile.map((group, index) => (
-              <div key={group.id} className="contents">
+              <div className="contents" key={group.id}>
                 <DropdownMenuGroup>
                   {group.items.map((item) => {
                     const Icon = item.icon

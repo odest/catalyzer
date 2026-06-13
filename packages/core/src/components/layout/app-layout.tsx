@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode, ComponentType } from "react"
+import type { ReactNode, ComponentType } from "react"
 import { Toaster } from "@workspace/ui/components/sonner"
 import { AppSidebar } from "@workspace/core/components/layout/app-sidebar"
 import { AppHeader } from "@workspace/core/components/layout/app-header"
@@ -16,8 +16,6 @@ import { SidebarInset, SidebarProvider } from "@workspace/ui/components/sidebar"
 
 interface AppLayoutProps {
   children: ReactNode
-  pathname: string
-  navigate: (path: string) => void
   LinkComponent?:
     | ComponentType<{
         href: string
@@ -26,6 +24,8 @@ interface AppLayoutProps {
         className?: string
       }>
     | "a"
+  navigate: (path: string) => void
+  pathname: string
 }
 
 function HotkeysRegistrar({ navigate }: { navigate: (path: string) => void }) {
@@ -43,22 +43,22 @@ export function AppLayout({
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-      enableColorScheme
+      disableTransitionOnChange={true}
+      enableColorScheme={true}
+      enableSystem={true}
     >
       <TooltipProvider>
         <SidebarProvider className="h-screen pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
           <HotkeysRegistrar navigate={navigate} />
-          <AppSidebar pathname={pathname} LinkComponent={LinkComponent} />
+          <AppSidebar LinkComponent={LinkComponent} pathname={pathname} />
           <SidebarInset>
-            <AppHeader pathname={pathname} LinkComponent={LinkComponent} />
+            <AppHeader LinkComponent={LinkComponent} pathname={pathname} />
             {children}
             <Toaster />
             <MobileBottomNav
               items={navigationData.navMobile}
-              pathname={pathname}
               LinkComponent={LinkComponent}
+              pathname={pathname}
             />
           </SidebarInset>
           <HotkeysDialog />

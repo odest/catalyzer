@@ -13,9 +13,9 @@ export default function AppGroupLayout({ children }: AppGroupLayoutProps) {
 
   return (
     <AppLayout
-      pathname={pathname}
-      navigate={(path) => router.push(path)}
       LinkComponent={Link}
+      navigate={(path) => router.push(path)}
+      pathname={pathname}
     >
       {children}
     </AppLayout>

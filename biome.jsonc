@@ -37,82 +37,13 @@
     "enabled": true,
     "rules": {
       "recommended": false,
-      "complexity": {
-        "noAdjacentSpacesInRegex": "warn",
-        "noExtraBooleanCast": "warn",
-        "noUselessCatch": "warn",
-        "noUselessEscapeInRegex": "warn",
-        "noUselessTypeConstraint": "warn"
-      },
-      "correctness": {
-        "noConstAssign": "warn",
-        "noConstantCondition": "warn",
-        "noEmptyCharacterClassInRegex": "warn",
-        "noEmptyPattern": "warn",
-        "noGlobalObjectCalls": "warn",
-        "noInvalidBuiltinInstantiation": "warn",
-        "noInvalidConstructorSuper": "warn",
-        "noNonoctalDecimalEscape": "warn",
-        "noPrecisionLoss": "warn",
-        "noSelfAssign": "warn",
-        "noSetterReturn": "warn",
-        "noSwitchDeclarations": "warn",
-        "noUndeclaredVariables": "warn",
-        "noUnreachable": "warn",
-        "noUnreachableSuper": "warn",
-        "noUnsafeFinally": "warn",
-        "noUnsafeOptionalChaining": "warn",
-        "noUnusedLabels": "warn",
-        "noUnusedPrivateClassMembers": "warn",
-        "noUnusedVariables": "warn",
-        "useIsNan": "warn",
-        "useValidForDirection": "warn",
-        "useValidTypeof": "warn",
-        "useYield": "warn"
-      },
-      "style": {
-        "noCommonJs": "warn",
-        "noNamespace": "warn",
-        "useArrayLiterals": "warn",
-        "useAsConstAssertion": "warn",
-        "useBlockStatements": "off"
-      },
-      "suspicious": {
-        "noAsyncPromiseExecutor": "warn",
-        "noCatchAssign": "warn",
-        "noClassAssign": "warn",
-        "noCompareNegZero": "warn",
-        "noConstantBinaryExpressions": "warn",
-        "noControlCharactersInRegex": "warn",
-        "noDebugger": "warn",
-        "noDuplicateCase": "warn",
-        "noDuplicateClassMembers": "warn",
-        "noDuplicateElseIf": "warn",
-        "noDuplicateObjectKeys": "warn",
-        "noDuplicateParameters": "warn",
-        "noEmptyBlockStatements": "warn",
-        "noExplicitAny": "warn",
-        "noExtraNonNullAssertion": "warn",
-        "noFallthroughSwitchClause": "warn",
-        "noFunctionAssign": "warn",
-        "noGlobalAssign": "warn",
-        "noImportAssign": "warn",
-        "noIrregularWhitespace": "warn",
-        "noMisleadingCharacterClass": "warn",
-        "noMisleadingInstantiator": "warn",
-        "noNonNullAssertedOptionalChain": "warn",
-        "noPrototypeBuiltins": "warn",
-        "noRedeclare": "warn",
-        "noShadowRestrictedNames": "warn",
-        "noSparseArray": "warn",
-        "noUnsafeDeclarationMerging": "warn",
-        "noUnsafeNegation": "warn",
-        "noUnusedExpressions": "off",
-        "noUselessRegexBackrefs": "warn",
-        "noWith": "warn",
-        "useGetterReturn": "warn",
-        "useNamespaceKeyword": "warn"
-      }
+      "a11y": "warn",
+      "complexity": "warn",
+      "correctness": "warn",
+      "performance": "warn",
+      "security": "warn",
+      "style": "warn",
+      "suspicious": "warn"
     },
     "includes": ["**", "!dist/**", "!.next/**", "!.source/**", "!.turbo/**"]
   },
@@ -143,7 +74,16 @@
   },
   "overrides": [
     {
-      "includes": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
+      "includes": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.mts",
+        "**/*.cts",
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.mjs",
+        "**/*.cjs"
+      ],
       "linter": {
         "rules": {
           "complexity": { "noArguments": "warn" },
@@ -159,6 +99,7 @@
           },
           "style": { "useConst": "warn" },
           "suspicious": {
+            "noReactSpecificProps": "off",
             "noExplicitAny": "off",
             "noClassAssign": "off",
             "noDuplicateClassMembers": "off",
@@ -178,6 +119,10 @@
   ],
   "assist": {
     "enabled": true,
-    "actions": { "source": { "organizeImports": "off" } }
+    "actions": {
+      "source": {
+        "organizeImports": "off"
+      }
+    }
   }
 }

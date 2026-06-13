@@ -29,10 +29,7 @@
   },
   "homepage": "https://catalyzer.dev",
   "type": "module",
-  "files": [
-    "dist",
-    "templates"
-  ],
+  "files": ["dist", "templates"],
   "bin": {
     "catalyzer": "./dist/index.js"
   },

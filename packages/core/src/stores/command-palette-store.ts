@@ -1,10 +1,10 @@
 import { create } from "zustand"
 
 interface CommandPaletteStore {
-  isOpen: boolean
-  toggle: () => void
-  open: () => void
   close: () => void
+  isOpen: boolean
+  open: () => void
+  toggle: () => void
 }
 
 export const useCommandPaletteStore = create<CommandPaletteStore>((set) => ({

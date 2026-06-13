@@ -1,8 +1,8 @@
 import { siteConfig } from "@workspace/core/config/site"
 
 export interface ReleaseData {
-  version: string
   assets: Record<string, string>
+  version: string
 }
 
 // Map from asset filename pattern to a normalized key
@@ -37,10 +37,10 @@ function assetNameToKey(name: string): string | null {
 }
 
 interface GitHubRelease {
-  tag_name: string
-  prerelease: boolean
-  draft: boolean
   assets: { name: string; browser_download_url: string; size: number }[]
+  draft: boolean
+  prerelease: boolean
+  tag_name: string
 }
 
 // Fetches the latest GitHub release that has download assets. Uses ISR with 1-hour revalidation.
@@ -55,8 +55,7 @@ export async function fetchLatestReleaseWithAssets(): Promise<ReleaseData | null
 
     const release = releases.find(
       (r) =>
-        !r.prerelease &&
-        !r.draft &&
+        !(r.prerelease || r.draft) &&
         /^v\d/.test(r.tag_name) &&
         r.assets.length > 0
     )

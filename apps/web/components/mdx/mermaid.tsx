@@ -47,18 +47,18 @@ function MermaidContent({ chart }: { chart: string }) {
   })
 
   const { svg, bindFunctions } = use(
-    cachePromise(`${chart}-${resolvedTheme}`, () => {
-      return mermaid.render(id, chart.replaceAll("\\\\n", "\\n"))
-    })
+    cachePromise(`${chart}-${resolvedTheme}`, () =>
+      mermaid.render(id, chart.replaceAll("\\\\n", "\\n"))
+    )
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ) as any
 
   return (
     <div
+      dangerouslySetInnerHTML={{ __html: svg }}
       ref={(container) => {
         if (container) bindFunctions?.(container)
       }}
-      dangerouslySetInnerHTML={{ __html: svg }}
     />
   )
 }

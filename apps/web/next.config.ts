@@ -4,10 +4,10 @@ import { createMDX } from "fumadocs-mdx/next"
 import { withSerwist } from "@serwist/turbopack"
 
 const withNextIntl = createNextIntlPlugin()
-const withMDX = createMDX()
+const withMdx = createMDX()
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@workspace/ui", "@workspace/core", "@workspace/i18n"],
 }
 
-export default withSerwist(withNextIntl(withMDX(nextConfig)))
+export default withSerwist(withNextIntl(withMdx(nextConfig)))

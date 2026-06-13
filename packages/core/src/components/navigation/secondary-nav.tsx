@@ -1,6 +1,6 @@
-import * as React from "react"
-import { ComponentType, useCallback } from "react"
-import { type LucideIcon } from "lucide-react"
+import type * as React from "react"
+import { type ComponentType, useCallback } from "react"
+import type { LucideIcon } from "lucide-react"
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -12,18 +12,16 @@ import {
 import { useTranslations } from "@workspace/i18n"
 
 interface SecondaryNavItem {
-  title: string
-  url: string
-  icon: LucideIcon
-  translationKey: string
   external?: boolean
+  icon: LucideIcon
+  title: string
+  translationKey: string
+  url: string
 }
 
-interface SecondaryNavProps extends React.ComponentPropsWithoutRef<
-  typeof SidebarGroup
-> {
+interface SecondaryNavProps
+  extends React.ComponentPropsWithoutRef<typeof SidebarGroup> {
   items: SecondaryNavItem[]
-  pathname: string
   LinkComponent?:
     | ComponentType<{
         href: string
@@ -32,6 +30,7 @@ interface SecondaryNavProps extends React.ComponentPropsWithoutRef<
         className?: string
       }>
     | "a"
+  pathname: string
 }
 
 export function SecondaryNav({
@@ -59,14 +58,14 @@ export function SecondaryNav({
               (item.url !== "/" && pathname.startsWith(item.url))
             return (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild size="sm" isActive={active}>
+                <SidebarMenuButton asChild={true} isActive={active} size="sm">
                   <LinkComponent
-                    href={item.url}
-                    data-tooltip={t(item.translationKey)}
                     data-active={active}
+                    data-tooltip={t(item.translationKey)}
+                    href={item.url}
                     onClick={handleLinkClick}
-                    target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
+                    target={item.external ? "_blank" : undefined}
                   >
                     <item.icon />
                     <span>{t(item.translationKey)}</span>

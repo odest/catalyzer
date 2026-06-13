@@ -210,29 +210,29 @@
 }
 
 [data-slot="sidebar-menu-button"][data-active="true"] {
-  background-color: var(--primary) !important;
   color: var(--primary-foreground) !important;
+  background-color: var(--primary) !important;
 }
 
 [data-slot="sidebar-menu-button"][data-active="true"]:hover {
-  background-color: var(--accent) !important;
   color: var(--primary) !important;
+  background-color: var(--accent) !important;
 }
 
 [data-slot="sidebar-menu-sub-button"][data-active="true"] {
-  background-color: var(--primary) !important;
   color: var(--primary-foreground) !important;
+  background-color: var(--primary) !important;
 }
 
 [data-slot="sidebar-menu-sub-button"][data-active="true"]:hover {
-  background-color: var(--accent) !important;
   color: var(--primary) !important;
+  background-color: var(--accent) !important;
 }
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: none;
   mix-blend-mode: normal;
+  animation: none;
 }
 
 ::view-transition-old(root) {

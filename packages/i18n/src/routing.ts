@@ -18,6 +18,6 @@ export const locales = Object.keys(localeConfig) as Array<
 >
 
 export const routing = defineRouting({
-  locales: locales,
+  locales,
   defaultLocale: "en",
 })

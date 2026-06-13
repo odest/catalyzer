@@ -29,22 +29,22 @@ export const TextHoverEffect = ({
 
   return (
     <svg
-      ref={svgRef}
-      width="100%"
+      className="select-none"
       height="100%"
-      viewBox="0 -12 385 60"
-      xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
-      className="select-none"
+      ref={svgRef}
+      viewBox="0 -12 385 60"
+      width="100%"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
         <linearGradient
-          id="textGradient"
-          gradientUnits="userSpaceOnUse"
           cx="50%"
           cy="50%"
+          gradientUnits="userSpaceOnUse"
+          id="textGradient"
           r="25%"
         >
           {hovered && (
@@ -59,11 +59,11 @@ export const TextHoverEffect = ({
         </linearGradient>
 
         <motion.radialGradient
-          id="revealMask"
-          gradientUnits="userSpaceOnUse"
-          r="20%"
-          initial={{ cx: "50%", cy: "50%" }}
           animate={maskPosition}
+          gradientUnits="userSpaceOnUse"
+          id="revealMask"
+          initial={{ cx: "50%", cy: "50%" }}
+          r="20%"
           transition={{ duration: duration ?? 0, ease: "easeOut" }}
 
           // example for a smoother animation below
@@ -79,53 +79,53 @@ export const TextHoverEffect = ({
         </motion.radialGradient>
         <mask id="textMask">
           <rect
+            fill="url(#revealMask)"
+            height="100%"
+            width="100%"
             x="0"
             y="0"
-            width="100%"
-            height="100%"
-            fill="url(#revealMask)"
           />
         </mask>
       </defs>
       <text
-        x="50%"
-        y="50%"
-        textAnchor="middle"
+        className="fill-transparent stroke-neutral-200 font-[geist] font-black text-7xl dark:stroke-neutral-800"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[geist] text-7xl font-black dark:stroke-neutral-800"
         style={{ opacity: hovered ? 0.7 : 0 }}
+        textAnchor="middle"
+        x="50%"
+        y="50%"
       >
         {text}
       </text>
       <motion.text
-        x="50%"
-        y="50%"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        strokeWidth="0.3"
-        className="fill-transparent stroke-neutral-200 font-[geist] text-7xl font-black dark:stroke-neutral-800"
-        initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
         animate={{
           strokeDashoffset: 0,
           strokeDasharray: 1000,
         }}
+        className="fill-transparent stroke-neutral-200 font-[geist] font-black text-7xl dark:stroke-neutral-800"
+        dominantBaseline="middle"
+        initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
+        strokeWidth="0.3"
+        textAnchor="middle"
         transition={{
           duration: 4,
           ease: "easeInOut",
         }}
+        x="50%"
+        y="50%"
       >
         {text}
       </motion.text>
       <text
-        x="50%"
-        y="50%"
-        textAnchor="middle"
+        className="fill-transparent font-[geist] font-black text-7xl"
         dominantBaseline="middle"
+        mask="url(#textMask)"
         stroke="url(#textGradient)"
         strokeWidth="0.3"
-        mask="url(#textMask)"
-        className="fill-transparent font-[geist] text-7xl font-black"
+        textAnchor="middle"
+        x="50%"
+        y="50%"
       >
         {text}
       </text>

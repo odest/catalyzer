@@ -11,9 +11,9 @@ export default function LandingLayout({ children }: LandingLayoutProps) {
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-      enableColorScheme
+      disableTransitionOnChange={true}
+      enableColorScheme={true}
+      enableSystem={true}
     >
       <HeroHeader />
       {children}

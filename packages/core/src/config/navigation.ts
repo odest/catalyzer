@@ -11,61 +11,61 @@ import {
   PieChart,
   BadgeCheck,
   CreditCard,
-  LucideIcon,
+  type LucideIcon,
   LayoutDashboard,
 } from "lucide-react"
 import { siteConfig } from "@workspace/core/config/site"
 
 export interface UserNavItem {
-  name: string
-  email: string
   avatar: string
+  email: string
+  name: string
 }
 
 export interface SubNavItem {
   title: string
-  url: string
   translationKey: string
+  url: string
 }
 
 export interface MainNavItem {
-  title: string
-  url: string
   href?: string
   icon: LucideIcon
   isActive?: boolean
   items?: SubNavItem[]
+  title: string
   translationKey: string
+  url: string
 }
 
 export interface MobileNavItem {
-  title: string
-  url: string
   href?: string
   icon: LucideIcon
+  title: string
   translationKey: string
+  url: string
 }
 
 export interface SecondaryNavItem {
-  title: string
-  url: string
-  icon: LucideIcon
-  translationKey: string
   external?: boolean
+  icon: LucideIcon
+  title: string
+  translationKey: string
+  url: string
 }
 
 export interface ProjectNavItem {
-  name: string
-  url: string
   icon: LucideIcon
+  name: string
   translationKey: string
+  url: string
 }
 
 export interface ProfileNavItem {
-  title: string
-  url: string
   icon: LucideIcon
+  title: string
   translationKey: string
+  url: string
 }
 
 export interface ProfileNavGroup {
@@ -74,12 +74,12 @@ export interface ProfileNavGroup {
 }
 
 export interface NavigationData {
-  user: UserNavItem
   navMain: MainNavItem[]
   navMobile: MobileNavItem[]
+  navProfile: ProfileNavGroup[]
   navSecondary: SecondaryNavItem[]
   projects: ProjectNavItem[]
-  navProfile: ProfileNavGroup[]
+  user: UserNavItem
 }
 
 export const navigationData: NavigationData = {

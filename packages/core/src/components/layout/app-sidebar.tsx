@@ -1,8 +1,8 @@
 "use client"
 
-import * as React from "react"
+import type * as React from "react"
 import { useCallback } from "react"
-import { ComponentType } from "react"
+import type { ComponentType } from "react"
 import { MainNav } from "@workspace/core/components/navigation/main-nav"
 import { ProjectsNav } from "@workspace/core/components/navigation/projects-nav"
 import { SecondaryNav } from "@workspace/core/components/navigation/secondary-nav"
@@ -24,7 +24,6 @@ import { Logo } from "@workspace/ui/components/landing/logo"
 import { siteConfig } from "@workspace/core/config/site"
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
-  pathname: string
   LinkComponent?:
     | ComponentType<{
         href: string
@@ -33,6 +32,7 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
         className?: string
       }>
     | "a"
+  pathname: string
 }
 
 export function AppSidebar({
@@ -53,17 +53,17 @@ export function AppSidebar({
   if (!mounted) return <></>
 
   return (
-    <Sidebar variant={variant} collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" variant={variant} {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
-              asChild
+              asChild={true}
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <LinkComponent href="/" onClick={handleLinkClick}>
                 <Logo className="!size-5" />
-                <span className="text-base font-semibold">
+                <span className="font-semibold text-base">
                   {siteConfig.name}
                 </span>
               </LinkComponent>
@@ -74,19 +74,19 @@ export function AppSidebar({
       <SidebarContent>
         <MainNav
           items={navigationData.navMain}
-          pathname={pathname}
           LinkComponent={LinkComponent}
+          pathname={pathname}
         />
         <ProjectsNav
-          projects={navigationData.projects}
-          pathname={pathname}
           LinkComponent={LinkComponent}
+          pathname={pathname}
+          projects={navigationData.projects}
         />
         <SecondaryNav
-          items={navigationData.navSecondary}
-          pathname={pathname}
-          LinkComponent={LinkComponent}
           className="mt-auto"
+          items={navigationData.navSecondary}
+          LinkComponent={LinkComponent}
+          pathname={pathname}
         />
       </SidebarContent>
       <SidebarFooter>

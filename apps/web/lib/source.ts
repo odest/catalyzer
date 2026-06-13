@@ -17,6 +17,6 @@ export const source = loader({
       const Icon = icons[iconString as keyof typeof icons]
       return createElement(Icon)
     }
-    return undefined
+    return
   },
 })

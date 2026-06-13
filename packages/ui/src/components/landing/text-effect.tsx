@@ -116,14 +116,14 @@ const AnimationComponent: React.FC<{
 }> = React.memo(({ segment, variants, per, segmentWrapperClassName }) => {
   const content =
     per === "line" ? (
-      <motion.span variants={variants} className="block">
+      <motion.span className="block" variants={variants}>
         {segment}
       </motion.span>
     ) : per === "word" ? (
       <motion.span
         aria-hidden="true"
-        variants={variants}
         className="inline-block whitespace-pre"
+        variants={variants}
       >
         {segment}
       </motion.span>
@@ -131,10 +131,10 @@ const AnimationComponent: React.FC<{
       <motion.span className="inline-block whitespace-pre">
         {segment.split("").map((char, charIndex) => (
           <motion.span
-            key={`char-${charIndex}`}
             aria-hidden="true"
-            variants={variants}
             className="inline-block whitespace-pre"
+            key={`char-${charIndex}`}
+            variants={variants}
           >
             {char}
           </motion.span>
@@ -264,23 +264,23 @@ export function TextEffect({
     <AnimatePresence mode="popLayout">
       {trigger && (
         <MotionTag
-          initial="hidden"
           animate="visible"
-          exit="exit"
-          variants={computedVariants.container}
           className={className}
+          exit="exit"
+          initial="hidden"
           onAnimationComplete={onAnimationComplete}
           onAnimationStart={onAnimationStart}
           style={style}
+          variants={computedVariants.container}
         >
-          {per !== "line" ? <span className="sr-only">{children}</span> : null}
+          {per === "line" ? null : <span className="sr-only">{children}</span>}
           {segments.map((segment, index) => (
             <AnimationComponent
               key={`${per}-${index}-${segment}`}
-              segment={segment}
-              variants={computedVariants.item}
               per={per}
+              segment={segment}
               segmentWrapperClassName={segmentWrapperClassName}
+              variants={computedVariants.item}
             />
           ))}
         </MotionTag>

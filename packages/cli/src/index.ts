@@ -14,6 +14,7 @@ import {
 
 declare const __CLI_VERSION__: string
 import { DEFAULT_VERSION } from "./consts.js"
+import process from "node:process"
 
 const banner = `
  ██████╗ █████╗ ████████╗ █████╗ ██╗  ██╗   ██╗███████╗███████╗██████╗ 

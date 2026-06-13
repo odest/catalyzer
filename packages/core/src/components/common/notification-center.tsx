@@ -28,7 +28,7 @@ import { Button } from "@workspace/ui/components/button"
 import { ScrollArea } from "@workspace/ui/components/scroll-area"
 import {
   notifications,
-  NotificationItem,
+  type NotificationItem,
 } from "@workspace/core/config/notifications"
 import { useTranslations } from "@workspace/i18n"
 
@@ -39,13 +39,13 @@ export function NotificationCenter() {
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild={true}>
         <Button
-          type="button"
-          variant="ghost"
-          size="icon"
           aria-label="Notifications"
           className="relative"
+          size="icon"
+          type="button"
+          variant="ghost"
         >
           <Bell className="size-4" />
           {hasUnread && (
@@ -56,13 +56,13 @@ export function NotificationCenter() {
 
       <PopoverContent align="end" className="hidden w-96 gap-0 p-0 md:flex">
         <div className="flex items-center justify-between border-b p-4">
-          <span className="text-sm font-semibold">{t("title")}</span>
-          <Button variant="link" className="h-auto p-0 text-xs">
+          <span className="font-semibold text-sm">{t("title")}</span>
+          <Button className="h-auto p-0 text-xs" variant="link">
             {t("markAllRead")}
           </Button>
         </div>
 
-        <Tabs defaultValue="all" className="gap-0">
+        <Tabs className="gap-0" defaultValue="all">
           <div className="p-3">
             <TabsList className="w-full">
               <TabsTrigger value="all">{t("all")}</TabsTrigger>
@@ -85,9 +85,9 @@ export function NotificationCenter() {
 
         <div className="border-t px-3 py-2">
           <Button
-            variant="ghost"
-            size="sm"
             className="w-full justify-center text-xs"
+            size="sm"
+            variant="ghost"
           >
             {t("seeAll")}
           </Button>
@@ -118,11 +118,11 @@ function NotificationList({ items }: { items: NotificationItem[] }) {
     <div className="flex flex-col gap-2">
       {items.map((item) => (
         <button
-          key={item.id}
           className="flex w-full items-start gap-2 rounded-md border p-2 text-left transition-colors hover:bg-muted/50"
+          key={item.id}
         >
           <Avatar className="size-9 shrink-0">
-            {item.avatar && <AvatarImage src={item.avatar} alt={item.title} />}
+            {item.avatar && <AvatarImage alt={item.title} src={item.avatar} />}
             <AvatarFallback className="bg-transparent">
               {item.icon ? (
                 <item.icon className="size-4 text-muted-foreground" />
@@ -142,13 +142,13 @@ function NotificationList({ items }: { items: NotificationItem[] }) {
             >
               {t(item.title)}
             </span>
-            <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
+            <p className="line-clamp-2 text-muted-foreground text-xs leading-snug">
               {t(item.description)}
             </p>
           </div>
 
           <div className="flex shrink-0 flex-col items-end gap-3">
-            <span className="text-xs text-muted-foreground">
+            <span className="text-muted-foreground text-xs">
               {t(item.time)}
             </span>
             {item.unread ? (

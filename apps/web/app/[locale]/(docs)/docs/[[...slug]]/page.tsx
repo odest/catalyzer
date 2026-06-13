@@ -20,21 +20,21 @@ export default async function Page(props: {
   const page = source.getPage(params.slug, params.locale)
   if (!page) notFound()
 
-  const MDX = page.data.body
+  const Mdx = page.data.body
   const neighbours = findNeighbour(source.getPageTree(params.locale), page.url)
 
   return (
     <DocsPage
-      toc={page.data.toc}
-      tableOfContent={{ style: "clerk" }}
       footer={{
         items: { previous: neighbours.previous, next: neighbours.next },
       }}
+      tableOfContent={{ style: "clerk" }}
+      toc={page.data.toc}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX
+        <Mdx
           components={getMDXComponents({
             // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),

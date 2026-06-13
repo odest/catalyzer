@@ -78,9 +78,9 @@ export const Greet = () => {
       >
         <Input
           id="greet-input"
-          value={name}
           onChange={(e) => setName(e.currentTarget.value)}
           placeholder={t("placeholder")}
+          value={name}
         />
         <Button type="submit">{t("button")}</Button>
       </form>

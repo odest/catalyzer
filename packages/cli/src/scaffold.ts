@@ -9,6 +9,7 @@ import { renameProject } from "./actions/rename/index.js"
 import { cleanFiles } from "./actions/clean.js"
 import { initGit } from "./actions/git.js"
 import { installDeps } from "./actions/install.js"
+import process from "node:process"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -145,7 +146,7 @@ export async function scaffold(opts: ScaffoldOptions): Promise<void> {
 
   // Done
   p.note(
-    [`cd ${opts.directory}`, !depsInstalled ? "pnpm install" : "", "pnpm dev"]
+    [`cd ${opts.directory}`, depsInstalled ? "" : "pnpm install", "pnpm dev"]
       .filter(Boolean)
       .join("\n"),
     "Next steps"

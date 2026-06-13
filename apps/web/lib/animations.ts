@@ -1,4 +1,4 @@
-import { type AnimatedGroupProps } from "@workspace/ui/components/landing/animated-group"
+import type { AnimatedGroupProps } from "@workspace/ui/components/landing/animated-group"
 
 export const transitionVariants: AnimatedGroupProps["variants"] = {
   container: {

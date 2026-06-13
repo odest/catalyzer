@@ -14,17 +14,17 @@ export function validateProjectName(
     value.endsWith("_")
   )
     return "Cannot start or end with a hyphen or underscore."
-  return undefined
+  return
 }
 
 /**
  * Validate a semver version string (e.g. 0.1.0).
  */
 export function validateVersion(value: string | undefined): string | undefined {
-  if (!value) return undefined // allow empty input to fallback to defaultValue
+  if (!value) return
   if (!/^\d+\.\d+\.\d+$/.test(value))
     return "Must be a valid semver version (e.g. 0.1.0)."
-  return undefined
+  return
 }
 
 /**
@@ -56,5 +56,5 @@ export function validateIdentifier(
   if (!value) return "Identifier cannot be empty."
   if (!/^[a-z][a-z0-9_]{1,}(\.[a-z][a-z0-9_]{1,}){2,}$/.test(value))
     return "Must be a valid reverse-domain identifier (e.g. com.myapp.app). Requires at least 3 parts, starting with a letter, minimum 2 characters per part."
-  return undefined
+  return
 }

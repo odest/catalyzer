@@ -1,22 +1,18 @@
 "use client"
 
-import { motion, MotionStyle, Transition } from "motion/react"
+import { motion, type MotionStyle, type Transition } from "motion/react"
 
 import { cn } from "@workspace/ui/lib/utils"
 
 interface BorderBeamProps {
   /**
-   * The size of the border beam.
+   * The border width of the beam.
    */
-  size?: number
+  borderWidth?: number
   /**
-   * The duration of the border beam.
+   * The class name of the border beam.
    */
-  duration?: number
-  /**
-   * The delay of the border beam.
-   */
-  delay?: number
+  className?: string
   /**
    * The color of the border beam from.
    */
@@ -26,29 +22,33 @@ interface BorderBeamProps {
    */
   colorTo?: string
   /**
-   * The motion transition of the border beam.
+   * The delay of the border beam.
    */
-  transition?: Transition
+  delay?: number
   /**
-   * The class name of the border beam.
+   * The duration of the border beam.
    */
-  className?: string
-  /**
-   * The style of the border beam.
-   */
-  style?: React.CSSProperties
-  /**
-   * Whether to reverse the animation direction.
-   */
-  reverse?: boolean
+  duration?: number
   /**
    * The initial offset position (0-100).
    */
   initialOffset?: number
   /**
-   * The border width of the beam.
+   * Whether to reverse the animation direction.
    */
-  borderWidth?: number
+  reverse?: boolean
+  /**
+   * The size of the border beam.
+   */
+  size?: number
+  /**
+   * The style of the border beam.
+   */
+  style?: React.CSSProperties
+  /**
+   * The motion transition of the border beam.
+   */
+  transition?: Transition
 }
 
 export const BorderBeam = ({
@@ -63,45 +63,43 @@ export const BorderBeam = ({
   reverse = false,
   initialOffset = 0,
   borderWidth = 1,
-}: BorderBeamProps) => {
-  return (
-    <div
-      className="pointer-events-none absolute inset-0 rounded-[inherit] border-(length:--border-beam-width) border-transparent mask-[linear-gradient(transparent,transparent),linear-gradient(#000,#000)] mask-intersect [mask-clip:padding-box,border-box]"
+}: BorderBeamProps) => (
+  <div
+    className="border-(length:--border-beam-width) mask-[linear-gradient(transparent,transparent),linear-gradient(#000,#000)] mask-intersect pointer-events-none absolute inset-0 rounded-[inherit] border-transparent [mask-clip:padding-box,border-box]"
+    style={
+      {
+        "--border-beam-width": `${borderWidth}px`,
+      } as React.CSSProperties
+    }
+  >
+    <motion.div
+      animate={{
+        offsetDistance: reverse
+          ? [`${100 - initialOffset}%`, `${-initialOffset}%`]
+          : [`${initialOffset}%`, `${100 + initialOffset}%`],
+      }}
+      className={cn(
+        "absolute aspect-square",
+        "bg-linear-to-l from-(--color-from) via-(--color-to) to-transparent",
+        className
+      )}
+      initial={{ offsetDistance: `${initialOffset}%` }}
       style={
         {
-          "--border-beam-width": `${borderWidth}px`,
-        } as React.CSSProperties
+          width: size,
+          offsetPath: `rect(0 auto auto 0 round ${size}px)`,
+          "--color-from": colorFrom,
+          "--color-to": colorTo,
+          ...style,
+        } as MotionStyle
       }
-    >
-      <motion.div
-        className={cn(
-          "absolute aspect-square",
-          "bg-linear-to-l from-(--color-from) via-(--color-to) to-transparent",
-          className
-        )}
-        style={
-          {
-            width: size,
-            offsetPath: `rect(0 auto auto 0 round ${size}px)`,
-            "--color-from": colorFrom,
-            "--color-to": colorTo,
-            ...style,
-          } as MotionStyle
-        }
-        initial={{ offsetDistance: `${initialOffset}%` }}
-        animate={{
-          offsetDistance: reverse
-            ? [`${100 - initialOffset}%`, `${-initialOffset}%`]
-            : [`${initialOffset}%`, `${100 + initialOffset}%`],
-        }}
-        transition={{
-          repeat: Infinity,
-          ease: "linear",
-          duration,
-          delay: -delay,
-          ...transition,
-        }}
-      />
-    </div>
-  )
-}
+      transition={{
+        repeat: Number.POSITIVE_INFINITY,
+        ease: "linear",
+        duration,
+        delay: -delay,
+        ...transition,
+      }}
+    />
+  </div>
+)

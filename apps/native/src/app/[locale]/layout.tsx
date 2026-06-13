@@ -49,7 +49,7 @@ export default async function RootLayout({
   const localeMessages = messages[locale as keyof typeof messages]
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning={true}>
       <head>
         <script
           dangerouslySetInnerHTML={{

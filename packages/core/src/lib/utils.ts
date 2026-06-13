@@ -10,7 +10,7 @@ export async function fetchLatestGithubVersion(): Promise<string | null> {
       draft: boolean
     }[] = await res.json()
     const appRelease = releases.find(
-      (r) => !r.prerelease && !r.draft && /^v\d/.test(r.tag_name)
+      (r) => !(r.prerelease || r.draft) && /^v\d/.test(r.tag_name)
     )
     return appRelease?.tag_name?.replace(/^v/, "") || null
   } catch {

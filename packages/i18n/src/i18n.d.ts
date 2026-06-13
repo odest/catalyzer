@@ -1,5 +1,5 @@
 import type { Locale } from "@workspace/i18n"
-import messages from "@workspace/i18n/messages/en.json"
+import messages from "@workspace/i18n/messages/en.json" with { type: "json" }
 
 type Messages = typeof messages
 

@@ -38,21 +38,21 @@ export function ModeSwitch({ className }: { className?: string }) {
 
           return (
             <button
-              key={mode.value}
-              type="button"
-              onClick={(e) => handleThemeChange(mode.value, e)}
+              aria-label={`Switch to ${mode.value} mode`}
               className={cn(
                 "relative z-10 flex size-7 cursor-pointer items-center justify-center rounded-full transition-colors duration-200",
                 isActive
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground/70"
               )}
-              aria-label={`Switch to ${mode.value} mode`}
+              key={mode.value}
+              onClick={(e) => handleThemeChange(mode.value, e)}
+              type="button"
             >
               {isActive && (
                 <motion.span
-                  layoutId="mode-switch-indicator"
                   className="absolute inset-0 rounded-full bg-background shadow-sm ring-1 ring-border"
+                  layoutId="mode-switch-indicator"
                   transition={{
                     type: "spring",
                     stiffness: 500,

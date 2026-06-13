@@ -3,7 +3,7 @@ import { TEMPLATE_SOURCE } from "../consts.js"
 
 export async function cloneTemplate(
   directory: string,
-  branch: string = "master"
+  branch = "master"
 ): Promise<string> {
   const { dir } = await downloadTemplate(`${TEMPLATE_SOURCE}#${branch}`, {
     dir: directory,

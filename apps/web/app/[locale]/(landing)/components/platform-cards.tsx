@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Card, CardContent, CardHeader } from "@workspace/ui/components/card"
 import { Button } from "@workspace/ui/components/button"
-import { ReactNode } from "react"
+import type { ReactNode } from "react"
 import {
   platformCards,
   type PlatformCardData,
@@ -25,17 +25,17 @@ function DownloadButton({
   const isExternal = href.startsWith("http")
   return (
     <Button
-      asChild
-      variant="outline"
+      asChild={true}
       className="w-full cursor-pointer justify-between"
+      variant="outline"
     >
       <Link
         href={href}
-        target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}
+        target={isExternal ? "_blank" : undefined}
       >
         <span className="text-sm">{label}</span>
-        <span className="font-mono text-xs text-muted-foreground">{ext}</span>
+        <span className="font-mono text-muted-foreground text-xs">{ext}</span>
       </Link>
     </Button>
   )
@@ -65,18 +65,18 @@ function PlatformCard({
         {platform.downloads.length > 0 ? (
           platform.downloads.map((dl) => (
             <DownloadButton
-              key={dl.assetKey + dl.label}
+              ext={dl.ext}
               href={
                 dl.assetKey.startsWith("http")
                   ? dl.assetKey
                   : assets[dl.assetKey]
               }
+              key={dl.assetKey + dl.label}
               label={dl.label}
-              ext={dl.ext}
             />
           ))
         ) : (
-          <p className="py-2 text-sm text-muted-foreground">Coming soon</p>
+          <p className="py-2 text-muted-foreground text-sm">Coming soon</p>
         )}
       </CardContent>
     </Card>
@@ -88,7 +88,7 @@ export default function PlatformCards({ assets }: PlatformCardsProps) {
     <section className="py-16 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
-          <h2 className="text-4xl font-semibold text-balance lg:text-5xl">
+          <h2 className="text-balance font-semibold text-4xl lg:text-5xl">
             Available Platforms
           </h2>
           <p className="mt-4 text-muted-foreground">
@@ -98,9 +98,9 @@ export default function PlatformCards({ assets }: PlatformCardsProps) {
         <div className="mx-auto mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-6">
           {platformCards.map((platform) => (
             <PlatformCard
+              assets={assets}
               key={platform.name}
               platform={platform}
-              assets={assets}
             />
           ))}
         </div>
@@ -110,9 +110,9 @@ export default function PlatformCards({ assets }: PlatformCardsProps) {
 }
 
 const CardDecorator = ({ children }: { children: ReactNode }) => (
-  <div className="relative mx-auto size-36 mask-radial-from-40% mask-radial-to-60% duration-200 [--color-border:color-mix(in_oklab,var(--color-foreground)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-foreground)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-foreground)15%,transparent)] dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-foreground)20%,transparent)]">
+  <div className="mask-radial-from-40% mask-radial-to-60% relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-foreground)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-foreground)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-foreground)15%,transparent)] dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-foreground)20%,transparent)]">
     <div
-      aria-hidden
+      aria-hidden={true}
       className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-size-[24px_24px] dark:opacity-50"
     />
 

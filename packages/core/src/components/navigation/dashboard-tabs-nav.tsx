@@ -18,19 +18,19 @@ export function DashboardTabsNav() {
   return (
     <div className="flex justify-center md:hidden">
       <Tabs
-        value={activeTab}
         onValueChange={(nextValue) => {
           if (nextValue !== pathname) {
             router.push(nextValue)
           }
         }}
+        value={activeTab}
       >
         <TabsList variant="line">
           {DASHBOARD_ITEMS.map((item) => (
             <TabsTrigger
+              className="after:bg-primary"
               key={item.url}
               value={item.url}
-              className="after:bg-primary"
             >
               {t(item.translationKey)}
             </TabsTrigger>

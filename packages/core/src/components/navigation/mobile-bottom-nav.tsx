@@ -1,7 +1,7 @@
 "use client"
 
-import { ComponentType } from "react"
-import { type LucideIcon } from "lucide-react"
+import type { ComponentType } from "react"
+import type { LucideIcon } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { cn } from "@workspace/ui/lib/utils"
 import { useTranslations } from "@workspace/i18n"
@@ -10,18 +10,17 @@ import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-s
 import { BorderBeam } from "@workspace/ui/components/landing/border-beam"
 
 export interface MobileBottomNavItem {
-  title: string
-  url: string
   href?: string
   icon: LucideIcon
   isActive?: boolean
+  title: string
   translationKey: string
+  url: string
 }
 
 export interface MobileBottomNavProps {
-  items: MobileBottomNavItem[]
-  pathname: string
   className?: string
+  items: MobileBottomNavItem[]
   LinkComponent?:
     | ComponentType<{
         href: string
@@ -30,6 +29,7 @@ export interface MobileBottomNavProps {
         className?: string
       }>
     | "a"
+  pathname: string
 }
 
 const buttonVariants = {
@@ -98,43 +98,43 @@ export function MobileBottomNav({
 
         return (
           <LinkComponent
-            key={item.url}
-            href={href}
-            onClick={handleClick}
             className={cn(
               "flex h-full items-center justify-center outline-none",
               isActive ? "min-w-0 shrink" : "shrink-0"
             )}
+            href={href}
+            key={item.url}
+            onClick={handleClick}
           >
             <motion.div
-              whileTap={{ scale: 0.85 }}
-              variants={buttonVariants}
-              initial={false}
               animate="animate"
-              custom={isActive}
-              transition={transition}
               className={cn(
-                "relative flex h-full items-center justify-center rounded-full px-3.5 text-sm font-medium transition-colors duration-300",
+                "relative flex h-full items-center justify-center rounded-full px-3.5 font-medium text-sm transition-colors duration-300",
                 isActive
                   ? "min-w-0 text-foreground"
                   : "shrink-0 text-muted-foreground hover:text-foreground"
               )}
+              custom={isActive}
+              initial={false}
+              transition={transition}
+              variants={buttonVariants}
+              whileTap={{ scale: 0.85 }}
             >
               {isActive && (
                 <motion.div
-                  layoutId="mobile-nav-active-pill"
                   className={cn(
                     "absolute inset-0 z-0 rounded-full",
                     "bg-linear-to-b from-foreground/5 to-foreground/10",
                     "border border-border/50",
                     "shadow-[inset_0_-1px_0_var(--color-border)]"
                   )}
+                  layoutId="mobile-nav-active-pill"
                   transition={transition}
                 >
                   <BorderBeam
+                    className="from-transparent via-primary to-transparent"
                     duration={5}
                     size={50}
-                    className="from-transparent via-primary to-transparent"
                   />
                 </motion.div>
               )}
@@ -148,12 +148,12 @@ export function MobileBottomNav({
               <AnimatePresence initial={false}>
                 {isActive && (
                   <motion.span
-                    variants={spanVariants}
-                    initial="initial"
                     animate="animate"
+                    className="relative z-10 block min-w-0 truncate font-semibold text-sm"
                     exit="exit"
+                    initial="initial"
                     transition={transition}
-                    className="relative z-10 block min-w-0 truncate text-sm font-semibold"
+                    variants={spanVariants}
                   >
                     {t(item.translationKey as Parameters<typeof t>[0])}
                   </motion.span>

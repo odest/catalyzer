@@ -6,9 +6,7 @@
 import { getRequestConfig } from "@workspace/i18n/server"
 import { routing } from "@workspace/i18n/routing"
 
-export default getRequestConfig(async () => {
-  return {
-    locale: routing.defaultLocale,
-    messages: {},
-  }
-})
+export default getRequestConfig(async () => ({
+  locale: routing.defaultLocale,
+  messages: {},
+}))

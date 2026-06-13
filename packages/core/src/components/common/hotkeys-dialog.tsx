@@ -57,12 +57,12 @@ function HotkeysList() {
     <div className="space-y-4">
       {generalHotkeys.length > 0 && (
         <div>
-          <h3 className="mb-2 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+          <h3 className="mb-2 font-semibold text-muted-foreground text-xs uppercase tracking-wider">
             {t("general")}
           </h3>
           <div className="space-y-0.5">
             {generalHotkeys.map((hotkey) => (
-              <HotkeyRow key={hotkey.id} hotkey={hotkey} />
+              <HotkeyRow hotkey={hotkey} key={hotkey.id} />
             ))}
           </div>
         </div>
@@ -74,12 +74,12 @@ function HotkeysList() {
 
       {navigationHotkeys.length > 0 && (
         <div>
-          <h3 className="mb-2 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+          <h3 className="mb-2 font-semibold text-muted-foreground text-xs uppercase tracking-wider">
             {t("navigation")}
           </h3>
           <div className="space-y-0.5">
             {navigationHotkeys.map((hotkey) => (
-              <HotkeyRow key={hotkey.id} hotkey={hotkey} />
+              <HotkeyRow hotkey={hotkey} key={hotkey.id} />
             ))}
           </div>
         </div>
@@ -95,13 +95,13 @@ export function HotkeysDialog() {
 
   if (isMobile) {
     return (
-      <Drawer open={isOpen} onOpenChange={(open) => !open && close()}>
+      <Drawer onOpenChange={(open) => !open && close()} open={isOpen}>
         <DrawerContent className="p-4">
           <DrawerHeader>
             <DrawerTitle>{t("title")}</DrawerTitle>
             <DrawerDescription>{t("description")}</DrawerDescription>
           </DrawerHeader>
-          <div className="mx-auto no-scrollbar w-full max-w-sm overflow-y-auto">
+          <div className="no-scrollbar mx-auto w-full max-w-sm overflow-y-auto">
             <HotkeysList />
           </div>
         </DrawerContent>
@@ -110,13 +110,13 @@ export function HotkeysDialog() {
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && close()}>
+    <Dialog onOpenChange={(open) => !open && close()} open={isOpen}>
       <DialogContent className="flex max-h-[85vh] flex-col sm:max-w-md">
         <DialogHeader className="shrink-0">
           <DialogTitle>{t("title")}</DialogTitle>
           <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
-        <div className="-mx-6 no-scrollbar flex-1 overflow-y-auto px-6">
+        <div className="no-scrollbar -mx-6 flex-1 overflow-y-auto px-6">
           <HotkeysList />
         </div>
       </DialogContent>

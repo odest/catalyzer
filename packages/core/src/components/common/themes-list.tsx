@@ -83,7 +83,7 @@ export const ThemesList = () => {
 
             <div className="flex flex-col gap-4 sm:flex-row md:items-center">
               <div className="relative flex-1">
-                <Skeleton className="h-9 w-full max-w-full min-w-[140px] rounded-md" />
+                <Skeleton className="h-9 w-full min-w-[140px] max-w-full rounded-md" />
               </div>
               <Skeleton className="h-9 w-full rounded-md sm:w-40 md:w-[180px]" />
             </div>
@@ -93,7 +93,7 @@ export const ThemesList = () => {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 md:gap-4">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="space-y-3">
+              <div className="space-y-3" key={i}>
                 <Skeleton className="aspect-video rounded-lg" />
                 <div className="space-y-2">
                   <Skeleton className="h-4 w-20" />
@@ -119,11 +119,11 @@ export const ThemesList = () => {
             <div className="relative flex-1">
               <InputGroup>
                 <InputGroupInput
+                  className="w-full min-w-[140px] max-w-full text-ellipsis break-all"
                   id="inline-start-input"
-                  className="w-full max-w-full min-w-[140px] break-all text-ellipsis"
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder={t("searchPlaceholder")}
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <InputGroupAddon align="inline-start">
                   <Search className="text-muted-foreground" />
@@ -132,9 +132,9 @@ export const ThemesList = () => {
                   <InputGroupAddon align="inline-end">
                     <InputGroupButton
                       aria-label="Copy"
-                      title="Copy"
-                      size="icon-xs"
                       onClick={() => setSearchTerm("")}
+                      size="icon-xs"
+                      title="Copy"
                     >
                       <XCircle />
                     </InputGroupButton>
@@ -143,7 +143,7 @@ export const ThemesList = () => {
               </InputGroup>
             </div>
 
-            <Select value={sortOption} onValueChange={setSortOption}>
+            <Select onValueChange={setSortOption} value={sortOption}>
               <SelectTrigger className="w-full gap-2 sm:w-40 md:w-[180px]">
                 <SelectValue placeholder={t("sortBy")} />
               </SelectTrigger>
@@ -182,14 +182,14 @@ export const ThemesList = () => {
             {filteredThemes.map((theme) => (
               <ThemeCard
                 key={theme.name}
-                themeLabel={theme.label}
-                themeName={theme.name}
                 palette={
                   (activeMode === "system" ? resolvedTheme : activeMode) ===
                   "dark"
                     ? theme.darkPalette
                     : theme.lightPalette
                 }
+                themeLabel={theme.label}
+                themeName={theme.name}
               />
             ))}
           </div>

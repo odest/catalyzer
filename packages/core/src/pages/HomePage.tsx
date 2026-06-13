@@ -8,7 +8,7 @@ export function HomePage() {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-4 p-4">
-      <h1 className="text-center text-xl font-bold text-balance">
+      <h1 className="text-balance text-center font-bold text-xl">
         {t("title")}
       </h1>
       <Greet />

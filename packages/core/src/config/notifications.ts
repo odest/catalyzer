@@ -2,18 +2,18 @@ import {
   Tag,
   Download,
   FileText,
-  LucideIcon,
+  type LucideIcon,
   MessageCircle,
 } from "lucide-react"
 
 export interface NotificationItem {
-  id: string
-  title: string
-  description: string
-  time: string
-  unread: boolean
   avatar?: string
+  description: string
   icon?: LucideIcon
+  id: string
+  time: string
+  title: string
+  unread: boolean
 }
 
 export const notifications: NotificationItem[] = [

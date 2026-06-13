@@ -18,22 +18,22 @@ export function LanguageToggle() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
+      <DropdownMenuTrigger asChild={true}>
+        <Button size="icon" variant="ghost">
           <Languages className="size-4" />
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="hidden min-w-40 md:block">
         <DropdownMenuGroup>
-          <DropdownMenuRadioGroup value={locale} onValueChange={changeLanguage}>
+          <DropdownMenuRadioGroup onValueChange={changeLanguage} value={locale}>
             {routing.locales.map((loc) => {
               const config = localeConfig[loc as keyof typeof localeConfig]
               return (
                 <DropdownMenuRadioItem
+                  disabled={isPending}
                   key={loc}
                   value={loc}
-                  disabled={isPending}
                 >
                   <span className="mr-2 text-base">{config.flag}</span>
                   {config.nativeName}

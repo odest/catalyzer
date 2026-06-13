@@ -1,6 +1,6 @@
 "use client"
 
-import { ComponentType, Fragment } from "react"
+import { type ComponentType, Fragment } from "react"
 import { Search } from "lucide-react"
 import { Kbd } from "@workspace/ui/components/kbd"
 import { Button } from "@workspace/ui/components/button"
@@ -29,7 +29,6 @@ function formatSegment(segment: string): string {
 }
 
 interface AppHeaderProps {
-  pathname: string
   LinkComponent?:
     | ComponentType<{
         href: string
@@ -38,6 +37,7 @@ interface AppHeaderProps {
         className?: string
       }>
     | "a"
+  pathname: string
 }
 
 export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
@@ -55,8 +55,8 @@ export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
         <SidebarTrigger className="-ml-1 cursor-pointer" />
         <Separator
-          orientation="vertical"
           className="mx-2 data-vertical:h-4 data-vertical:self-center"
+          orientation="vertical"
         />
 
         <Breadcrumb>
@@ -75,7 +75,7 @@ export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
               const isLast = index === segments.length - 1
               // Try to get translation, fallback to formatted segment
               const displayText =
-                t(segment) !== segment ? t(segment) : formatSegment(segment)
+                t(segment) === segment ? formatSegment(segment) : t(segment)
 
               return (
                 <Fragment key={href}>
@@ -85,8 +85,8 @@ export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
                       <BreadcrumbPage>{displayText}</BreadcrumbPage>
                     ) : (
                       <LinkComponent
-                        href={breadcrumbHref}
                         className="hidden md:block"
+                        href={breadcrumbHref}
                       >
                         {displayText}
                       </LinkComponent>
@@ -100,10 +100,10 @@ export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
 
         <div className="ml-auto flex items-center gap-1">
           <Button
+            className="hidden w-64 justify-between lg:flex"
+            onClick={toggleCommandPalette}
             size="sm"
             variant="outline"
-            onClick={toggleCommandPalette}
-            className="hidden w-64 justify-between lg:flex"
           >
             <span className="flex items-center gap-2">
               <Search className="size-4 text-muted-foreground" />
@@ -117,16 +117,16 @@ export function AppHeader({ pathname, LinkComponent = "a" }: AppHeaderProps) {
             </span>
           </Button>
           <Button
-            size="icon"
-            variant="ghost"
             className="flex lg:hidden"
             onClick={toggleCommandPalette}
+            size="icon"
+            variant="ghost"
           >
             <Search className="size-4" />
           </Button>
           <Separator
+            className="mx-2 hidden data-vertical:h-4 data-vertical:self-center lg:block"
             orientation="vertical"
-            className="mx-2 hidden lg:block data-vertical:h-4 data-vertical:self-center"
           />
           <NotificationCenter />
           <LanguageToggle />

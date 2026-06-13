@@ -25,14 +25,14 @@ export function LanguageCard() {
             <div className="flex items-center gap-2 font-semibold">
               {t("title")}
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-muted-foreground text-sm">
               {t("description")}
             </div>
           </div>
           <Select
-            value={locale}
-            onValueChange={changeLanguage}
             disabled={isPending}
+            onValueChange={changeLanguage}
+            value={locale}
           >
             <SelectTrigger className="w-[200px]">
               <SelectValue>
