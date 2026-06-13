@@ -27,7 +27,7 @@ export function InfiniteSlider({
   const [ref, { width, height }] = useMeasure();
   const translation = useMotionValue(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [key, setKey] = useState(0);
+  const [_key, setKey] = useState(0);
 
   useEffect(() => {
     let controls;
@@ -66,7 +66,6 @@ export function InfiniteSlider({
 
     return controls?.stop;
   }, [
-    key,
     translation,
     currentSpeed,
     width,

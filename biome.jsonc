@@ -20,7 +20,6 @@
       "recommended": false,
       "a11y": "warn",
       "complexity": "warn",
-      "correctness": "warn",
       "performance": "warn",
       "security": "warn",
       "style": "warn",
@@ -47,32 +46,8 @@
       ],
       "linter": {
         "rules": {
-          "complexity": { "noArguments": "warn" },
-          "correctness": {
-            "noConstAssign": "off",
-            "noGlobalObjectCalls": "off",
-            "noInvalidBuiltinInstantiation": "off",
-            "noInvalidConstructorSuper": "off",
-            "noSetterReturn": "off",
-            "noUndeclaredVariables": "off",
-            "noUnreachable": "off",
-            "noUnreachableSuper": "off"
-          },
-          "style": { "useConst": "warn" },
           "suspicious": {
-            "noReactSpecificProps": "off",
-            "noExplicitAny": "off",
-            "noClassAssign": "off",
-            "noDuplicateClassMembers": "off",
-            "noDuplicateObjectKeys": "off",
-            "noDuplicateParameters": "off",
-            "noFunctionAssign": "off",
-            "noImportAssign": "off",
-            "noRedeclare": "off",
-            "noUnsafeNegation": "off",
-            "noVar": "warn",
-            "noWith": "off",
-            "useGetterReturn": "off"
+            "noReactSpecificProps": "off"
           }
         }
       }
