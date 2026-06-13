@@ -34,10 +34,8 @@
     "@types/node": "^25.9.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "esbuild": "^0.28.1",
-    "eslint": "^9.39.4",
     "serwist": "^9.5.11",
     "typescript": "~5.9.3",
     "zod": "^4.4.3"

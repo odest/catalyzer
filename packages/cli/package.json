@@ -29,7 +29,10 @@
   },
   "homepage": "https://catalyzer.dev",
   "type": "module",
-  "files": ["dist", "templates"],
+  "files": [
+    "dist",
+    "templates"
+  ],
   "bin": {
     "catalyzer": "./dist/index.js"
   },
@@ -59,9 +62,7 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.19.42",
-    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "eslint": "^9.39.4",
     "tsup": "^8.5.1",
     "typescript": "~5.9.3",
     "vitest": "^4.1.8"
