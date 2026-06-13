@@ -19,7 +19,6 @@
     "rules": {
       "recommended": false,
       "complexity": "warn",
-      "security": "warn",
       "suspicious": "warn"
     },
     "includes": ["**", "!dist/**", "!.next/**", "!.source/**", "!.turbo/**"]

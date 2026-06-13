@@ -52,6 +52,7 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning={true}>
       <head>
         <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Trusted script
           dangerouslySetInnerHTML={{
             __html: themeInitScript,
           }}

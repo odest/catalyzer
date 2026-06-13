@@ -4,6 +4,7 @@ export default function OfflinePage() {
   return (
     <>
       <style
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: Trusted style
         dangerouslySetInnerHTML={{
           __html: `
         :root {
