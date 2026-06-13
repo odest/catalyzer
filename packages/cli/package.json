@@ -29,10 +29,7 @@
   },
   "homepage": "https://catalyzer.dev",
   "type": "module",
-  "files": [
-    "dist",
-    "templates"
-  ],
+  "files": ["dist", "templates"],
   "bin": {
     "catalyzer": "./dist/index.js"
   },
@@ -43,10 +40,6 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "start": "node ./dist/index.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist .turbo",
     "test": "vitest run"
