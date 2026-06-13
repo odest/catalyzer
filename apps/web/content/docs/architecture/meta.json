@@ -9,6 +9,6 @@
     "ui-package",
     "i18n-package",
     "cli-package",
-    "shared-configs"
+    "typescript-config"
   ]
 }

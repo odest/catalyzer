@@ -8,7 +8,7 @@ import { React } from "@workspace/ui/components/svgs/react"
 import { Turborepo } from "@workspace/ui/components/svgs/turborepo"
 import { RadixUi } from "@workspace/ui/components/svgs/radixUi"
 import { Motion } from "@workspace/ui/components/svgs/motion"
-import { Eslint } from "@workspace/ui/components/svgs/eslint"
+import { Biome } from "@workspace/ui/components/svgs/biome"
 
 export const LogoCloud = () => (
   <section className="bg-background pt-16 pb-16 md:pb-32">
@@ -27,7 +27,7 @@ export const LogoCloud = () => (
             <Turborepo height={24} width={80} />
             <RadixUi height={24} width={80} />
             <Motion height={24} width={80} />
-            <Eslint height={24} width={80} />
+            <Biome height={24} width={80} />
           </InfiniteSlider>
 
           <div

@@ -42,9 +42,6 @@ Internal packages reference each other with `"workspace:*"` in `package.json`. p
     <Folder name="cli">
       <File name="Scaffolding CLI (create-catalyzer)" />
     </Folder>
-    <Folder name="eslint-config">
-      <File name="Shared ESLint flat configs (base, next, react-internal)" />
-    </Folder>
     <Folder name="typescript-config">
       <File name="Shared TypeScript configs (base, nextjs, react-library)" />
     </Folder>
@@ -71,7 +68,6 @@ Internal packages reference each other with `"workspace:*"` in `package.json`. p
   end
 
   subgraph Tooling
-    eslint["packages/eslint-config"]
     ts["packages/typescript-config"]
   end
 
@@ -85,15 +81,15 @@ Internal packages reference each other with `"workspace:*"` in `package.json`. p
   core --> i18n
   ui --> i18n
 
-  native -.-> eslint & ts
-  web -.-> eslint & ts
-  core -.-> eslint & ts
-  ui -.-> eslint & ts
-  i18n -.-> eslint & ts
-  cli -.-> eslint & ts
+  native -.-> ts
+  web -.-> ts
+  core -.-> ts
+  ui -.-> ts
+  i18n -.-> ts
+  cli -.-> ts
 `} />
 
-Solid arrows are runtime dependencies. Dashed arrows are dev/tooling dependencies (every package uses the shared ESLint and TypeScript configs). The `cli` package is independent and published to npm separately. `core` depends on `ui` for design system primitives.
+Solid arrows are runtime dependencies. Dashed arrows are dev/tooling dependencies (every package uses the shared TypeScript configs). The `cli` package is independent and published to npm separately. `core` depends on `ui` for design system primitives.
 
 ## Turborepo Pipeline
 
@@ -106,12 +102,6 @@ Solid arrows are runtime dependencies. Dashed arrows are dev/tooling dependencie
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
-    "format": {
-      "dependsOn": ["^format"]
     },
     "typecheck": {
       "dependsOn": ["^typecheck"]
@@ -131,10 +121,18 @@ Solid arrows are runtime dependencies. Dashed arrows are dev/tooling dependencie
 |---|---|
 | `build` | Builds dependencies first (`^build`), caches `.next` output |
 | `dev` | Parallel dev servers, no caching |
-| `lint` | Lints dependency packages first, cacheable |
-| `format` | Formats dependency packages first, cacheable |
 | `typecheck` | Type-checks dependency packages first, cacheable |
 | `clean` | Removes build artifacts, not cached |
+
+## Code Quality & Formatting
+
+Instead of delegating linting and formatting to individual packages via Turborepo, Catalyzer uses **Biome (via the Ultracite preset)** as a single root-level tool.
+
+- **Single Source of Truth**: The `biome.jsonc` file at the root dictates all rules.
+- **Zero Config for Packages**: Workspaces don't need their own linting dependencies or configs.
+- **Speed**: Biome processes the entire monorepo in milliseconds natively, bypassing the need for Turborepo's orchestration and caching for these specific tasks.
+
+Run `pnpm check` to catch issues, or `pnpm fix` to auto-format and resolve them.
 
 ## Root Files
 
@@ -144,6 +142,6 @@ Solid arrows are runtime dependencies. Dashed arrows are dev/tooling dependencie
 | `pnpm-workspace.yaml` | Workspace declarations |
 | `package.json` | Root scripts, devDependencies, engine constraints |
 | `tsconfig.json` | TypeScript project references |
-| `eslint.config.mjs` | Root ESLint flat config |
+| `biome.jsonc` | Root Biome configuration |
 | `release-please-config.json` | Versioning and changelog automation |
 | `.release-please-manifest.json` | Current version for each tracked package |

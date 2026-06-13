@@ -175,7 +175,7 @@ const createVariantsWithTransition = (
 ): Variants => {
   if (!transition) return baseVariants
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // biome-ignore lint/correctness/noUnusedVariables: needed for rest omit
   const { exit: _, ...mainTransition } = transition
 
   return {

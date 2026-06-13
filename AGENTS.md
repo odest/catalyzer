@@ -24,13 +24,12 @@ pnpm tauri android dev     # Android
 pnpm tauri ios dev         # iOS
 
 # Quality gates (CI runs all four on every PR)
-pnpm format:check          # Prettier check
-pnpm lint                  # ESLint (flat config, warnings only)
+pnpm check                 # Biome/Ultracite check
 pnpm typecheck             # tsc --noEmit across all workspaces
 pnpm build                 # Full production build
 
 # Utilities
-pnpm format                # Auto-format all code
+pnpm fix                   # Auto-format and fix lint issues
 pnpm clean                 # Remove build artifacts
 pnpm shadcn add <name>     # Add shadcn/ui component to packages/ui
 pnpm deps:check            # Check for outdated deps
@@ -51,7 +50,6 @@ packages/
   ui/                 Design system: shadcn/ui primitives, 40+ themes, global styles (Tailwind v4)
   i18n/               10-language type-safe translations (next-intl), SSR and static support
   cli/                Scaffolding CLI: `npm create catalyzer@latest` (published to npm)
-  eslint-config/      Shared ESLint flat config (base, next, react-internal)
   typescript-config/  Shared tsconfig presets (base, nextjs, react-library)
 ```
 
@@ -74,18 +72,14 @@ Both apps import pages, layouts, and state from `packages/core`. Do not put plat
 - Target: `ES2022`. Module: `NodeNext`.
 - All new code must be TypeScript. No `.js` files in `packages/` or `apps/` source directories.
 
-### Formatting (Prettier)
+### Formatting and Linting (Biome/Ultracite)
 
-- Double quotes, no semicolons, 2-space indent, trailing commas (`es5`), LF line endings.
-- Tailwind class sorting is enforced via `prettier-plugin-tailwindcss`.
+- This project uses **Ultracite** as a zero-config preset over Biome.
+- Formatting is strictly enforced (double quotes, 2-space indent).
+- Linting catches issues but favors warnings or auto-fixing over failing builds locally.
+- Tailwind class sorting is handled natively by Biome (`npx @biomejs/biome check`).
 - Stylesheet reference: `packages/ui/src/styles/globals.css`.
-- `cn` and `cva` are recognized by the Tailwind sorter.
-
-### Linting (ESLint)
-
-- Flat config (`eslint.config.mjs` per package).
-- `eslint-plugin-only-warn` is active, so all lint violations are warnings, not errors.
-- Turbo env-var checking is on (`turbo/no-undeclared-env-vars`).
+- Run `pnpm fix` to automatically resolve formatting and lint issues.
 
 ### Commit messages
 
@@ -116,7 +110,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/). Release Ple
 
 ### Do not
 
-- Do not modify `packages/eslint-config/` or `packages/typescript-config/` without explicit approval.
+- Do not modify `packages/typescript-config/` without explicit approval.
 - Do not add app-specific dependencies to shared packages (`core`, `ui`, `i18n`).
 - Do not modify `release-please-config.json`, `.release-please-manifest.json`, or GitHub workflow files without explicit approval.
 - Do not use `npm` or `yarn`. This repo uses pnpm exclusively (v10+, corepack-managed).

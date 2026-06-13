@@ -30,7 +30,7 @@ GitHub Actions for validation, Release Please for versioning, manual dispatch fo
 
 | Workflow | Trigger | Purpose |
 |---|---|---|
-| `ci.yml` | PR to `master` | Lint, type check, build validation |
+| `ci.yml` | PR to `master` | Format/Lint check, type check, build validation |
 | `release.yml` | Push to `master` | Release Please automation |
 | `build-apps.yml` | Manual dispatch | Orchestrates desktop + Android builds |
 | `build-desktop.yml` | Called by `build-apps` | Desktop builds (Windows, macOS, Linux) |
@@ -59,13 +59,12 @@ jobs:
           node-version: 20
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
-      - run: pnpm lint
+      - run: pnpm check
       - run: pnpm typecheck
       - run: pnpm build
 ```
 
-Four checks must pass: **formatting**, **linting**, **type checking**, and **production build**.
+Three checks must pass: **formatting & linting** (`pnpm check`), **type checking**, and **production build**.
 
 ## Release Please
 

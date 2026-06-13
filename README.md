@@ -130,7 +130,6 @@ packages/
   ui/                 → Design system: shadcn/ui primitives, themes, styles
   i18n/               → 10-language type-safe translations (SSR & static)
   cli/                → Scaffolding tool (npm create catalyzer@latest)
-  eslint-config/      → Shared ESLint rules (Flat Config)
   typescript-config/  → Shared TypeScript configs
 ```
 
@@ -191,8 +190,8 @@ Both `web` and `native` import pages, layouts, and state from `packages/core`, a
 ```bash
 pnpm dev                  # Start all apps in dev mode
 pnpm build                # Build everything
-pnpm lint                 # Lint all packages
-pnpm format               # Format all code
+pnpm check                # Check formatting and lint rules
+pnpm fix                  # Auto-fix formatting and lint issues
 pnpm typecheck            # TypeScript validation across all workspaces
 pnpm web dev              # Web app only
 pnpm tauri dev            # Desktop app only

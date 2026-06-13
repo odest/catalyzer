@@ -1,0 +1,119 @@
+---
+title: TypeScript Config Package
+description: Shared TypeScript configurations used across all workspaces.
+icon: Settings
+---
+
+import { Callout } from 'fumadocs-ui/components/callout'
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs'
+import { File, Folder, Files } from 'fumadocs-ui/components/files'
+
+A dedicated configuration package (`@workspace/typescript-config`) keeps TypeScript settings consistent across the monorepo. Every workspace extends one of its presets.
+
+## Directory Structure
+
+<Files>
+  <Folder name="packages" defaultOpen>
+    <Folder name="typescript-config" defaultOpen>
+      <File name="base.json" />
+      <File name="nextjs.json" />
+      <File name="react-library.json" />
+      <File name="package.json" />
+    </Folder>
+  </Folder>
+</Files>
+
+## Which Config Goes Where
+
+| Workspace | TypeScript Config |
+|---|---|
+| `apps/native` | `nextjs.json` |
+| `apps/web` | `nextjs.json` |
+| `packages/ui` | `react-library.json` |
+| `packages/core` | `react-library.json` |
+| `packages/i18n` | `base.json` |
+| `packages/cli` | `base.json` |
+
+## Base and Presets
+
+Three configs that extend each other:
+
+<Tabs items={["base.json", "nextjs.json", "react-library.json"]}>
+  <Tab value="base.json">
+
+```json title="packages/typescript-config/base.json"
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "incremental": false,
+    "isolatedModules": true,
+    "lib": ["es2022", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "moduleDetection": "force",
+    "moduleResolution": "NodeNext",
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022"
+  }
+}
+```
+
+`strict: true` + `noUncheckedIndexedAccess` enforces strict type checking. `incremental: false` is set because Turborepo handles caching.
+
+  </Tab>
+  <Tab value="nextjs.json">
+
+```json title="packages/typescript-config/nextjs.json"
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Next.js",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "plugins": [{ "name": "next" }],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": true,
+    "jsx": "preserve",
+    "noEmit": true
+  }
+}
+```
+
+Overrides module resolution to `Bundler` (Next.js uses its own bundler), enables the Next.js TypeScript plugin for route type checking, and sets `noEmit` since Next.js handles compilation.
+
+  </Tab>
+  <Tab value="react-library.json">
+
+```json title="packages/typescript-config/react-library.json"
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "React Library",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
+}
+```
+
+`react-jsx` transform means no `import React` needed in component files.
+
+  </Tab>
+</Tabs>
+
+## Usage
+
+```json title="apps/web/tsconfig.json"
+{
+  "extends": "@workspace/typescript-config/nextjs.json"
+}
+```
+
+<Callout type="info">
+Adding a new package? Extend `react-library.json` for React packages, or `base.json` for plain TypeScript utilities.
+</Callout>
