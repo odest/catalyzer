@@ -2,6 +2,7 @@ import type { routing } from "@workspace/i18n/routing";
 
 export type Locale = (typeof routing.locales)[number];
 
+// biome-ignore lint/performance/noBarrelFile: Wrapper package
 export * from "next-intl";
 
 export { localeConfig } from "@workspace/i18n/routing";

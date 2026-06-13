@@ -1,4 +1,12 @@
-import * as p from "@clack/prompts";
+import {
+  cancel,
+  confirm,
+  isCancel,
+  log,
+  note,
+  outro,
+  spinner,
+} from "@clack/prompts";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import fs from "fs-extra";
@@ -21,19 +29,19 @@ export async function scaffold(opts: ScaffoldOptions): Promise<void> {
   if (await fs.pathExists(projectDir)) {
     const entries = await fs.readdir(projectDir);
     if (entries.length > 0) {
-      const overwrite = await p.confirm({
+      const overwrite = await confirm({
         message: `Directory ${opts.directory} is not empty. Overwrite?`,
         initialValue: false,
       });
 
-      if (p.isCancel(overwrite) || !overwrite) {
-        p.cancel("Setup cancelled.");
+      if (isCancel(overwrite) || !overwrite) {
+        cancel("Setup cancelled.");
         process.exit(1);
       }
     }
   }
 
-  const s = p.spinner();
+  const s = spinner();
 
   let depsInstalled = false;
 
@@ -97,7 +105,7 @@ export async function scaffold(opts: ScaffoldOptions): Promise<void> {
         s.stop("Git ready.");
       } catch (err: unknown) {
         s.stop("Skipped git init.");
-        p.log.warn(
+        log.warn(
           `Could not initialize git: ${err instanceof Error ? err.message : String(err)}`
         );
       }
@@ -123,12 +131,12 @@ export async function scaffold(opts: ScaffoldOptions): Promise<void> {
           depsInstalled = true;
         } catch (err: unknown) {
           s.stop("Dependency installation failed.");
-          p.log.warn(
+          log.warn(
             `Could not install dependencies: ${err instanceof Error ? err.message : String(err)}`
           );
         }
       } else {
-        p.log.warn(
+        log.warn(
           "Your project is created! However, dependencies could not be installed because pnpm was not found on your system. Once you install pnpm, you can run `pnpm install` inside the project directory."
         );
       }
@@ -136,7 +144,7 @@ export async function scaffold(opts: ScaffoldOptions): Promise<void> {
   } catch (err: unknown) {
     s.stop("Setup failed.");
     await fs.remove(projectDir);
-    p.cancel(
+    cancel(
       err instanceof Error
         ? err.message
         : "An unexpected error occurred during setup."
@@ -145,12 +153,12 @@ export async function scaffold(opts: ScaffoldOptions): Promise<void> {
   }
 
   // Done
-  p.note(
+  note(
     [`cd ${opts.directory}`, depsInstalled ? "" : "pnpm install", "pnpm dev"]
       .filter(Boolean)
       .join("\n"),
     "Next steps"
   );
 
-  p.outro("Your project is ready! 🚀");
+  outro("Your project is ready! 🚀");
 }

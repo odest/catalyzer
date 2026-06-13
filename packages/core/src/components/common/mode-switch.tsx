@@ -21,7 +21,7 @@ export function ModeSwitch({ className }: { className?: string }) {
   const selected = (theme as Mode) ?? "system";
 
   if (!mounted) {
-    return <></>;
+    return null;
   }
 
   return (

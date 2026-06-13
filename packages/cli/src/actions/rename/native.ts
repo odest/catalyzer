@@ -1,6 +1,6 @@
 import path from "node:path";
 import fs from "fs-extra";
-import * as p from "@clack/prompts";
+import { log } from "@clack/prompts";
 import { SEARCH_TERMS } from "../../consts.js";
 import type { ScaffoldOptions } from "../../prompts.js";
 import {
@@ -9,6 +9,9 @@ import {
   findDirsByName,
   removeEmptyParents,
 } from "./utils.js";
+
+const DESC_REGEX = /description\s*=\s*"A Tauri App"/;
+const AUTHORS_REGEX = /authors\s*=\s*\["you"\]/;
 
 function buildNativeReplacementMap(opts: ScaffoldOptions): [string, string][] {
   return [
@@ -40,7 +43,7 @@ export async function updateNativeFiles(
       }
     } catch (err: unknown) {
       if (err instanceof Error && !err.message.includes("is not valid UTF-8")) {
-        p.log.warn(`Could not rename contents of ${file}: ${err.message}`);
+        log.warn(`Could not rename contents of ${file}: ${err.message}`);
       }
     }
   }
@@ -66,16 +69,16 @@ export async function updateCargoMetadata(
   try {
     let content = await fs.readFile(cargoPath, "utf-8");
     content = content.replace(
-      /description\s*=\s*"A Tauri App"/,
+      DESC_REGEX,
       `description = "${opts.projectNamePascal}"`
     );
     content = content.replace(
-      /authors\s*=\s*\["you"\]/,
+      AUTHORS_REGEX,
       `authors = ["${opts.githubUser}"]`
     );
     await fs.writeFile(cargoPath, content, "utf-8");
   } catch (err: unknown) {
-    p.log.warn(
+    log.warn(
       `Could not update Cargo.toml metadata: ${err instanceof Error ? err.message : String(err)}`
     );
   }

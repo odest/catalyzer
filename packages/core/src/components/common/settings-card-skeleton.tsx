@@ -25,6 +25,7 @@ export const SettingsCardSkeleton = ({
     <CardContent className="hidden md:block">
       <div className={gridClasses}>
         {[...new Array(itemCount)].map((_, i) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: Skeletons don't need unique keys
           <div className="flex flex-col gap-3" key={i}>
             <Skeleton className="aspect-video rounded-lg" />
             <div className="flex items-center gap-2">

@@ -1,4 +1,4 @@
-import * as p from "@clack/prompts";
+import { text, isCancel, cancel, confirm, note, log } from "@clack/prompts";
 import pc from "picocolors";
 import { DEFAULT_VERSION } from "./consts.js";
 import {
@@ -31,20 +31,20 @@ export async function runPrompts(
   defaultDir?: string
 ): Promise<ScaffoldOptions> {
   while (true) {
-    const projectName = await p.text({
+    const projectName = await text({
       message: "What is your project name?",
       placeholder: "my-awesome-app",
       validate: validateProjectName,
     });
-    if (p.isCancel(projectName)) {
-      p.cancel("Setup cancelled.");
+    if (isCancel(projectName)) {
+      cancel("Setup cancelled.");
       process.exit(0);
     }
 
     const directory = defaultDir ?? `./${projectName}`;
 
     const defaultIdentifier = `com.${toSnakeCase(projectName)}.app`;
-    const identifierRaw = await p.text({
+    const identifierRaw = await text({
       message: "App identifier (reverse-domain)?",
       placeholder: defaultIdentifier,
       validate: (val) => {
@@ -54,23 +54,23 @@ export async function runPrompts(
         return validateIdentifier(val);
       },
     });
-    if (p.isCancel(identifierRaw)) {
-      p.cancel("Setup cancelled.");
+    if (isCancel(identifierRaw)) {
+      cancel("Setup cancelled.");
       process.exit(0);
     }
     const identifier = identifierRaw || defaultIdentifier;
 
-    const githubUserRaw = await p.text({
+    const githubUserRaw = await text({
       message: "GitHub username / org (optional)?",
       placeholder: "your-github-username",
     });
-    if (p.isCancel(githubUserRaw)) {
-      p.cancel("Setup cancelled.");
+    if (isCancel(githubUserRaw)) {
+      cancel("Setup cancelled.");
       process.exit(0);
     }
     const githubUser = githubUserRaw || "your-github-username";
 
-    const versionRaw = await p.text({
+    const versionRaw = await text({
       message: "Initial version?",
       placeholder: DEFAULT_VERSION,
       validate: (val) => {
@@ -80,27 +80,27 @@ export async function runPrompts(
         return validateVersion(val);
       },
     });
-    if (p.isCancel(versionRaw)) {
-      p.cancel("Setup cancelled.");
+    if (isCancel(versionRaw)) {
+      cancel("Setup cancelled.");
       process.exit(0);
     }
     const version = versionRaw || DEFAULT_VERSION;
 
-    const installDeps = await p.confirm({
+    const installDeps = await confirm({
       message: "Install dependencies?",
       initialValue: true,
     });
-    if (p.isCancel(installDeps)) {
-      p.cancel("Setup cancelled.");
+    if (isCancel(installDeps)) {
+      cancel("Setup cancelled.");
       process.exit(0);
     }
 
-    const initGit = await p.confirm({
+    const initGit = await confirm({
       message: "Initialize a new git repository?",
       initialValue: true,
     });
-    if (p.isCancel(initGit)) {
-      p.cancel("Setup cancelled.");
+    if (isCancel(initGit)) {
+      cancel("Setup cancelled.");
       process.exit(0);
     }
 
@@ -118,7 +118,7 @@ export async function runPrompts(
     };
 
     // Summary
-    p.note(
+    note(
       [
         `${pc.bold("Project")}       ${opts.projectName}`,
         `${pc.bold("Directory")}     ${opts.directory}`,
@@ -131,13 +131,13 @@ export async function runPrompts(
       "Summary"
     );
 
-    const confirmed = await p.confirm({
+    const confirmed = await confirm({
       message: "Proceed with these settings?",
       initialValue: true,
     });
 
-    if (p.isCancel(confirmed)) {
-      p.cancel("Setup cancelled.");
+    if (isCancel(confirmed)) {
+      cancel("Setup cancelled.");
       process.exit(0);
     }
 
@@ -146,6 +146,6 @@ export async function runPrompts(
     }
 
     // If not confirmed, it loops back to the beginning.
-    p.log.info("Let's try that again...");
+    log.info("Let's try that again...");
   }
 }

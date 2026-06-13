@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import pc from "picocolors";
-import * as p from "@clack/prompts";
+import { intro, cancel } from "@clack/prompts";
 import { runPrompts } from "./prompts.js";
 import { scaffold } from "./scaffold.js";
 import {
@@ -38,20 +38,21 @@ const program = new Command()
   .option("--no-git", "Skip git initialization")
   .option("-b, --branch <branch>", "Template branch to clone", "master")
   .action(async (flags) => {
+    // biome-ignore lint/suspicious/noConsole: CLI banner
     console.log(pc.cyan(banner));
-    p.intro(pc.bold(pc.green("Catalyzer Scaffold Tool")));
+    intro(pc.bold(pc.green("Catalyzer Scaffold Tool")));
 
     if (flags.name) {
       // Non-interactive mode
       const nameErr = validateProjectName(flags.name);
       if (nameErr) {
-        p.cancel(nameErr);
+        cancel(nameErr);
         process.exit(1);
       }
       if (flags.appVersion) {
         const verErr = validateVersion(flags.appVersion);
         if (verErr) {
-          p.cancel(verErr);
+          cancel(verErr);
           process.exit(1);
         }
       }
@@ -60,7 +61,7 @@ const program = new Command()
         flags.identifier ?? `com.${toSnakeCase(flags.name)}.app`;
       const idErr = validateIdentifier(identifier);
       if (idErr) {
-        p.cancel(idErr);
+        cancel(idErr);
         process.exit(1);
       }
 

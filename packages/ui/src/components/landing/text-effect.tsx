@@ -164,11 +164,12 @@ const AnimationComponent: React.FC<{
 
 AnimationComponent.displayName = "AnimationComponent";
 
+const WHITESPACE_REGEX = /(\s+)/;
 const splitText = (text: string, per: PerType) => {
   if (per === "line") {
     return text.split("\n");
   }
-  return text.split(/(\s+)/);
+  return text.split(WHITESPACE_REGEX);
 };
 
 const hasTransition = (

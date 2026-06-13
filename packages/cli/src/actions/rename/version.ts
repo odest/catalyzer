@@ -1,28 +1,31 @@
 import path from "node:path";
 import fs from "fs-extra";
-import * as p from "@clack/prompts";
+import { log } from "@clack/prompts";
 import type { ScaffoldOptions } from "../../prompts.js";
 import { findFilesByName } from "./utils.js";
 
+const VERSION_CARGO_REGEX = /^version\s*=\s*"[^"]*"/m;
 export async function replaceVersions(
   projectDir: string,
   opts: ScaffoldOptions
 ): Promise<void> {
   // All package.json files – update the `version` field
   const pkgFiles = await findFilesByName(projectDir, "package.json");
-  for (const pkgPath of pkgFiles) {
-    try {
-      const pkg = await fs.readJson(pkgPath);
-      if (pkg.version) {
-        pkg.version = opts.version;
-        await fs.writeJson(pkgPath, pkg, { spaces: 2 });
+  await Promise.all(
+    pkgFiles.map(async (pkgPath) => {
+      try {
+        const pkg = await fs.readJson(pkgPath);
+        if (pkg.version) {
+          pkg.version = opts.version;
+          await fs.writeJson(pkgPath, pkg, { spaces: 2 });
+        }
+      } catch (err: unknown) {
+        log.warn(
+          `Failed to update version in ${pkgPath}: ${err instanceof Error ? err.message : String(err)}`
+        );
       }
-    } catch (err: unknown) {
-      p.log.warn(
-        `Failed to update version in ${pkgPath}: ${err instanceof Error ? err.message : String(err)}`
-      );
-    }
-  }
+    })
+  );
 
   // .release-please-manifest.json
   const manifestPath = path.join(projectDir, ".release-please-manifest.json");
@@ -34,7 +37,7 @@ export async function replaceVersions(
       }
       await fs.writeJson(manifestPath, manifest, { spaces: 2 });
     } catch (err: unknown) {
-      p.log.warn(
+      log.warn(
         `Failed to update .release-please-manifest.json: ${err instanceof Error ? err.message : String(err)}`
       );
     }
@@ -51,13 +54,10 @@ export async function replaceVersions(
   if (await fs.pathExists(cargoPath)) {
     try {
       let cargo = await fs.readFile(cargoPath, "utf-8");
-      cargo = cargo.replace(
-        /^version\s*=\s*"[^"]*"/m,
-        `version = "${opts.version}"`
-      );
+      cargo = cargo.replace(VERSION_CARGO_REGEX, `version = "${opts.version}"`);
       await fs.writeFile(cargoPath, cargo, "utf-8");
     } catch (err: unknown) {
-      p.log.warn(
+      log.warn(
         `Failed to update Cargo.toml: ${err instanceof Error ? err.message : String(err)}`
       );
     }
@@ -81,7 +81,7 @@ export async function replaceVersions(
       cargoLock = cargoLock.replace(regex, `$1"${opts.version}"`);
       await fs.writeFile(cargoLockPath, cargoLock, "utf-8");
     } catch (err: unknown) {
-      p.log.warn(
+      log.warn(
         `Failed to update Cargo.lock: ${err instanceof Error ? err.message : String(err)}`
       );
     }
@@ -103,7 +103,7 @@ export async function replaceVersions(
       }
       await fs.writeJson(tauriConf, conf, { spaces: 2 });
     } catch (err: unknown) {
-      p.log.warn(
+      log.warn(
         `Failed to update tauri.conf.json: ${err instanceof Error ? err.message : String(err)}`
       );
     }

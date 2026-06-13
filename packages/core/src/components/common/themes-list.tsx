@@ -93,6 +93,7 @@ export const ThemesList = () => {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 md:gap-4">
             {[...new Array(6)].map((_, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: Skeletons don't need unique keys
               <div className="space-y-3" key={i}>
                 <Skeleton className="aspect-video rounded-lg" />
                 <div className="space-y-2">

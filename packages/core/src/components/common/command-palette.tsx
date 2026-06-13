@@ -121,7 +121,7 @@ export function CommandPalette({
     return (
       <CommandShortcut className="ml-auto hidden items-center gap-1 md:flex">
         {keys.map((key, i) => (
-          <React.Fragment key={i}>
+          <React.Fragment key={key}>
             <Kbd>{key}</Kbd>
             {isSequence && i < keys.length - 1 && (
               <span className="mx-1.5 font-mono text-[10px] text-muted-foreground opacity-70">
@@ -311,11 +311,11 @@ export function CommandPalette({
                   {selectedTheme === themeItem.name ? <Check /> : <Palette />}
                   <span>{themeItem.label}</span>
                   <div className="ml-auto flex items-center gap-1">
-                    {palette.slice(0, 5).map((color, i) => (
+                    {palette.slice(0, 5).map((color) => (
                       <div
                         className="h-3 w-3 rounded-full border border-border"
                         data-slot="command-shortcut"
-                        key={i}
+                        key={color}
                         style={{ backgroundColor: color }}
                       />
                     ))}

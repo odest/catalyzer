@@ -21,7 +21,7 @@ export const Greet = () => {
 
   const toastPosition = isMobile ? "top-center" : "bottom-right";
 
-  const handleGreet = async () => {
+  const handleGreet = () => {
     if (!name || name.trim() === "") {
       toast.warning(t("missingName"), {
         description: t("missingNameDesc"),

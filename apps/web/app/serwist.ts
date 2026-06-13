@@ -1,3 +1,5 @@
 "use client";
 
-export { SerwistProvider } from "@serwist/turbopack/react";
+import { SerwistProvider as Provider } from "@serwist/turbopack/react";
+
+export const SerwistProvider = Provider;

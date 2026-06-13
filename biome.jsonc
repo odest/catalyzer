@@ -19,7 +19,6 @@
     "rules": {
       "recommended": false,
       "complexity": "warn",
-      "performance": "warn",
       "security": "warn",
       "suspicious": "warn"
     },

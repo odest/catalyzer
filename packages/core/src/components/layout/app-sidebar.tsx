@@ -51,7 +51,7 @@ export function AppSidebar({
   }, [isMobile, setOpenMobile]);
 
   if (!mounted) {
-    return <></>;
+    return null;
   }
 
   return (

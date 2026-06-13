@@ -1,6 +1,6 @@
 import path from "node:path";
 import fs from "fs-extra";
-import * as p from "@clack/prompts";
+import { log } from "@clack/prompts";
 import type { ScaffoldOptions } from "../../prompts.js";
 
 export async function updateSiteConfig(
@@ -47,7 +47,7 @@ export async function updateRootPackageJson(
     pkg.name = opts.projectName;
     await fs.writeJson(rootPkgPath, pkg, { spaces: 2 });
   } catch (err: unknown) {
-    p.log.warn(
+    log.warn(
       `Failed to update root package.json name: ${err instanceof Error ? err.message : String(err)}`
     );
   }
@@ -70,7 +70,7 @@ export async function updateReleasePleaseConfig(
     }
     await fs.writeJson(configPath, config, { spaces: 2 });
   } catch (err: unknown) {
-    p.log.warn(
+    log.warn(
       `Failed to update release-please-config.json name: ${err instanceof Error ? err.message : String(err)}`
     );
   }

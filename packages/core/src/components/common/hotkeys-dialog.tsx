@@ -33,7 +33,7 @@ function HotkeyRow({ hotkey }: { hotkey: HotkeyDefinition }) {
       <span className="text-sm">{t(hotkey.translationKey)}</span>
       <KbdGroup className="gap-0.5">
         {keys.map((key, i) => (
-          <React.Fragment key={i}>
+          <React.Fragment key={key}>
             <Kbd>{key}</Kbd>
             {isSequence && i < keys.length - 1 && (
               <span className="mx-1.5 font-mono text-[10px] text-muted-foreground opacity-70">
