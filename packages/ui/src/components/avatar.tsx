@@ -1,9 +1,8 @@
 "use client";
 
-import type * as React from "react";
-import { Avatar as AvatarPrimitive } from "radix-ui";
-
 import { cn } from "@workspace/ui/lib/utils";
+import { Avatar as AvatarPrimitive } from "radix-ui";
+import type * as React from "react";
 
 function Avatar({
   className,
@@ -104,9 +103,9 @@ function AvatarGroupCount({
 
 export {
   Avatar,
-  AvatarImage,
+  AvatarBadge,
   AvatarFallback,
   AvatarGroup,
   AvatarGroupCount,
-  AvatarBadge,
+  AvatarImage,
 };

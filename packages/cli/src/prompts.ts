@@ -1,14 +1,14 @@
-import { text, isCancel, cancel, confirm, note, log } from "@clack/prompts";
+import process from "node:process";
+import { cancel, confirm, isCancel, log, note, text } from "@clack/prompts";
 import pc from "picocolors";
 import { DEFAULT_VERSION } from "./consts.js";
 import {
-  validateProjectName,
-  validateVersion,
-  validateIdentifier,
   toPascalCase,
   toSnakeCase,
+  validateIdentifier,
+  validateProjectName,
+  validateVersion,
 } from "./utils/validate.js";
-import process from "node:process";
 
 export interface ScaffoldOptions {
   branch: string;

@@ -1,12 +1,14 @@
 "use client";
 
-import type * as React from "react";
-import { useCallback } from "react";
-import type { ComponentType } from "react";
 import { MainNav } from "@workspace/core/components/navigation/main-nav";
 import { ProjectsNav } from "@workspace/core/components/navigation/projects-nav";
 import { SecondaryNav } from "@workspace/core/components/navigation/secondary-nav";
 import { UserNav } from "@workspace/core/components/navigation/user-nav";
+import { navigationData } from "@workspace/core/config/navigation";
+import { siteConfig } from "@workspace/core/config/site";
+import { useMounted } from "@workspace/core/hooks/use-mounted";
+import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
+import { Logo } from "@workspace/ui/components/landing/logo";
 import {
   Sidebar,
   SidebarContent,
@@ -17,11 +19,9 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@workspace/ui/components/sidebar";
-import { navigationData } from "@workspace/core/config/navigation";
-import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
-import { useMounted } from "@workspace/core/hooks/use-mounted";
-import { Logo } from "@workspace/ui/components/landing/logo";
-import { siteConfig } from "@workspace/core/config/site";
+import type * as React from "react";
+import type { ComponentType } from "react";
+import { useCallback } from "react";
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   LinkComponent?:

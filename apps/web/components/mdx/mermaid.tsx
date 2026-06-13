@@ -1,7 +1,7 @@
 "use client";
 
-import { use, useEffect, useId, useState } from "react";
 import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { use, useEffect, useId, useState } from "react";
 
 export function Mermaid({ chart }: { chart: string }) {
   const [mounted, setMounted] = useState(false);

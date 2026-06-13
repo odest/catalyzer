@@ -1,6 +1,7 @@
 "use client";
 
-import { Languages } from "lucide-react";
+import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher";
+import { localeConfig, routing } from "@workspace/i18n/routing";
 import { Button } from "@workspace/ui/components/button";
 import {
   DropdownMenu,
@@ -10,8 +11,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu";
-import { routing, localeConfig } from "@workspace/i18n/routing";
-import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher";
+import { Languages } from "lucide-react";
 
 export function LanguageToggle() {
   const { locale, isPending, changeLanguage } = useLanguageSwitcher();

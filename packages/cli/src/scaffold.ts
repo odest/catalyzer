@@ -1,3 +1,7 @@
+import { execSync } from "node:child_process";
+import path from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
 import {
   cancel,
   confirm,
@@ -7,17 +11,13 @@ import {
   outro,
   spinner,
 } from "@clack/prompts";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import fs from "fs-extra";
-import { execSync } from "node:child_process";
-import type { ScaffoldOptions } from "./prompts.js";
-import { cloneTemplate } from "./actions/clone.js";
-import { renameProject } from "./actions/rename/index.js";
 import { cleanFiles } from "./actions/clean.js";
+import { cloneTemplate } from "./actions/clone.js";
 import { initGit } from "./actions/git.js";
 import { installDeps } from "./actions/install.js";
-import process from "node:process";
+import { renameProject } from "./actions/rename/index.js";
+import type { ScaffoldOptions } from "./prompts.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

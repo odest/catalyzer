@@ -1,6 +1,6 @@
 import path from "node:path";
-import fs from "fs-extra";
 import { log } from "@clack/prompts";
+import fs from "fs-extra";
 import type { ScaffoldOptions } from "../../prompts.js";
 
 export async function updateSiteConfig(
@@ -64,9 +64,9 @@ export async function updateReleasePleaseConfig(
 
   try {
     const config = await fs.readJson(configPath);
-    if (config.packages && config.packages["."]) {
+    if (config.packages?.["."]) {
       config.packages["."]["package-name"] = opts.projectName;
-      config.packages["."]["component"] = opts.projectName;
+      config.packages["."].component = opts.projectName;
     }
     await fs.writeJson(configPath, config, { spaces: 2 });
   } catch (err: unknown) {

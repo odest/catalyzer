@@ -1,6 +1,7 @@
 "use client";
 
-import { Laptop, Moon, Sun } from "lucide-react";
+import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { useTranslations } from "@workspace/i18n";
 import { Button } from "@workspace/ui/components/button";
 import {
   DropdownMenu,
@@ -10,8 +11,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu";
-import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
-import { useTranslations } from "@workspace/i18n";
+import { Laptop, Moon, Sun } from "lucide-react";
 
 export function ModeToggle() {
   const { theme, handleThemeChange } = useThemeTransition();

@@ -1,5 +1,8 @@
 "use client";
 
+import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher";
+import { useTranslations } from "@workspace/i18n";
+import { localeConfig, routing } from "@workspace/i18n/routing";
 import { Card, CardContent } from "@workspace/ui/components/card";
 import {
   Select,
@@ -8,9 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select";
-import { localeConfig, routing } from "@workspace/i18n/routing";
-import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher";
-import { useTranslations } from "@workspace/i18n";
 
 export function LanguageCard() {
   const { locale, currentConfig, isPending, changeLanguage } =

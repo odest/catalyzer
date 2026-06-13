@@ -1,7 +1,7 @@
 "use client";
 
-import { ChevronsUpDown } from "lucide-react";
 import { navigationData } from "@workspace/core/config/navigation";
+import { useTranslations } from "@workspace/i18n";
 import {
   Avatar,
   AvatarFallback,
@@ -21,7 +21,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@workspace/ui/components/sidebar";
-import { useTranslations } from "@workspace/i18n";
+import { ChevronsUpDown } from "lucide-react";
 
 interface UserNavUser {
   avatar: string;

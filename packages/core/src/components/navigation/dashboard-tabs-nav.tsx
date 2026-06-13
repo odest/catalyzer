@@ -1,7 +1,7 @@
 "use client";
 
-import { useTranslations } from "@workspace/i18n";
 import { navigationData } from "@workspace/core/config/navigation";
+import { useTranslations } from "@workspace/i18n";
 import { usePathname, useRouter } from "@workspace/i18n/navigation";
 import { Tabs, TabsList, TabsTrigger } from "@workspace/ui/components/tabs";
 

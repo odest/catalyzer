@@ -1,15 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
-import type { ComponentType } from "react";
-import {
-  Folder,
-  MoreHorizontal,
-  Share,
-  Trash2,
-  type LucideIcon,
-} from "lucide-react";
-
+import { useTranslations } from "@workspace/i18n";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,7 +17,15 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@workspace/ui/components/sidebar";
-import { useTranslations } from "@workspace/i18n";
+import {
+  Folder,
+  type LucideIcon,
+  MoreHorizontal,
+  Share,
+  Trash2,
+} from "lucide-react";
+import type { ComponentType } from "react";
+import { useCallback } from "react";
 
 interface ProjectNavItem {
   icon: LucideIcon;

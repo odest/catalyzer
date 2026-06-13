@@ -1,8 +1,8 @@
 "use client";
 
-import type React from "react";
-import { Link, usePathname, useRouter } from "@workspace/i18n/navigation";
 import { AppLayout as MainLayout } from "@workspace/core/components/layout/app-layout";
+import { Link, usePathname, useRouter } from "@workspace/i18n/navigation";
+import type React from "react";
 
 interface AppLayoutProps {
   children: React.ReactNode;

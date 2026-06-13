@@ -1,15 +1,15 @@
 import type { ScaffoldOptions } from "../../prompts.js";
 import {
-  updateSiteConfig,
-  updateRootPackageJson,
-  updateReleasePleaseConfig,
-} from "./web.js";
-import {
-  updateNativeFiles,
   renameAndroidDirs,
   renameAppleDirsAndFiles,
+  updateNativeFiles,
 } from "./native.js";
 import { replaceVersions } from "./version.js";
+import {
+  updateReleasePleaseConfig,
+  updateRootPackageJson,
+  updateSiteConfig,
+} from "./web.js";
 
 /**
  * Safely renames project details by explicitly targeting known config files

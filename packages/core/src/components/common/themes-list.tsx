@@ -1,21 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Skeleton } from "@workspace/ui/components/skeleton";
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@workspace/ui/components/empty";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@workspace/ui/components/select";
+import { ThemeCard } from "@workspace/core/components/common/theme-card";
+import { themes } from "@workspace/core/config/themes";
+import { useMounted } from "@workspace/core/hooks/use-mounted";
+import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { useThemeStore } from "@workspace/core/stores/theme-store";
+import { useTranslations } from "@workspace/i18n";
 import {
   Card,
   CardContent,
@@ -24,24 +14,34 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card";
 import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@workspace/ui/components/empty";
+import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
 } from "@workspace/ui/components/input-group";
 import {
-  XCircle,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@workspace/ui/components/select";
+import { Skeleton } from "@workspace/ui/components/skeleton";
+import {
+  ArrowDownAZ,
+  ArrowUpAZ,
   ArrowUpDown,
   Search,
-  ArrowUpAZ,
-  ArrowDownAZ,
+  XCircle,
 } from "lucide-react";
-import { themes } from "@workspace/core/config/themes";
-import { ThemeCard } from "@workspace/core/components/common/theme-card";
-import { useThemeStore } from "@workspace/core/stores/theme-store";
-import { useMounted } from "@workspace/core/hooks/use-mounted";
-import { useTranslations } from "@workspace/i18n";
-import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { useEffect, useState } from "react";
 
 export const ThemesList = () => {
   const { theme: activeMode, resolvedTheme } = useThemeTransition();

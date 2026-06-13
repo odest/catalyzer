@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import { getStorageItem } from "@workspace/core/lib/storage-utils";
 import type { Themes } from "@workspace/core/config/themes";
+import { getStorageItem } from "@workspace/core/lib/storage-utils";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface ThemeState {
   selectedTheme: Themes;

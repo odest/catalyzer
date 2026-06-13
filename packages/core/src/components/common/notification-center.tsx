@@ -1,12 +1,16 @@
 "use client";
 
-import { Bell } from "lucide-react";
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@workspace/ui/components/tabs";
+  type NotificationItem,
+  notifications,
+} from "@workspace/core/config/notifications";
+import { useTranslations } from "@workspace/i18n";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar";
+import { Button } from "@workspace/ui/components/button";
 import {
   Empty,
   EmptyDescription,
@@ -15,22 +19,18 @@ import {
   EmptyTitle,
 } from "@workspace/ui/components/empty";
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@workspace/ui/components/avatar";
-import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@workspace/ui/components/popover";
-import { Button } from "@workspace/ui/components/button";
 import { ScrollArea } from "@workspace/ui/components/scroll-area";
 import {
-  notifications,
-  type NotificationItem,
-} from "@workspace/core/config/notifications";
-import { useTranslations } from "@workspace/i18n";
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs";
+import { Bell } from "lucide-react";
 
 export function NotificationCenter() {
   const t = useTranslations("NotificationCenter");

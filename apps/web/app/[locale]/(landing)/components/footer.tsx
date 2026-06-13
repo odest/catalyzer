@@ -1,20 +1,20 @@
 "use client";
 
+import { ModeSwitch } from "@workspace/core/components/common/mode-switch";
+import { siteConfig } from "@workspace/core/config/site";
+import { AnimatedContainer } from "@workspace/ui/components/landing/animated-container";
+import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
+import { Logo } from "@workspace/ui/components/landing/logo";
+import { TextHoverEffect } from "@workspace/ui/components/landing/text-hover-effect";
+import { cn } from "@workspace/ui/lib/utils";
+import {
+  BugIcon,
+  GithubIcon,
+  GitPullRequestIcon,
+  MessageSquareIcon,
+} from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { cn } from "@workspace/ui/lib/utils";
-import { Logo } from "@workspace/ui/components/landing/logo";
-import {
-  GithubIcon,
-  MessageSquareIcon,
-  BugIcon,
-  GitPullRequestIcon,
-} from "lucide-react";
-import { ModeSwitch } from "@workspace/core/components/common/mode-switch";
-import { AnimatedContainer } from "@workspace/ui/components/landing/animated-container";
-import { TextHoverEffect } from "@workspace/ui/components/landing/text-hover-effect";
-import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
-import { siteConfig } from "@workspace/core/config/site";
 
 interface FooterLink {
   href: string;

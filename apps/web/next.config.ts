@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
+import { withSerwist } from "@serwist/turbopack";
 import createNextIntlPlugin from "@workspace/i18n/plugin";
 import { createMDX } from "fumadocs-mdx/next";
-import { withSerwist } from "@serwist/turbopack";
+import type { NextConfig } from "next";
 
 const withNextIntl = createNextIntlPlugin();
 const withMdx = createMDX();

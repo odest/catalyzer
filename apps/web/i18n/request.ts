@@ -1,6 +1,6 @@
-import { getRequestConfig } from "@workspace/i18n/server";
 import { hasLocale, messages } from "@workspace/i18n";
 import { routing } from "@workspace/i18n/routing";
+import { getRequestConfig } from "@workspace/i18n/server";
 
 export default getRequestConfig(async function createRequestConfig({
   requestLocale,

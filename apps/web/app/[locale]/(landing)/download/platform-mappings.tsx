@@ -1,10 +1,10 @@
-import type React from "react";
-import { Download, Github } from "lucide-react";
 import { siteConfig } from "@workspace/core/config/site";
-import { Windows } from "@workspace/ui/components/svgs/windows";
-import { Linux } from "@workspace/ui/components/svgs/linux";
-import { Apple } from "@workspace/ui/components/svgs/apple";
 import { Android } from "@workspace/ui/components/svgs/android";
+import { Apple } from "@workspace/ui/components/svgs/apple";
+import { Linux } from "@workspace/ui/components/svgs/linux";
+import { Windows } from "@workspace/ui/components/svgs/windows";
+import { Download, Github } from "lucide-react";
+import type React from "react";
 import type { Platform } from "@/lib/detect-platform";
 
 // Per-platform UI config for the primary download button

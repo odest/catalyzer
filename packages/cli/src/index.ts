@@ -1,20 +1,21 @@
 #!/usr/bin/env node
+import { cancel, intro } from "@clack/prompts";
 import { Command } from "commander";
 import pc from "picocolors";
-import { intro, cancel } from "@clack/prompts";
 import { runPrompts } from "./prompts.js";
 import { scaffold } from "./scaffold.js";
 import {
   toPascalCase,
   toSnakeCase,
+  validateIdentifier,
   validateProjectName,
   validateVersion,
-  validateIdentifier,
 } from "./utils/validate.js";
 
 declare const __CLI_VERSION__: string;
-import { DEFAULT_VERSION } from "./consts.js";
+
 import process from "node:process";
+import { DEFAULT_VERSION } from "./consts.js";
 
 const banner = `
  ██████╗ █████╗ ████████╗ █████╗ ██╗  ██╗   ██╗███████╗███████╗██████╗ 
@@ -38,7 +39,6 @@ const program = new Command()
   .option("--no-git", "Skip git initialization")
   .option("-b, --branch <branch>", "Template branch to clone", "master")
   .action(async (flags) => {
-    // biome-ignore lint/suspicious/noConsole: CLI banner
     console.log(pc.cyan(banner));
     intro(pc.bold(pc.green("Catalyzer Scaffold Tool")));
 

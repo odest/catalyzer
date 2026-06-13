@@ -1,10 +1,10 @@
 "use client";
 
+import type { Themes } from "@workspace/core/config/themes";
+import { useThemeStore } from "@workspace/core/stores/theme-store";
+import { Button } from "@workspace/ui/components/button";
 import { Card } from "@workspace/ui/components/card";
 import { cn } from "@workspace/ui/lib/utils";
-import { Button } from "@workspace/ui/components/button";
-import { useThemeStore } from "@workspace/core/stores/theme-store";
-import type { Themes } from "@workspace/core/config/themes";
 
 interface ThemeCardProps {
   palette: string[];

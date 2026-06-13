@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { Card, CardContent, CardHeader } from "@workspace/ui/components/card";
+import { siteConfig } from "@workspace/core/config/site";
 import { Button } from "@workspace/ui/components/button";
+import { Card, CardContent, CardHeader } from "@workspace/ui/components/card";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import {
-  platformCards,
   type PlatformCardData,
+  platformCards,
 } from "../download/platform-mappings";
-import { siteConfig } from "@workspace/core/config/site";
 
 interface PlatformCardsProps {
   assets: Record<string, string>;

@@ -1,26 +1,26 @@
 "use client";
 
-import { useTranslations } from "@workspace/i18n";
 import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-} from "@workspace/ui/components/drawer";
+  navigationData,
+  type UserNavItem,
+} from "@workspace/core/config/navigation";
+import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history";
+import { useProfileDrawerStore } from "@workspace/core/stores/profile-drawer-store";
+import { useTranslations } from "@workspace/i18n";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@workspace/ui/components/avatar";
-import { Separator } from "@workspace/ui/components/separator";
 import { Button } from "@workspace/ui/components/button";
-import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history";
-import { useProfileDrawerStore } from "@workspace/core/stores/profile-drawer-store";
 import {
-  type UserNavItem,
-  navigationData,
-} from "@workspace/core/config/navigation";
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+} from "@workspace/ui/components/drawer";
+import { Separator } from "@workspace/ui/components/separator";
 
 interface ProfileDrawerProps {
   user: UserNavItem;

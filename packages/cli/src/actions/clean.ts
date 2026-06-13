@@ -1,7 +1,7 @@
 import path from "node:path";
-import fs from "fs-extra";
 import { log } from "@clack/prompts";
-import { FILES_TO_CLEAN, CLI_CONFIG_REFS } from "../consts.js";
+import fs from "fs-extra";
+import { CLI_CONFIG_REFS, FILES_TO_CLEAN } from "../consts.js";
 
 /** Remove scaffold-only files/dirs that shouldn't ship with new projects. */
 export async function cleanFiles(projectDir: string): Promise<void> {

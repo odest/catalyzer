@@ -1,10 +1,10 @@
-import type { Metadata, Viewport } from "next";
-import { notFound } from "next/navigation";
-import { Geist, Geist_Mono } from "next/font/google";
-import { themeInitScript } from "@workspace/core/scripts/theme-init";
-import { NextIntlClientProvider, hasLocale } from "@workspace/i18n";
 import { siteConfig } from "@workspace/core/config/site";
+import { themeInitScript } from "@workspace/core/scripts/theme-init";
+import { hasLocale, NextIntlClientProvider } from "@workspace/i18n";
 import { routing } from "@workspace/i18n/routing";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
 import { SerwistProvider } from "../serwist";
 import "../globals.css";
 

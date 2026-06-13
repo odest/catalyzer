@@ -1,10 +1,10 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
-  validateProjectName,
-  validateVersion,
-  validateIdentifier,
   toPascalCase,
   toSnakeCase,
+  validateIdentifier,
+  validateProjectName,
+  validateVersion,
 } from "./validate.js";
 
 describe("validateProjectName", () => {

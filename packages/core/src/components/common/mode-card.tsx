@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
-import { Laptop, Moon, Sun } from "lucide-react";
+import { SettingsCardSkeleton } from "@workspace/core/components/common/settings-card-skeleton";
+import { useMounted } from "@workspace/core/hooks/use-mounted";
+import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { useTranslations } from "@workspace/i18n";
 import {
   Card,
   CardContent,
@@ -22,10 +24,8 @@ import {
   SelectValue,
 } from "@workspace/ui/components/select";
 import { useSidebar } from "@workspace/ui/components/sidebar";
-import { useMounted } from "@workspace/core/hooks/use-mounted";
-import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
-import { SettingsCardSkeleton } from "@workspace/core/components/common/settings-card-skeleton";
-import { useTranslations } from "@workspace/i18n";
+import { Laptop, Moon, Sun } from "lucide-react";
+import { useMemo } from "react";
 
 export const ModeCard = () => {
   const { theme, handleThemeChange } = useThemeTransition();

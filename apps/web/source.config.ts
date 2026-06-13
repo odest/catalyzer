@@ -1,5 +1,5 @@
-import { defineDocs, defineConfig } from "fumadocs-mdx/config";
 import { remarkMdxMermaid } from "fumadocs-core/mdx-plugins";
+import { defineConfig, defineDocs } from "fumadocs-mdx/config";
 // biome-ignore lint/correctness/noUnusedImports: needed for types
 import type { z } from "zod";
 

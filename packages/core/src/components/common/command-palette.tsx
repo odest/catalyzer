@@ -1,7 +1,17 @@
 "use client";
 
-import React, { useCallback } from "react";
+import { hotkeys } from "@workspace/core/config/hotkeys";
+import { themes } from "@workspace/core/config/themes";
+import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history";
+import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher";
+import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
+import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
+import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store";
+import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
+import { useThemeStore } from "@workspace/core/stores/theme-store";
 import { useTranslations } from "@workspace/i18n";
+import { localeConfig, routing } from "@workspace/i18n/routing";
 import {
   Command,
   CommandEmpty,
@@ -9,8 +19,8 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandShortcut,
   CommandSeparator,
+  CommandShortcut,
 } from "@workspace/ui/components/command";
 import {
   Dialog,
@@ -27,38 +37,28 @@ import {
   DrawerTitle,
 } from "@workspace/ui/components/drawer";
 import { Kbd } from "@workspace/ui/components/kbd";
-import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
-import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store";
-import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
-import { useThemeStore } from "@workspace/core/stores/theme-store";
-import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
-import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
-import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history";
 import { useSidebar } from "@workspace/ui/components/sidebar";
-import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher";
-import { routing, localeConfig } from "@workspace/i18n/routing";
-import { themes } from "@workspace/core/config/themes";
-import { hotkeys } from "@workspace/core/config/hotkeys";
-import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 import { cn } from "@workspace/ui/lib/utils";
 import {
-  Sun,
-  Moon,
-  Home,
-  View,
   Check,
+  CornerDownLeftIcon,
+  FileText,
+  Home,
+  Keyboard,
+  LayoutDashboard,
+  LayoutTemplate,
+  LineChart,
+  Moon,
+  MoveDown,
   MoveUp,
   Palette,
-  Keyboard,
-  Settings,
-  MoveDown,
-  LineChart,
-  FileText,
   PanelLeft,
-  LayoutTemplate,
-  LayoutDashboard,
-  CornerDownLeftIcon,
+  Settings,
+  Sun,
+  View,
 } from "lucide-react";
+import React, { useCallback } from "react";
 
 function CommandMenuItem({
   children,

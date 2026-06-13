@@ -1,12 +1,12 @@
 "use client";
 
+import { invoke, isTauri } from "@tauri-apps/api/core";
+import { useTranslations } from "@workspace/i18n";
+import { Button } from "@workspace/ui/components/button";
+import { Input } from "@workspace/ui/components/input";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 import { useState } from "react";
 import { toast } from "sonner";
-import { isTauri, invoke } from "@tauri-apps/api/core";
-import { Input } from "@workspace/ui/components/input";
-import { Button } from "@workspace/ui/components/button";
-import { useTranslations } from "@workspace/i18n";
-import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
 
 interface GreetResponse {
   message_key: string;

@@ -1,15 +1,15 @@
-import { source } from "@/lib/source";
-import {
-  DocsPage,
-  DocsBody,
-  DocsTitle,
-  DocsDescription,
-} from "fumadocs-ui/layouts/docs/page";
-import { notFound } from "next/navigation";
 import { findNeighbour } from "fumadocs-core/page-tree";
-import { getMDXComponents } from "@/components/mdx";
-import type { Metadata } from "next";
+import {
+  DocsBody,
+  DocsDescription,
+  DocsPage,
+  DocsTitle,
+} from "fumadocs-ui/layouts/docs/page";
 import { createRelativeLink } from "fumadocs-ui/mdx";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getMDXComponents } from "@/components/mdx";
+import { source } from "@/lib/source";
 
 export const dynamic = "force-static";
 

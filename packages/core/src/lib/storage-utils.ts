@@ -12,7 +12,6 @@ export function getStorageItem<T>(key: string, fallback: T): T {
     const parsed = JSON.parse(item);
     return parsed?.state ?? fallback;
   } catch (error) {
-    // biome-ignore lint/suspicious/noConsole: We need to log storage errors
     console.error(`[Storage] Error reading ${key}:`, error);
     return fallback;
   }

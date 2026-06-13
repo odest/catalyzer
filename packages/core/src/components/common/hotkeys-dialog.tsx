@@ -1,6 +1,16 @@
 "use client";
 
-import React from "react";
+import { type HotkeyDefinition, hotkeys } from "@workspace/core/config/hotkeys";
+import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
+import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store";
+import { useTranslations } from "@workspace/i18n";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@workspace/ui/components/dialog";
 import {
   Drawer,
   DrawerContent,
@@ -8,20 +18,10 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@workspace/ui/components/drawer";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@workspace/ui/components/dialog";
 import { Kbd, KbdGroup } from "@workspace/ui/components/kbd";
 import { Separator } from "@workspace/ui/components/separator";
-import { useTranslations } from "@workspace/i18n";
-import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store";
-import { hotkeys, type HotkeyDefinition } from "@workspace/core/config/hotkeys";
-import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
 import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
+import React from "react";
 
 function HotkeyRow({ hotkey }: { hotkey: HotkeyDefinition }) {
   const t = useTranslations("HotkeysDialog");

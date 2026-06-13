@@ -1,11 +1,12 @@
 "use client";
 
-import { type ComponentType, Fragment } from "react";
-import { Search } from "lucide-react";
-import { Kbd } from "@workspace/ui/components/kbd";
-import { Button } from "@workspace/ui/components/button";
-import { Separator } from "@workspace/ui/components/separator";
-import { SidebarTrigger } from "@workspace/ui/components/sidebar";
+import { LanguageToggle } from "@workspace/core/components/common/language-toggle";
+import { ModeToggle } from "@workspace/core/components/common/mode-toggle";
+import { NotificationCenter } from "@workspace/core/components/common/notification-center";
+import { navigationData } from "@workspace/core/config/navigation";
+import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
+import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
+import { useTranslations } from "@workspace/i18n";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,13 +14,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@workspace/ui/components/breadcrumb";
-import { NotificationCenter } from "@workspace/core/components/common/notification-center";
-import { ModeToggle } from "@workspace/core/components/common/mode-toggle";
-import { LanguageToggle } from "@workspace/core/components/common/language-toggle";
-import { navigationData } from "@workspace/core/config/navigation";
-import { useTranslations } from "@workspace/i18n";
-import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
-import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
+import { Button } from "@workspace/ui/components/button";
+import { Kbd } from "@workspace/ui/components/kbd";
+import { Separator } from "@workspace/ui/components/separator";
+import { SidebarTrigger } from "@workspace/ui/components/sidebar";
+import { Search } from "lucide-react";
+import { type ComponentType, Fragment } from "react";
 
 function formatSegment(segment: string): string {
   return segment

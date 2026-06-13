@@ -13,47 +13,5 @@
       "!apps/web/content/docs/**/*.mdx",
       "!packages/cli/templates/docs/**/*.mdx"
     ]
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": false,
-      "complexity": "warn"
-    },
-    "includes": ["**", "!dist/**", "!.next/**", "!.source/**", "!.turbo/**"]
-  },
-  "css": {
-    "parser": {
-      "tailwindDirectives": true
-    }
-  },
-  "overrides": [
-    {
-      "includes": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.mts",
-        "**/*.cts",
-        "**/*.js",
-        "**/*.jsx",
-        "**/*.mjs",
-        "**/*.cjs"
-      ],
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noReactSpecificProps": "off"
-          }
-        }
-      }
-    }
-  ],
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "off"
-      }
-    }
   }
 }

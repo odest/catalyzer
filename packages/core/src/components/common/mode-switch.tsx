@@ -1,10 +1,10 @@
 "use client";
 
-import { LayoutGroup, motion } from "motion/react";
-import { Monitor, Sun, Moon } from "lucide-react";
-import { cn } from "@workspace/ui/lib/utils";
 import { useMounted } from "@workspace/core/hooks/use-mounted";
 import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { cn } from "@workspace/ui/lib/utils";
+import { Monitor, Moon, Sun } from "lucide-react";
+import { LayoutGroup, motion } from "motion/react";
 
 type Mode = "system" | "light" | "dark";
 

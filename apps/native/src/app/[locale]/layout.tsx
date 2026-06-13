@@ -1,11 +1,11 @@
-import type { Metadata, Viewport } from "next";
-import { notFound } from "next/navigation";
-import { Geist, Geist_Mono } from "next/font/google";
-import { AppLayout } from "./components/app-layout";
-import { themeInitScript } from "@workspace/core/scripts/theme-init";
-import { NextIntlClientProvider, hasLocale, messages } from "@workspace/i18n";
 import { siteConfig } from "@workspace/core/config/site";
+import { themeInitScript } from "@workspace/core/scripts/theme-init";
+import { hasLocale, messages, NextIntlClientProvider } from "@workspace/i18n";
 import { routing } from "@workspace/i18n/routing";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
+import { AppLayout } from "./components/app-layout";
 import "@workspace/ui/globals.css";
 
 const geistSans = Geist({

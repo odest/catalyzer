@@ -1,11 +1,11 @@
 "use client";
 
-import { useHotkeys } from "react-hotkeys-hook";
 import { hotkeys } from "@workspace/core/config/hotkeys";
-import { useSidebar } from "@workspace/ui/components/sidebar";
-import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store";
-import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
 import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
+import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store";
+import { useSidebar } from "@workspace/ui/components/sidebar";
+import { useHotkeys } from "react-hotkeys-hook";
 
 interface UseAppHotkeysOptions {
   navigate: (path: string) => void;

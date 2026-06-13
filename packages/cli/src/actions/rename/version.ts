@@ -1,6 +1,6 @@
 import path from "node:path";
-import fs from "fs-extra";
 import { log } from "@clack/prompts";
+import fs from "fs-extra";
 import type { ScaffoldOptions } from "../../prompts.js";
 import { findFilesByName } from "./utils.js";
 

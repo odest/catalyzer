@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@workspace/core/providers/theme-provider";
-import { HeroHeader } from "./components/header";
 import { Footer } from "./components/footer";
+import { HeroHeader } from "./components/header";
 
 interface LandingLayoutProps {
   children: React.ReactNode;

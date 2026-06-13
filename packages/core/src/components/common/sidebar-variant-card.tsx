@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
-import { PanelLeft, Layout, LayoutTemplate } from "lucide-react";
+import { SettingsCardSkeleton } from "@workspace/core/components/common/settings-card-skeleton";
+import { useMounted } from "@workspace/core/hooks/use-mounted";
+import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
+import { useTranslations } from "@workspace/i18n";
 import {
   Card,
   CardContent,
@@ -22,10 +24,8 @@ import {
   SelectValue,
 } from "@workspace/ui/components/select";
 import { useSidebar } from "@workspace/ui/components/sidebar";
-import { useMounted } from "@workspace/core/hooks/use-mounted";
-import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
-import { SettingsCardSkeleton } from "@workspace/core/components/common/settings-card-skeleton";
-import { useTranslations } from "@workspace/i18n";
+import { Layout, LayoutTemplate, PanelLeft } from "lucide-react";
+import { useMemo } from "react";
 
 export const SidebarVariantCard = () => {
   const mounted = useMounted();

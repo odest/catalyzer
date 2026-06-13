@@ -1,5 +1,5 @@
-import type { NextConfig } from "next";
 import createNextIntlPlugin from "@workspace/i18n/plugin";
+import type { NextConfig } from "next";
 
 // For Tauri static export, configure next-intl without server-side request config
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");

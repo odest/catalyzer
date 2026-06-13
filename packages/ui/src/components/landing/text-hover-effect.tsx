@@ -1,6 +1,6 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 export const TextHoverEffect = ({
   text,
@@ -32,7 +32,6 @@ export const TextHoverEffect = ({
       aria-hidden="true"
       className="select-none"
       height="100%"
-      // biome-ignore lint/a11y/noNoninteractiveElementInteractions: This is purely a visual mouse-tracking effect
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}

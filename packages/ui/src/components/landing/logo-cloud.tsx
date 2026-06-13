@@ -1,14 +1,14 @@
 import { InfiniteSlider } from "@workspace/ui/components/landing/infinite-slider";
 import { ProgressiveBlur } from "@workspace/ui/components/landing/progressive-blur";
+import { Biome } from "@workspace/ui/components/svgs/biome";
+import { Motion } from "@workspace/ui/components/svgs/motion";
 import { Nextjs } from "@workspace/ui/components/svgs/nextjs";
-import { Tauri } from "@workspace/ui/components/svgs/tauri";
+import { RadixUi } from "@workspace/ui/components/svgs/radix-ui";
+import { React } from "@workspace/ui/components/svgs/react";
 import { Rust } from "@workspace/ui/components/svgs/rust";
 import { Tailwindcss } from "@workspace/ui/components/svgs/tailwindcss";
-import { React } from "@workspace/ui/components/svgs/react";
+import { Tauri } from "@workspace/ui/components/svgs/tauri";
 import { Turborepo } from "@workspace/ui/components/svgs/turborepo";
-import { RadixUi } from "@workspace/ui/components/svgs/radix-ui";
-import { Motion } from "@workspace/ui/components/svgs/motion";
-import { Biome } from "@workspace/ui/components/svgs/biome";
 
 export const LogoCloud = () => (
   <section className="bg-background pt-16 pb-16 md:pb-32">

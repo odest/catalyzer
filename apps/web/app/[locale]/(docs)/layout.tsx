@@ -1,10 +1,10 @@
-import { RootProvider } from "fumadocs-ui/provider/next";
-import { DocsLayout } from "fumadocs-ui/layouts/docs";
-import { source } from "@/lib/source";
-import type { ReactNode } from "react";
-import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { Logo } from "@workspace/ui/components/landing/logo";
 import { siteConfig } from "@workspace/core/config/site";
+import { Logo } from "@workspace/ui/components/landing/logo";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
+import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import { RootProvider } from "fumadocs-ui/provider/next";
+import type { ReactNode } from "react";
+import { source } from "@/lib/source";
 
 function baseOptions(): BaseLayoutProps {
   return {

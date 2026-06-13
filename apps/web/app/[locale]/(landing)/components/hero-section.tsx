@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Play, Rocket } from "lucide-react";
+import { siteConfig } from "@workspace/core/config/site";
 import { fetchLatestGithubVersion } from "@workspace/core/lib/utils";
 import { Button } from "@workspace/ui/components/button";
 import { AnimatedGroup } from "@workspace/ui/components/landing/animated-group";
+import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
 import { LogoCloud } from "@workspace/ui/components/landing/logo-cloud";
 import { TextEffect } from "@workspace/ui/components/landing/text-effect";
-import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
+import { ArrowRight, Play, Rocket } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { transitionVariants } from "@/lib/animations";
-import { siteConfig } from "@workspace/core/config/site";
 
 export default function HeroSection() {
   const [latestTag, setLatestTag] = useState<string | null>(null);

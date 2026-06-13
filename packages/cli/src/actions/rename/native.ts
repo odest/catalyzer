@@ -1,13 +1,13 @@
 import path from "node:path";
-import fs from "fs-extra";
 import { log } from "@clack/prompts";
+import fs from "fs-extra";
 import { SEARCH_TERMS } from "../../consts.js";
 import type { ScaffoldOptions } from "../../prompts.js";
 import {
-  walkFiles,
   applyReplacements,
   findDirsByName,
   removeEmptyParents,
+  walkFiles,
 } from "./utils.js";
 
 const DESC_REGEX = /description\s*=\s*"A Tauri App"/;

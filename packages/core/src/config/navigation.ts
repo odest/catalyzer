@@ -1,20 +1,20 @@
-import {
-  Home,
-  Send,
-  User,
-  Bell,
-  LogOut,
-  Search,
-  Github,
-  Sparkles,
-  Settings,
-  PieChart,
-  BadgeCheck,
-  CreditCard,
-  type LucideIcon,
-  LayoutDashboard,
-} from "lucide-react";
 import { siteConfig } from "@workspace/core/config/site";
+import {
+  BadgeCheck,
+  Bell,
+  CreditCard,
+  Github,
+  Home,
+  LayoutDashboard,
+  LogOut,
+  type LucideIcon,
+  PieChart,
+  Search,
+  Send,
+  Settings,
+  Sparkles,
+  User,
+} from "lucide-react";
 
 export interface UserNavItem {
   avatar: string;

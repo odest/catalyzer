@@ -1,12 +1,12 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import { Menu, X, Github } from "lucide-react";
-import { cn } from "@workspace/ui/lib/utils";
+import { siteConfig } from "@workspace/core/config/site";
 import { Button } from "@workspace/ui/components/button";
 import { Logo } from "@workspace/ui/components/landing/logo";
-import { siteConfig } from "@workspace/core/config/site";
+import { cn } from "@workspace/ui/lib/utils";
+import { Github, Menu, X } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
 const menuItems = [
   { name: "Docs", href: "/docs" },

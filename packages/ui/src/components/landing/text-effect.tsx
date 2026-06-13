@@ -1,12 +1,12 @@
 "use client";
 import { cn } from "@workspace/ui/lib/utils";
-import { AnimatePresence, motion } from "motion/react";
 import type {
   TargetAndTransition,
   Transition,
   Variant,
   Variants,
 } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import React from "react";
 
 export type PresetType = "blur" | "fade-in-blur" | "scale" | "fade" | "slide";
@@ -190,7 +190,6 @@ const createVariantsWithTransition = (
     return baseVariants;
   }
 
-  // biome-ignore lint/correctness/noUnusedVariables: needed for rest omit
   const { exit: _, ...mainTransition } = transition;
 
   return {

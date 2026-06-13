@@ -1,6 +1,4 @@
-import type * as React from "react";
-import { type ComponentType, useCallback } from "react";
-import type { LucideIcon } from "lucide-react";
+import { useTranslations } from "@workspace/i18n";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -9,7 +7,9 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@workspace/ui/components/sidebar";
-import { useTranslations } from "@workspace/i18n";
+import type { LucideIcon } from "lucide-react";
+import type * as React from "react";
+import { type ComponentType, useCallback } from "react";
 
 interface SecondaryNavItem {
   external?: boolean;

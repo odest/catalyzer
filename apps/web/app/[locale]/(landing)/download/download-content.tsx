@@ -1,19 +1,19 @@
 "use client";
 
-import type React from "react";
-import { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
-import { ArrowDown } from "lucide-react";
+import { siteConfig } from "@workspace/core/config/site";
 import { Button } from "@workspace/ui/components/button";
-import { Logo } from "@workspace/ui/components/landing/logo";
 import { AnimatedGroup } from "@workspace/ui/components/landing/animated-group";
+import { Logo } from "@workspace/ui/components/landing/logo";
 import { TextEffect } from "@workspace/ui/components/landing/text-effect";
+import { ArrowDown } from "lucide-react";
+import Link from "next/link";
+import type React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { transitionVariants } from "@/lib/animations";
 import { detectPlatform, type Platform } from "@/lib/detect-platform";
-import { platformConfig } from "./platform-mappings";
 import type { ReleaseData } from "@/lib/github-releases";
 import PlatformCards from "../components/platform-cards";
-import { siteConfig } from "@workspace/core/config/site";
+import { platformConfig } from "./platform-mappings";
 
 interface DownloadContentProps {
   release: ReleaseData | null;
