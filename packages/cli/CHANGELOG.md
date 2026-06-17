@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.1...create-catalyzer@v0.1.2) (2026-06-17)
+
+
+### Features
+
+* migrate from eslint and prettier to ultracite and biome ([#74](https://github.com/odest/catalyzer/issues/74)) ([8bfc157](https://github.com/odest/catalyzer/commit/8bfc1579f66796f0060abf15e7fc06fa59415d35))
+
 ## [0.1.1](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.0...create-catalyzer@v0.1.1) (2026-06-08)
 
 
