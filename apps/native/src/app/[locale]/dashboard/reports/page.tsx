@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { ReportsPage } from "@workspace/core/pages/subpages/ReportsPage"
+import { ReportsPage } from "@workspace/core/pages/subpages/reports-page";
 
 export default function Reports() {
-  return <ReportsPage />
+  return <ReportsPage />;
 }

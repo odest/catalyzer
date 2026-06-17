@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { ScrollArea, ScrollBar } from "@workspace/ui/components/scroll-area"
-import { LanguageCard } from "@workspace/core/components/common/language-card"
-import { ModeCard } from "@workspace/core/components/common/mode-card"
-import { SidebarVariantCard } from "@workspace/core/components/common/sidebar-variant-card"
-import { ThemesList } from "@workspace/core/components/common/themes-list"
+import { LanguageCard } from "@workspace/core/components/common/language-card";
+import { ModeCard } from "@workspace/core/components/common/mode-card";
+import { SidebarVariantCard } from "@workspace/core/components/common/sidebar-variant-card";
+import { ThemesList } from "@workspace/core/components/common/themes-list";
+import { ScrollArea, ScrollBar } from "@workspace/ui/components/scroll-area";
 
 export function SettingsPage() {
   return (
@@ -19,5 +19,5 @@ export function SettingsPage() {
       </div>
       <ScrollBar orientation="vertical" />
     </ScrollArea>
-  )
+  );
 }

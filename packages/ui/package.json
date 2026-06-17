@@ -4,10 +4,6 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "shadcn": "pnpm dlx shadcn@latest",
     "clean": "rimraf .turbo"
@@ -35,10 +31,8 @@
     "@types/node": "^25.9.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@workspace/eslint-config": "workspace:*",
     "@workspace/i18n": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "eslint": "^9.39.4",
     "tailwindcss": "^4.3.0",
     "typescript": "~5.9.3"
   },

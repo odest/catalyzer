@@ -43,10 +43,6 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "start": "node ./dist/index.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist .turbo",
     "test": "vitest run"
@@ -62,9 +58,7 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.19.42",
-    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "eslint": "^9.39.4",
     "tsup": "^8.5.1",
     "typescript": "~5.9.3",
     "vitest": "^4.1.8"

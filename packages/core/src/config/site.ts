@@ -1,6 +1,6 @@
-const siteUrl = "https://catalyzer.dev"
-const repoUrl = "https://github.com/odest/catalyzer"
-const apiUrl = "https://api.github.com/repos/odest/catalyzer"
+const siteUrl = "https://catalyzer.dev";
+const repoUrl = "https://github.com/odest/catalyzer";
+const apiUrl = "https://api.github.com/repos/odest/catalyzer";
 
 export const siteConfig = {
   name: "Catalyzer",
@@ -19,6 +19,6 @@ export const siteConfig = {
     contributing: `${repoUrl}/blob/master/CONTRIBUTING.md`,
     githubApi: `${apiUrl}/releases?per_page=10`,
   },
-}
+};
 
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;

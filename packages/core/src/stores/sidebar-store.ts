@@ -1,12 +1,12 @@
-import { create } from "zustand"
-import { persist, createJSONStorage } from "zustand/middleware"
-import { getStorageItem } from "@workspace/core/lib/storage-utils"
+import { getStorageItem } from "@workspace/core/lib/storage-utils";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-export type SidebarVariant = "sidebar" | "floating" | "inset"
+export type SidebarVariant = "sidebar" | "floating" | "inset";
 
 interface SidebarState {
-  variant: SidebarVariant
-  setVariant: (variant: SidebarVariant) => void
+  setVariant: (variant: SidebarVariant) => void;
+  variant: SidebarVariant;
 }
 
 export const useSidebarStore = create<SidebarState>()(
@@ -15,7 +15,7 @@ export const useSidebarStore = create<SidebarState>()(
       variant: getStorageItem<SidebarVariant>("sidebar-storage", "inset"),
 
       setVariant: (variant: SidebarVariant) => {
-        set({ variant })
+        set({ variant });
       },
     }),
     {
@@ -23,4 +23,4 @@ export const useSidebarStore = create<SidebarState>()(
       storage: createJSONStorage(() => localStorage),
     }
   )
-)
+);

@@ -1,7 +1,17 @@
-"use client"
+"use client";
 
-import React, { useCallback } from "react"
-import { useTranslations } from "@workspace/i18n"
+import { hotkeys } from "@workspace/core/config/hotkeys";
+import { themes } from "@workspace/core/config/themes";
+import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history";
+import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher";
+import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition";
+import { formatHotkeyDisplay } from "@workspace/core/lib/utils";
+import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
+import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store";
+import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
+import { useThemeStore } from "@workspace/core/stores/theme-store";
+import { useTranslations } from "@workspace/i18n";
+import { localeConfig, routing } from "@workspace/i18n/routing";
 import {
   Command,
   CommandEmpty,
@@ -9,64 +19,54 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandShortcut,
   CommandSeparator,
-} from "@workspace/ui/components/command"
+  CommandShortcut,
+} from "@workspace/ui/components/command";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@workspace/ui/components/dialog"
+} from "@workspace/ui/components/dialog";
 import {
   Drawer,
   DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-} from "@workspace/ui/components/drawer"
-import { Kbd } from "@workspace/ui/components/kbd"
-import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store"
-import { useHotkeysDialogStore } from "@workspace/core/stores/hotkeys-store"
-import { useSidebarStore } from "@workspace/core/stores/sidebar-store"
-import { useThemeStore } from "@workspace/core/stores/theme-store"
-import { useThemeTransition } from "@workspace/core/hooks/use-theme-transition"
-import { useIsMobile } from "@workspace/ui/hooks/use-mobile"
-import { useDrawerHistory } from "@workspace/core/hooks/use-drawer-history"
-import { useSidebar } from "@workspace/ui/components/sidebar"
-import { useLanguageSwitcher } from "@workspace/core/hooks/use-language-switcher"
-import { routing, localeConfig } from "@workspace/i18n/routing"
-import { themes } from "@workspace/core/config/themes"
-import { hotkeys } from "@workspace/core/config/hotkeys"
-import { formatHotkeyDisplay } from "@workspace/core/lib/utils"
-import { cn } from "@workspace/ui/lib/utils"
+} from "@workspace/ui/components/drawer";
+import { Kbd } from "@workspace/ui/components/kbd";
+import { useSidebar } from "@workspace/ui/components/sidebar";
+import { useIsMobile } from "@workspace/ui/hooks/use-mobile";
+import { cn } from "@workspace/ui/lib/utils";
 import {
-  Sun,
-  Moon,
-  Home,
-  View,
   Check,
+  CornerDownLeftIcon,
+  FileText,
+  Home,
+  Keyboard,
+  LayoutDashboard,
+  LayoutTemplate,
+  LineChart,
+  Moon,
+  MoveDown,
   MoveUp,
   Palette,
-  Keyboard,
-  Settings,
-  MoveDown,
-  LineChart,
-  FileText,
   PanelLeft,
-  LayoutTemplate,
-  LayoutDashboard,
-  CornerDownLeftIcon,
-} from "lucide-react"
+  Settings,
+  Sun,
+  View,
+} from "lucide-react";
+import React, { useCallback } from "react";
 
 function CommandMenuItem({
   children,
   className,
   ...props
 }: React.ComponentProps<typeof CommandItem> & {
-  "data-selected"?: string
-  "aria-selected"?: string
+  "data-selected"?: string;
+  "aria-selected"?: string;
 }) {
   return (
     <CommandItem
@@ -78,48 +78,50 @@ function CommandMenuItem({
     >
       {children}
     </CommandItem>
-  )
+  );
 }
 
 export function CommandPalette({
   navigate,
 }: {
-  navigate: (path: string) => void
+  navigate: (path: string) => void;
 }) {
-  const t = useTranslations("CommandPalette")
-  const { isOpen, close } = useCommandPaletteStore()
-  useDrawerHistory(isOpen, close)
-  const isMobile = useIsMobile()
+  const t = useTranslations("CommandPalette");
+  const { isOpen, close } = useCommandPaletteStore();
+  useDrawerHistory(isOpen, close);
+  const isMobile = useIsMobile();
   const {
     theme: activeMode,
     resolvedTheme,
     handleThemeChange,
-  } = useThemeTransition()
-  const { toggleSidebar } = useSidebar()
-  const { variant, setVariant } = useSidebarStore()
-  const { selectedTheme, setSelectedTheme } = useThemeStore()
-  const toggleHotkeysDialog = useHotkeysDialogStore((s) => s.toggle)
-  const { locale, isPending, changeLanguage } = useLanguageSwitcher()
+  } = useThemeTransition();
+  const { toggleSidebar } = useSidebar();
+  const { variant, setVariant } = useSidebarStore();
+  const { selectedTheme, setSelectedTheme } = useThemeStore();
+  const toggleHotkeysDialog = useHotkeysDialogStore((s) => s.toggle);
+  const { locale, isPending, changeLanguage } = useLanguageSwitcher();
 
   const runCommand = useCallback(
     (command: () => unknown) => {
-      close()
+      close();
       setTimeout(() => {
-        command()
-      }, 300)
+        command();
+      }, 300);
     },
     [close]
-  )
+  );
 
   const getKeysDisplay = (id: string) => {
-    const hk = hotkeys.find((h) => h.id === id)
-    if (!hk) return null
-    const keys = formatHotkeyDisplay(hk.keys)
-    const isSequence = hk.keys.includes(">")
+    const hk = hotkeys.find((h) => h.id === id);
+    if (!hk) {
+      return null;
+    }
+    const keys = formatHotkeyDisplay(hk.keys);
+    const isSequence = hk.keys.includes(">");
     return (
       <CommandShortcut className="ml-auto hidden items-center gap-1 md:flex">
         {keys.map((key, i) => (
-          <React.Fragment key={i}>
+          <React.Fragment key={key}>
             <Kbd>{key}</Kbd>
             {isSequence && i < keys.length - 1 && (
               <span className="mx-1.5 font-mono text-[10px] text-muted-foreground opacity-70">
@@ -129,11 +131,11 @@ export function CommandPalette({
           </React.Fragment>
         ))}
       </CommandShortcut>
-    )
-  }
+    );
+  };
 
   const groupClasses =
-    "p-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!"
+    "p-0! **:[[cmdk-group-heading]]:scroll-mt-16 **:[[cmdk-group-heading]]:p-3! **:[[cmdk-group-heading]]:pb-1!";
 
   const paletteContent = (
     <>
@@ -146,20 +148,19 @@ export function CommandPalette({
           isMobile && "h-full"
         )}
       >
-        <CommandInput placeholder={t("search")} autoFocus />
+        <CommandInput autoFocus={true} placeholder={t("search")} />
         <CommandList
           className={cn(
             "no-scrollbar scroll-pt-2 scroll-pb-1.5",
             isMobile ? "max-h-none min-h-0 flex-1" : "min-h-80"
           )}
         >
-          <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
+          <CommandEmpty className="py-12 text-center text-muted-foreground text-sm">
             {t("noResults")}
           </CommandEmpty>
 
-          <CommandGroup heading={t("general")} className={groupClasses}>
+          <CommandGroup className={groupClasses} heading={t("general")}>
             <CommandMenuItem
-              value="system dark light theme mode"
               onSelect={() =>
                 runCommand(() =>
                   handleThemeChange(
@@ -169,6 +170,7 @@ export function CommandPalette({
                   )
                 )
               }
+              value="system dark light theme mode"
             >
               {activeMode === "dark" ? <Moon /> : <Sun />}
               <span>{t("toggleMode")}</span>
@@ -198,7 +200,7 @@ export function CommandPalette({
 
           <CommandSeparator className="my-2" />
 
-          <CommandGroup heading={t("navigation")} className={groupClasses}>
+          <CommandGroup className={groupClasses} heading={t("navigation")}>
             <CommandMenuItem
               onSelect={() => runCommand(() => navigate("/home"))}
             >
@@ -247,21 +249,21 @@ export function CommandPalette({
 
           <CommandSeparator className="my-2" />
 
-          <CommandGroup heading={t("language")} className={groupClasses}>
+          <CommandGroup className={groupClasses} heading={t("language")}>
             {routing.locales.map((loc) => {
-              const config = localeConfig[loc as keyof typeof localeConfig]
+              const config = localeConfig[loc as keyof typeof localeConfig];
               return (
                 <CommandMenuItem
-                  key={loc}
-                  value={config.nativeName + " " + config.label}
-                  onSelect={() => runCommand(() => changeLanguage(loc))}
-                  disabled={isPending}
                   data-checked={locale === loc}
+                  disabled={isPending}
+                  key={loc}
+                  onSelect={() => runCommand(() => changeLanguage(loc))}
+                  value={`${config.nativeName} ${config.label}`}
                 >
                   <span className="mr-2 text-base">{config.flag}</span>
                   <span>{config.nativeName}</span>
                 </CommandMenuItem>
-              )
+              );
             })}
           </CommandGroup>
 
@@ -269,17 +271,17 @@ export function CommandPalette({
             <>
               <CommandSeparator className="my-2" />
               <CommandGroup
-                heading={t("sidebarVariants")}
                 className={groupClasses}
+                heading={t("sidebarVariants")}
               >
                 {(["sidebar", "floating", "inset"] as const).map(
                   (sidebarVariant) => (
                     <CommandMenuItem
+                      data-checked={variant === sidebarVariant}
                       key={sidebarVariant}
                       onSelect={() =>
                         runCommand(() => setVariant(sidebarVariant))
                       }
-                      data-checked={variant === sidebarVariant}
                     >
                       <LayoutTemplate />
                       <span className="capitalize">{t(sidebarVariant)}</span>
@@ -292,13 +294,13 @@ export function CommandPalette({
 
           <CommandSeparator className="my-2" />
 
-          <CommandGroup heading={t("themes")} className={groupClasses}>
+          <CommandGroup className={groupClasses} heading={t("themes")}>
             {themes.map((themeItem) => {
               const palette =
                 (activeMode === "system" ? resolvedTheme : activeMode) ===
                 "dark"
                   ? themeItem.darkPalette
-                  : themeItem.lightPalette
+                  : themeItem.lightPalette;
               return (
                 <CommandMenuItem
                   key={themeItem.name}
@@ -309,23 +311,23 @@ export function CommandPalette({
                   {selectedTheme === themeItem.name ? <Check /> : <Palette />}
                   <span>{themeItem.label}</span>
                   <div className="ml-auto flex items-center gap-1">
-                    {palette.slice(0, 5).map((color, i) => (
+                    {palette.slice(0, 5).map((color) => (
                       <div
-                        key={i}
                         className="h-3 w-3 rounded-full border border-border"
                         data-slot="command-shortcut"
+                        key={color}
                         style={{ backgroundColor: color }}
                       />
                     ))}
                   </div>
                 </CommandMenuItem>
-              )
+              );
             })}
           </CommandGroup>
         </CommandList>
       </Command>
 
-      <div className="absolute inset-x-0 bottom-0 z-20 hidden h-10 items-center justify-between rounded-b-xl border-t border-border bg-muted/50 px-4 text-xs font-medium text-muted-foreground md:flex">
+      <div className="absolute inset-x-0 bottom-0 z-20 hidden h-10 items-center justify-between rounded-b-xl border-border border-t bg-muted/50 px-4 font-medium text-muted-foreground text-xs md:flex">
         <div className="flex items-center gap-2">
           <Kbd>
             <MoveUp />
@@ -345,11 +347,11 @@ export function CommandPalette({
         </div>
       </div>
     </>
-  )
+  );
 
   if (isMobile) {
     return (
-      <Drawer open={isOpen} onOpenChange={(open) => !open && close()}>
+      <Drawer onOpenChange={(open) => !open && close()} open={isOpen}>
         <DrawerContent
           className="h-[96dvh] overflow-hidden"
           onOpenAutoFocus={(e: Event) => e.preventDefault()}
@@ -361,11 +363,11 @@ export function CommandPalette({
           {paletteContent}
         </DrawerContent>
       </Drawer>
-    )
+    );
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && close()}>
+    <Dialog onOpenChange={(open) => !open && close()} open={isOpen}>
       <DialogContent
         className="top-[15%] translate-y-0 overflow-hidden rounded-xl border-none bg-background bg-clip-padding p-0 pb-10 shadow-2xl ring-4 ring-border/80 sm:max-w-lg"
         showCloseButton={false}
@@ -377,5 +379,5 @@ export function CommandPalette({
         {paletteContent}
       </DialogContent>
     </Dialog>
-  )
+  );
 }

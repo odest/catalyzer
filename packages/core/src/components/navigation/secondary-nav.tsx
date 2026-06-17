@@ -1,6 +1,4 @@
-import * as React from "react"
-import { ComponentType, useCallback } from "react"
-import { type LucideIcon } from "lucide-react"
+import { useTranslations } from "@workspace/i18n";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -8,30 +6,31 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@workspace/ui/components/sidebar"
-import { useTranslations } from "@workspace/i18n"
+} from "@workspace/ui/components/sidebar";
+import type { LucideIcon } from "lucide-react";
+import type * as React from "react";
+import { type ComponentType, useCallback } from "react";
 
 interface SecondaryNavItem {
-  title: string
-  url: string
-  icon: LucideIcon
-  translationKey: string
-  external?: boolean
+  external?: boolean;
+  icon: LucideIcon;
+  title: string;
+  translationKey: string;
+  url: string;
 }
 
-interface SecondaryNavProps extends React.ComponentPropsWithoutRef<
-  typeof SidebarGroup
-> {
-  items: SecondaryNavItem[]
-  pathname: string
+interface SecondaryNavProps
+  extends React.ComponentPropsWithoutRef<typeof SidebarGroup> {
+  items: SecondaryNavItem[];
   LinkComponent?:
     | ComponentType<{
-        href: string
-        children: React.ReactNode
-        onClick?: () => void
-        className?: string
+        href: string;
+        children: React.ReactNode;
+        onClick?: () => void;
+        className?: string;
       }>
-    | "a"
+    | "a";
+  pathname: string;
 }
 
 export function SecondaryNav({
@@ -40,14 +39,14 @@ export function SecondaryNav({
   LinkComponent = "a",
   ...props
 }: SecondaryNavProps) {
-  const { isMobile, setOpenMobile } = useSidebar()
-  const t = useTranslations("Navigation")
+  const { isMobile, setOpenMobile } = useSidebar();
+  const t = useTranslations("Navigation");
 
   const handleLinkClick = useCallback(() => {
     if (isMobile) {
-      setOpenMobile(false)
+      setOpenMobile(false);
     }
-  }, [isMobile, setOpenMobile])
+  }, [isMobile, setOpenMobile]);
 
   return (
     <SidebarGroup {...props}>
@@ -56,27 +55,27 @@ export function SecondaryNav({
           {items.map((item) => {
             const active =
               pathname === item.url ||
-              (item.url !== "/" && pathname.startsWith(item.url))
+              (item.url !== "/" && pathname.startsWith(item.url));
             return (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild size="sm" isActive={active}>
+                <SidebarMenuButton asChild={true} isActive={active} size="sm">
                   <LinkComponent
-                    href={item.url}
-                    data-tooltip={t(item.translationKey)}
                     data-active={active}
+                    data-tooltip={t(item.translationKey)}
+                    href={item.url}
                     onClick={handleLinkClick}
-                    target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
+                    target={item.external ? "_blank" : undefined}
                   >
                     <item.icon />
                     <span>{t(item.translationKey)}</span>
                   </LinkComponent>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-            )
+            );
           })}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
-  )
+  );
 }

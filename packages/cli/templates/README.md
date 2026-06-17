@@ -26,8 +26,8 @@ This starts both the web app (http://localhost:3000) and the native desktop app 
 ```bash
 pnpm dev                  # Start all apps in dev mode
 pnpm build                # Build everything
-pnpm lint                 # Lint all packages
-pnpm format               # Format all code
+pnpm check                # Check formatting and lint rules
+pnpm fix                  # Auto-fix formatting and lint issues
 pnpm typecheck            # TypeScript validation across all workspaces
 pnpm web dev              # Web app only
 pnpm tauri dev            # Desktop app only
@@ -48,7 +48,6 @@ packages/
   core/               → Business logic: pages, stores, hooks, providers, config
   ui/                 → Design system: shadcn/ui primitives, themes, styles
   i18n/               → Type-safe translations (SSR & static)
-  eslint-config/      → Shared ESLint rules (Flat Config)
   typescript-config/  → Shared TypeScript configs
 ```
 

@@ -45,8 +45,8 @@ pnpm dev
 
 - `pnpm dev` - Start development servers for all apps
 - `pnpm build` - Build all apps and packages
-- `pnpm lint` - Run ESLint on all packages
-- `pnpm format` - Format all code
+- `pnpm check` - Check formatting and lint rules
+- `pnpm fix` - Auto-fix formatting and lint issues
 - `pnpm typecheck` - Run TypeScript type checking
 - `pnpm clean` - Clean all build outputs
 - `pnpm tauri` - Run Tauri CLI commands
@@ -60,7 +60,6 @@ pnpm dev
 ├── packages/
 │   ├── ui/                  # Shared UI components
 │   ├── i18n/                # Shared internationalization
-│   ├── eslint-config/       # Shared ESLint configuration
 │   └── typescript-config/   # Shared TypeScript configuration
 └── .github/                 # GitHub workflows and templates
 ```
@@ -74,7 +73,7 @@ pnpm dev
 ## Coding Standards
 
 - Use TypeScript for all new code
-- Follow the existing code style (we use Prettier and ESLint)
+- Follow the existing code style (we use Biome via Ultracite)
 - Write meaningful commit messages
 - Keep PRs focused and atomic
 

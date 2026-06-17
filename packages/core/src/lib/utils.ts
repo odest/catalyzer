@@ -1,20 +1,26 @@
-import { siteConfig } from "@workspace/core/config/site"
+import { siteConfig } from "@workspace/core/config/site";
 
+const V_PREFIX_DIGIT_REGEX = /^v\d/;
+const V_PREFIX_REGEX = /^v/;
+const MAC_REGEX = /Mac|iPod|iPhone|iPad/;
+const KEY_SPLIT_REGEX = /[+>]+/;
 export async function fetchLatestGithubVersion(): Promise<string | null> {
   try {
-    const res = await fetch(siteConfig.links.githubApi)
-    if (!res.ok) return null
+    const res = await fetch(siteConfig.links.githubApi);
+    if (!res.ok) {
+      return null;
+    }
     const releases: {
-      tag_name: string
-      prerelease: boolean
-      draft: boolean
-    }[] = await res.json()
+      tag_name: string;
+      prerelease: boolean;
+      draft: boolean;
+    }[] = await res.json();
     const appRelease = releases.find(
-      (r) => !r.prerelease && !r.draft && /^v\d/.test(r.tag_name)
-    )
-    return appRelease?.tag_name?.replace(/^v/, "") || null
+      (r) => !(r.prerelease || r.draft) && V_PREFIX_DIGIT_REGEX.test(r.tag_name)
+    );
+    return appRelease?.tag_name?.replace(V_PREFIX_REGEX, "") || null;
   } catch {
-    return null
+    return null;
   }
 }
 
@@ -25,20 +31,19 @@ export async function fetchLatestGithubVersion(): Promise<string | null> {
  */
 export function formatHotkeyDisplay(keys: string): string[] {
   const isMac =
-    typeof navigator !== "undefined" &&
-    /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
+    typeof navigator !== "undefined" && MAC_REGEX.test(navigator.userAgent);
 
   // Split by either `+` or `>` to support sequences like "g>s" and chords like "mod+k"
-  return keys.split(/[+>]+/).map((key) => {
+  return keys.split(KEY_SPLIT_REGEX).map((key) => {
     switch (key) {
       case "mod":
-        return isMac ? "⌘" : "Ctrl"
+        return isMac ? "⌘" : "Ctrl";
       case "shift":
-        return isMac ? "⇧" : "Shift"
+        return isMac ? "⇧" : "Shift";
       case "alt":
-        return isMac ? "⌥" : "Alt"
+        return isMac ? "⌥" : "Alt";
       default:
-        return key.toUpperCase()
+        return key.toUpperCase();
     }
-  })
+  });
 }

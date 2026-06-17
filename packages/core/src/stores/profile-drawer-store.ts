@@ -1,10 +1,10 @@
-import { create } from "zustand"
+import { create } from "zustand";
 
 interface ProfileDrawerStore {
-  isOpen: boolean
-  setOpen: (open: boolean) => void
-  open: () => void
-  close: () => void
+  close: () => void;
+  isOpen: boolean;
+  open: () => void;
+  setOpen: (open: boolean) => void;
 }
 
 export const useProfileDrawerStore = create<ProfileDrawerStore>((set) => ({
@@ -12,4 +12,4 @@ export const useProfileDrawerStore = create<ProfileDrawerStore>((set) => ({
   setOpen: (isOpen) => set({ isOpen }),
   open: () => set({ isOpen: true }),
   close: () => set({ isOpen: false }),
-}))
+}));

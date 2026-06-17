@@ -1,15 +1,15 @@
-import type { ScaffoldOptions } from "../../prompts.js"
+import type { ScaffoldOptions } from "../../prompts.js";
 import {
-  updateSiteConfig,
-  updateRootPackageJson,
-  updateReleasePleaseConfig,
-} from "./web.js"
-import {
-  updateNativeFiles,
   renameAndroidDirs,
   renameAppleDirsAndFiles,
-} from "./native.js"
-import { replaceVersions } from "./version.js"
+  updateNativeFiles,
+} from "./native.js";
+import { replaceVersions } from "./version.js";
+import {
+  updateReleasePleaseConfig,
+  updateRootPackageJson,
+  updateSiteConfig,
+} from "./web.js";
 
 /**
  * Safely renames project details by explicitly targeting known config files
@@ -20,21 +20,21 @@ export async function renameProject(
   opts: ScaffoldOptions
 ): Promise<void> {
   // 1. Update site.ts specifically
-  await updateSiteConfig(projectDir, opts)
+  await updateSiteConfig(projectDir, opts);
 
   // 2. Update root package.json name and release-please config
-  await updateRootPackageJson(projectDir, opts)
-  await updateReleasePleaseConfig(projectDir, opts)
+  await updateRootPackageJson(projectDir, opts);
+  await updateReleasePleaseConfig(projectDir, opts);
 
   // 3. Rename native identifiers and lib names ONLY inside src-tauri
-  await updateNativeFiles(projectDir, opts)
+  await updateNativeFiles(projectDir, opts);
 
   // 4. Rename Android Java package directories
-  await renameAndroidDirs(projectDir, opts)
+  await renameAndroidDirs(projectDir, opts);
 
   // 5. Rename Apple directories and files
-  await renameAppleDirsAndFiles(projectDir, opts)
+  await renameAppleDirsAndFiles(projectDir, opts);
 
   // 6. Update version fields in known config files
-  await replaceVersions(projectDir, opts)
+  await replaceVersions(projectDir, opts);
 }

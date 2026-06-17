@@ -1,10 +1,10 @@
-import { RootProvider } from "fumadocs-ui/provider/next"
-import { DocsLayout } from "fumadocs-ui/layouts/docs"
-import { source } from "@/lib/source"
-import type { ReactNode } from "react"
-import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared"
-import { Logo } from "@workspace/ui/components/landing/logo"
-import { siteConfig } from "@workspace/core/config/site"
+import { siteConfig } from "@workspace/core/config/site";
+import { Logo } from "@workspace/ui/components/landing/logo";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
+import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import { RootProvider } from "fumadocs-ui/provider/next";
+import type { ReactNode } from "react";
+import { source } from "@/lib/source";
 
 function baseOptions(): BaseLayoutProps {
   return {
@@ -17,14 +17,14 @@ function baseOptions(): BaseLayoutProps {
       ),
     },
     githubUrl: siteConfig.links.github,
-  }
+  };
 }
 
 export default async function DocsLayoutWrapper(props: {
-  children: ReactNode
-  params: Promise<{ locale: string }>
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await props.params
+  const { locale } = await props.params;
 
   return (
     <RootProvider
@@ -37,5 +37,5 @@ export default async function DocsLayoutWrapper(props: {
         {props.children}
       </DocsLayout>
     </RootProvider>
-  )
+  );
 }

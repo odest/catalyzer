@@ -1,38 +1,38 @@
-"use client"
+"use client";
 
-import { useMemo } from "react"
-import { PanelLeft, Layout, LayoutTemplate } from "lucide-react"
+import { SettingsCardSkeleton } from "@workspace/core/components/common/settings-card-skeleton";
+import { useMounted } from "@workspace/core/hooks/use-mounted";
+import { useSidebarStore } from "@workspace/core/stores/sidebar-store";
+import { useTranslations } from "@workspace/i18n";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/card"
-import { Label } from "@workspace/ui/components/label"
+} from "@workspace/ui/components/card";
+import { Label } from "@workspace/ui/components/label";
 import {
   RadioGroup,
   RadioGroupItem,
-} from "@workspace/ui/components/radio-group"
+} from "@workspace/ui/components/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@workspace/ui/components/select"
-import { useSidebar } from "@workspace/ui/components/sidebar"
-import { useMounted } from "@workspace/core/hooks/use-mounted"
-import { useSidebarStore } from "@workspace/core/stores/sidebar-store"
-import { SettingsCardSkeleton } from "@workspace/core/components/common/settings-card-skeleton"
-import { useTranslations } from "@workspace/i18n"
+} from "@workspace/ui/components/select";
+import { useSidebar } from "@workspace/ui/components/sidebar";
+import { Layout, LayoutTemplate, PanelLeft } from "lucide-react";
+import { useMemo } from "react";
 
 export const SidebarVariantCard = () => {
-  const mounted = useMounted()
+  const mounted = useMounted();
   const { variant: sidebarVariant, setVariant: setSidebarVariant } =
-    useSidebarStore()
-  const { state } = useSidebar()
-  const t = useTranslations("SidebarVariantCard")
+    useSidebarStore();
+  const { state } = useSidebar();
+  const t = useTranslations("SidebarVariantCard");
 
   const gridClasses = useMemo(
     () =>
@@ -40,9 +40,11 @@ export const SidebarVariantCard = () => {
         ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
         : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6",
     [state]
-  )
+  );
 
-  if (!mounted) return <SettingsCardSkeleton gridClasses={gridClasses} />
+  if (!mounted) {
+    return <SettingsCardSkeleton gridClasses={gridClasses} />;
+  }
 
   return (
     <Card>
@@ -54,10 +56,10 @@ export const SidebarVariantCard = () => {
 
         <div className="shrink-0 md:hidden">
           <Select
-            value={sidebarVariant}
             onValueChange={(val) =>
               setSidebarVariant(val as "sidebar" | "floating" | "inset")
             }
+            value={sidebarVariant}
           >
             <SelectTrigger className="w-[200px]">
               <SelectValue />
@@ -88,47 +90,47 @@ export const SidebarVariantCard = () => {
 
       <CardContent className="hidden md:block">
         <RadioGroup
-          value={sidebarVariant}
+          className={gridClasses}
           onValueChange={(val) =>
             setSidebarVariant(val as "sidebar" | "floating" | "inset")
           }
-          className={gridClasses}
+          value={sidebarVariant}
         >
           <div className="flex flex-col gap-3">
             <label
-              htmlFor="variant-sidebar"
               className="block w-full cursor-pointer"
+              htmlFor="variant-sidebar"
             >
               <div className="relative w-full">
                 <div className="aspect-video overflow-hidden rounded-lg border-2 border-border bg-background transition-colors">
-                  <div className="h-5 border-b bg-muted"></div>
+                  <div className="h-5 border-b bg-muted" />
                   <div className="absolute top-2 left-2 flex gap-1">
-                    <div className="h-2 w-2 rounded-full bg-red-500"></div>
-                    <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
-                    <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                    <div className="h-2 w-2 rounded-full bg-red-500" />
+                    <div className="h-2 w-2 rounded-full bg-yellow-500" />
+                    <div className="h-2 w-2 rounded-full bg-green-500" />
                   </div>
 
                   <div className="flex h-full">
                     <div className="h-[calc(100%-1.2rem)] w-12 border-r bg-muted">
                       <div className="flex h-full flex-col justify-between p-1">
                         <div className="space-y-1">
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
                         </div>
 
                         <div className="space-y-1">
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
                         </div>
                       </div>
                     </div>
 
                     <div className="flex-1 p-2">
                       <div className="space-y-1">
-                        <div className="h-2 w-3/4 rounded bg-muted-foreground/20"></div>
-                        <div className="h-2 w-1/2 rounded bg-muted-foreground/20"></div>
-                        <div className="h-2 w-2/3 rounded bg-muted-foreground/20"></div>
+                        <div className="h-2 w-3/4 rounded bg-muted-foreground/20" />
+                        <div className="h-2 w-1/2 rounded bg-muted-foreground/20" />
+                        <div className="h-2 w-2/3 rounded bg-muted-foreground/20" />
                       </div>
                     </div>
                   </div>
@@ -136,10 +138,10 @@ export const SidebarVariantCard = () => {
               </div>
             </label>
             <div className="flex items-center gap-2">
-              <RadioGroupItem value="sidebar" id="variant-sidebar" />
+              <RadioGroupItem id="variant-sidebar" value="sidebar" />
               <Label
-                htmlFor="variant-sidebar"
                 className="cursor-pointer font-medium"
+                htmlFor="variant-sidebar"
               >
                 {t("sidebar")}
               </Label>
@@ -148,39 +150,39 @@ export const SidebarVariantCard = () => {
 
           <div className="flex flex-col gap-3">
             <label
-              htmlFor="variant-floating"
               className="block w-full cursor-pointer"
+              htmlFor="variant-floating"
             >
               <div className="relative w-full">
                 <div className="aspect-video overflow-hidden rounded-lg border-2 border-border bg-background transition-colors">
-                  <div className="h-5 border-b bg-muted"></div>
+                  <div className="h-5 border-b bg-muted" />
                   <div className="absolute top-2 left-2 flex gap-1">
-                    <div className="h-2 w-2 rounded-full bg-red-500"></div>
-                    <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
-                    <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                    <div className="h-2 w-2 rounded-full bg-red-500" />
+                    <div className="h-2 w-2 rounded-full bg-yellow-500" />
+                    <div className="h-2 w-2 rounded-full bg-green-500" />
                   </div>
 
                   <div className="flex h-full p-1">
                     <div className="mr-1 h-[calc(100%-1.3rem)] w-12 rounded-md border bg-muted">
                       <div className="flex h-full flex-col justify-between p-1">
                         <div className="space-y-1">
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
                         </div>
 
                         <div className="space-y-1">
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
                         </div>
                       </div>
                     </div>
 
                     <div className="flex-1 rounded-md bg-background p-1">
                       <div className="space-y-1">
-                        <div className="h-2 w-3/4 rounded bg-muted-foreground/20"></div>
-                        <div className="h-2 w-1/2 rounded bg-muted-foreground/20"></div>
-                        <div className="h-2 w-2/3 rounded bg-muted-foreground/20"></div>
+                        <div className="h-2 w-3/4 rounded bg-muted-foreground/20" />
+                        <div className="h-2 w-1/2 rounded bg-muted-foreground/20" />
+                        <div className="h-2 w-2/3 rounded bg-muted-foreground/20" />
                       </div>
                     </div>
                   </div>
@@ -188,10 +190,10 @@ export const SidebarVariantCard = () => {
               </div>
             </label>
             <div className="flex items-center gap-2">
-              <RadioGroupItem value="floating" id="variant-floating" />
+              <RadioGroupItem id="variant-floating" value="floating" />
               <Label
-                htmlFor="variant-floating"
                 className="cursor-pointer font-medium"
+                htmlFor="variant-floating"
               >
                 {t("floating")}
               </Label>
@@ -200,39 +202,39 @@ export const SidebarVariantCard = () => {
 
           <div className="flex flex-col gap-3">
             <label
-              htmlFor="variant-inset"
               className="block w-full cursor-pointer"
+              htmlFor="variant-inset"
             >
               <div className="relative w-full">
                 <div className="aspect-video overflow-hidden rounded-lg border-2 border-border bg-muted transition-colors">
-                  <div className="h-5 border-b bg-muted"></div>
+                  <div className="h-5 border-b bg-muted" />
                   <div className="absolute top-2 left-2 flex gap-1">
-                    <div className="h-2 w-2 rounded-full bg-red-500"></div>
-                    <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
-                    <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                    <div className="h-2 w-2 rounded-full bg-red-500" />
+                    <div className="h-2 w-2 rounded-full bg-yellow-500" />
+                    <div className="h-2 w-2 rounded-full bg-green-500" />
                   </div>
 
                   <div className="flex h-full">
                     <div className="h-[calc(100%-1.3rem)] w-12 bg-muted">
                       <div className="mt-1 flex h-full flex-col justify-between p-1 pb-2">
                         <div className="space-y-1">
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
                         </div>
 
                         <div className="space-y-1">
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
-                          <div className="h-1.5 rounded bg-muted-foreground/30"></div>
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
+                          <div className="h-1.5 rounded bg-muted-foreground/30" />
                         </div>
                       </div>
                     </div>
 
                     <div className="mt-1 mr-1 h-[calc(100%-1.7rem)] flex-1 rounded-md border border-border bg-background p-2">
                       <div className="space-y-1">
-                        <div className="h-2 w-3/4 rounded bg-muted-foreground/20"></div>
-                        <div className="h-2 w-1/2 rounded bg-muted-foreground/20"></div>
-                        <div className="h-2 w-2/3 rounded bg-muted-foreground/20"></div>
+                        <div className="h-2 w-3/4 rounded bg-muted-foreground/20" />
+                        <div className="h-2 w-1/2 rounded bg-muted-foreground/20" />
+                        <div className="h-2 w-2/3 rounded bg-muted-foreground/20" />
                       </div>
                     </div>
                   </div>
@@ -240,10 +242,10 @@ export const SidebarVariantCard = () => {
               </div>
             </label>
             <div className="flex items-center gap-2">
-              <RadioGroupItem value="inset" id="variant-inset" />
+              <RadioGroupItem id="variant-inset" value="inset" />
               <Label
-                htmlFor="variant-inset"
                 className="cursor-pointer font-medium"
+                htmlFor="variant-inset"
               >
                 {t("inset")}
               </Label>
@@ -252,5 +254,5 @@ export const SidebarVariantCard = () => {
         </RadioGroup>
       </CardContent>
     </Card>
-  )
-}
+  );
+};

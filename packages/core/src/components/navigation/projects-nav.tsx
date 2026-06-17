@@ -1,22 +1,13 @@
-"use client"
+"use client";
 
-import { useCallback } from "react"
-import { ComponentType } from "react"
-import {
-  Folder,
-  MoreHorizontal,
-  Share,
-  Trash2,
-  type LucideIcon,
-} from "lucide-react"
-
+import { useTranslations } from "@workspace/i18n";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@workspace/ui/components/dropdown-menu"
+} from "@workspace/ui/components/dropdown-menu";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -25,27 +16,35 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@workspace/ui/components/sidebar"
-import { useTranslations } from "@workspace/i18n"
+} from "@workspace/ui/components/sidebar";
+import {
+  Folder,
+  type LucideIcon,
+  MoreHorizontal,
+  Share,
+  Trash2,
+} from "lucide-react";
+import type { ComponentType } from "react";
+import { useCallback } from "react";
 
 interface ProjectNavItem {
-  name: string
-  url: string
-  icon: LucideIcon
-  translationKey: string
+  icon: LucideIcon;
+  name: string;
+  translationKey: string;
+  url: string;
 }
 
 interface ProjectsNavProps {
-  projects: ProjectNavItem[]
-  pathname: string
   LinkComponent?:
     | ComponentType<{
-        href: string
-        children: React.ReactNode
-        onClick?: () => void
-        className?: string
+        href: string;
+        children: React.ReactNode;
+        onClick?: () => void;
+        className?: string;
       }>
-    | "a"
+    | "a";
+  pathname: string;
+  projects: ProjectNavItem[];
 }
 
 export function ProjectsNav({
@@ -53,14 +52,14 @@ export function ProjectsNav({
   pathname,
   LinkComponent = "a",
 }: ProjectsNavProps) {
-  const { isMobile, setOpenMobile } = useSidebar()
-  const t = useTranslations("Navigation")
+  const { isMobile, setOpenMobile } = useSidebar();
+  const t = useTranslations("Navigation");
 
   const handleLinkClick = useCallback(() => {
     if (isMobile) {
-      setOpenMobile(false)
+      setOpenMobile(false);
     }
-  }, [isMobile, setOpenMobile])
+  }, [isMobile, setOpenMobile]);
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -69,13 +68,13 @@ export function ProjectsNav({
         {projects.map((item) => {
           const active =
             pathname === item.url ||
-            (item.url !== "/" && pathname.startsWith(item.url))
+            (item.url !== "/" && pathname.startsWith(item.url));
           return (
             <SidebarMenuItem key={item.name}>
-              <SidebarMenuButton asChild isActive={active}>
+              <SidebarMenuButton asChild={true} isActive={active}>
                 <LinkComponent
-                  href={item.url}
                   data-tooltip={t(item.translationKey)}
+                  href={item.url}
                   onClick={handleLinkClick}
                 >
                   <item.icon />
@@ -83,15 +82,15 @@ export function ProjectsNav({
                 </LinkComponent>
               </SidebarMenuButton>
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <SidebarMenuAction showOnHover>
+                <DropdownMenuTrigger asChild={true}>
+                  <SidebarMenuAction showOnHover={true}>
                     <MoreHorizontal />
                   </SidebarMenuAction>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
+                  align={isMobile ? "end" : "start"}
                   className="w-48"
                   side={isMobile ? "bottom" : "right"}
-                  align={isMobile ? "end" : "start"}
                 >
                   <DropdownMenuItem>
                     <Folder className="text-muted-foreground" />
@@ -109,7 +108,7 @@ export function ProjectsNav({
                 </DropdownMenuContent>
               </DropdownMenu>
             </SidebarMenuItem>
-          )
+          );
         })}
         <SidebarMenuItem>
           <SidebarMenuButton>
@@ -119,5 +118,5 @@ export function ProjectsNav({
         </SidebarMenuItem>
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

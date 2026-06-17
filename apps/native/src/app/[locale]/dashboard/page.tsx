@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { useRouter } from "@workspace/i18n/navigation"
+import { useRouter } from "@workspace/i18n/navigation";
+import { useEffect } from "react";
 
 export default function Dashboard() {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
-    router.replace("/dashboard/overview")
-  }, [router])
+    router.replace("/dashboard/overview");
+  }, [router]);
 
-  return null
+  return null;
 }

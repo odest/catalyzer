@@ -1,13 +1,11 @@
-"use client"
+"use client";
 
-import { useCallback } from "react"
-import { ComponentType } from "react"
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import { useTranslations } from "@workspace/i18n";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@workspace/ui/components/collapsible"
+} from "@workspace/ui/components/collapsible";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -19,34 +17,36 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   useSidebar,
-} from "@workspace/ui/components/sidebar"
-import { useTranslations } from "@workspace/i18n"
+} from "@workspace/ui/components/sidebar";
+import { ChevronRight, type LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
+import { useCallback } from "react";
 
 interface MainNavItem {
-  title: string
-  url: string
-  href?: string
-  icon: LucideIcon
-  isActive?: boolean
-  translationKey: string
+  href?: string;
+  icon: LucideIcon;
+  isActive?: boolean;
   items?: {
-    title: string
-    url: string
-    translationKey: string
-  }[]
+    title: string;
+    url: string;
+    translationKey: string;
+  }[];
+  title: string;
+  translationKey: string;
+  url: string;
 }
 
 interface MainNavProps {
-  items: MainNavItem[]
-  pathname: string
+  items: MainNavItem[];
   LinkComponent?:
     | ComponentType<{
-        href: string
-        children: React.ReactNode
-        onClick?: () => void
-        className?: string
+        href: string;
+        children: React.ReactNode;
+        onClick?: () => void;
+        className?: string;
       }>
-    | "a"
+    | "a";
+  pathname: string;
 }
 
 export function MainNav({
@@ -54,14 +54,14 @@ export function MainNav({
   pathname,
   LinkComponent = "a",
 }: MainNavProps) {
-  const { isMobile, setOpenMobile } = useSidebar()
-  const t = useTranslations("Navigation")
+  const { isMobile, setOpenMobile } = useSidebar();
+  const t = useTranslations("Navigation");
 
   const handleLinkClick = useCallback(() => {
     if (isMobile) {
-      setOpenMobile(false)
+      setOpenMobile(false);
     }
-  }, [isMobile, setOpenMobile])
+  }, [isMobile, setOpenMobile]);
 
   return (
     <SidebarGroup>
@@ -70,23 +70,23 @@ export function MainNav({
         {items.map((item) => {
           const active =
             pathname === item.url ||
-            (item.url !== "/" && pathname.startsWith(item.url))
-          const href = item.href ?? item.url
+            (item.url !== "/" && pathname.startsWith(item.url));
+          const href = item.href ?? item.url;
           return (
             <Collapsible
-              key={`${item.title}-${active}`}
-              asChild
+              asChild={true}
               defaultOpen={active}
+              key={`${item.title}-${active}`}
             >
               <SidebarMenuItem>
                 <SidebarMenuButton
-                  asChild
-                  tooltip={t(item.translationKey)}
+                  asChild={true}
                   isActive={active}
+                  tooltip={t(item.translationKey)}
                 >
                   <LinkComponent
-                    href={href}
                     data-active={active}
+                    href={href}
                     onClick={handleLinkClick}
                   >
                     <item.icon />
@@ -95,7 +95,7 @@ export function MainNav({
                 </SidebarMenuButton>
                 {item.items?.length ? (
                   <>
-                    <CollapsibleTrigger asChild>
+                    <CollapsibleTrigger asChild={true}>
                       <SidebarMenuAction className="data-[state=open]:rotate-90">
                         <ChevronRight />
                       </SidebarMenuAction>
@@ -106,11 +106,11 @@ export function MainNav({
                           const subActive =
                             pathname === subItem.url ||
                             (subItem.url !== "/" &&
-                              pathname.startsWith(subItem.url))
+                              pathname.startsWith(subItem.url));
                           return (
                             <SidebarMenuSubItem key={subItem.title}>
                               <SidebarMenuSubButton
-                                asChild
+                                asChild={true}
                                 isActive={subActive}
                               >
                                 <LinkComponent
@@ -121,7 +121,7 @@ export function MainNav({
                                 </LinkComponent>
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
-                          )
+                          );
                         })}
                       </SidebarMenuSub>
                     </CollapsibleContent>
@@ -129,9 +129,9 @@ export function MainNav({
                 ) : null}
               </SidebarMenuItem>
             </Collapsible>
-          )
+          );
         })}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

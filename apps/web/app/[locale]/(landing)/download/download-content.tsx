@@ -1,40 +1,43 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect, useCallback } from "react"
-import Link from "next/link"
-import { ArrowDown } from "lucide-react"
-import { Button } from "@workspace/ui/components/button"
-import { Logo } from "@workspace/ui/components/landing/logo"
-import { AnimatedGroup } from "@workspace/ui/components/landing/animated-group"
-import { TextEffect } from "@workspace/ui/components/landing/text-effect"
-import { transitionVariants } from "@/lib/animations"
-import { detectPlatform, type Platform } from "@/lib/detect-platform"
-import { platformConfig } from "./platform-mappings"
-import { type ReleaseData } from "@/lib/github-releases"
-import PlatformCards from "../components/platform-cards"
-import { siteConfig } from "@workspace/core/config/site"
+import { siteConfig } from "@workspace/core/config/site";
+import { Button } from "@workspace/ui/components/button";
+import { AnimatedGroup } from "@workspace/ui/components/landing/animated-group";
+import { Logo } from "@workspace/ui/components/landing/logo";
+import { TextEffect } from "@workspace/ui/components/landing/text-effect";
+import { ArrowDown } from "lucide-react";
+import Link from "next/link";
+import type React from "react";
+import { useCallback, useEffect, useState } from "react";
+import { transitionVariants } from "@/lib/animations";
+import { detectPlatform, type Platform } from "@/lib/detect-platform";
+import type { ReleaseData } from "@/lib/github-releases";
+import PlatformCards from "../components/platform-cards";
+import { platformConfig } from "./platform-mappings";
 
 interface DownloadContentProps {
-  release: ReleaseData | null
+  release: ReleaseData | null;
 }
 
 export default function DownloadContent({ release }: DownloadContentProps) {
-  const [platform, setPlatform] = useState<Platform>("unknown")
+  const [platform, setPlatform] = useState<Platform>("unknown");
 
   useEffect(() => {
-    setPlatform(detectPlatform())
-  }, [])
+    setPlatform(detectPlatform());
+  }, []);
 
   const scrollToPlatforms = useCallback((e: React.MouseEvent) => {
-    e.preventDefault()
-    document.getElementById("platforms")?.scrollIntoView({ behavior: "smooth" })
-  }, [])
+    e.preventDefault();
+    document
+      .getElementById("platforms")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
-  const { label, icon, primaryAssetKey } = platformConfig[platform]
+  const { label, icon, primaryAssetKey } = platformConfig[platform];
 
   const primaryUrl =
     (release?.assets && primaryAssetKey && release.assets[primaryAssetKey]) ||
-    "#"
+    "#";
 
   return (
     <main className="overflow-hidden">
@@ -92,20 +95,20 @@ export default function DownloadContent({ release }: DownloadContentProps) {
           </AnimatedGroup>
 
           <TextEffect
+            as="h1"
+            className="mx-auto mt-8 max-w-4xl text-balance text-5xl max-md:font-semibold md:text-7xl lg:mt-16 xl:text-[5.25rem]"
             preset="fade-in-blur"
             speedSegment={0.3}
-            as="h1"
-            className="mx-auto mt-8 max-w-4xl text-5xl text-balance max-md:font-semibold md:text-7xl lg:mt-16 xl:text-[5.25rem]"
           >
             {`Download ${siteConfig.name}`}
           </TextEffect>
           <TextEffect
+            as="p"
+            className="mx-auto mt-8 max-w-3xl text-balance text-lg"
+            delay={0.5}
             per="line"
             preset="fade-in-blur"
             speedSegment={0.3}
-            delay={0.5}
-            as="p"
-            className="mx-auto mt-8 max-w-3xl text-lg text-balance"
           >
             Get the latest version for your platform. One codebase for Web,
             Desktop, and Mobile.
@@ -113,13 +116,14 @@ export default function DownloadContent({ release }: DownloadContentProps) {
 
           {release?.version && (
             <AnimatedGroup variants={transitionVariants}>
-              <p className="mt-4 text-sm text-muted-foreground">
+              <p className="mt-4 text-muted-foreground text-sm">
                 Latest release: v{release.version}
               </p>
             </AnimatedGroup>
           )}
 
           <AnimatedGroup
+            className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row"
             variants={{
               container: {
                 visible: {
@@ -131,20 +135,23 @@ export default function DownloadContent({ release }: DownloadContentProps) {
               },
               ...transitionVariants,
             }}
-            className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row"
           >
-            <Button asChild size="lg" className="cursor-pointer text-base">
+            <Button
+              asChild={true}
+              className="cursor-pointer text-base"
+              size="lg"
+            >
               <Link href={primaryUrl}>
                 {icon}
                 <span className="text-nowrap">{label}</span>
               </Link>
             </Button>
             <Button
+              className="cursor-pointer text-base"
               key={2}
+              onClick={scrollToPlatforms}
               size="lg"
               variant="outline"
-              className="cursor-pointer text-base"
-              onClick={scrollToPlatforms}
             >
               <ArrowDown />
               <span className="text-nowrap">Other Platforms</span>
@@ -171,5 +178,5 @@ export default function DownloadContent({ release }: DownloadContentProps) {
         </AnimatedGroup>
       </section>
     </main>
-  )
+  );
 }

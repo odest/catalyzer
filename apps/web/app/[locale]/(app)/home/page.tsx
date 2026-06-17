@@ -1,5 +1,5 @@
-import { HomePage } from "@workspace/core/pages/HomePage"
+import { HomePage } from "@workspace/core/pages/home-page";
 
 export default function Home() {
-  return <HomePage />
+  return <HomePage />;
 }

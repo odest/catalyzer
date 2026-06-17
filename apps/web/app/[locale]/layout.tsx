@@ -1,27 +1,27 @@
-import type { Metadata, Viewport } from "next"
-import { notFound } from "next/navigation"
-import { Geist, Geist_Mono } from "next/font/google"
-import { themeInitScript } from "@workspace/core/scripts/theme-init"
-import { NextIntlClientProvider, hasLocale } from "@workspace/i18n"
-import { siteConfig } from "@workspace/core/config/site"
-import { routing } from "@workspace/i18n/routing"
-import { SerwistProvider } from "../serwist"
-import "../globals.css"
+import { siteConfig } from "@workspace/core/config/site";
+import { themeInitScript } from "@workspace/core/scripts/theme-init";
+import { hasLocale, NextIntlClientProvider } from "@workspace/i18n";
+import { routing } from "@workspace/i18n/routing";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
+import { SerwistProvider } from "../serwist";
+import "../globals.css";
 
 const fontSans = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
-})
+});
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-})
+});
 
-const APP_NAME = siteConfig.name
-const APP_DEFAULT_TITLE = siteConfig.name
-const APP_TITLE_TEMPLATE = `%s - ${siteConfig.name}`
-const APP_DESCRIPTION = siteConfig.description
+const APP_NAME = siteConfig.name;
+const APP_DEFAULT_TITLE = siteConfig.name;
+const APP_TITLE_TEMPLATE = `%s - ${siteConfig.name}`;
+const APP_DESCRIPTION = siteConfig.description;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.links.website),
@@ -58,35 +58,36 @@ export const metadata: Metadata = {
     description: APP_DESCRIPTION,
     images: ["/twitter-image.png"],
   },
-}
+};
 
 export const viewport: Viewport = {
   themeColor: "#000000",
   viewportFit: "cover",
-}
+};
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }))
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout({
   children,
   params,
 }: Readonly<{
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
-  const { locale } = await params
+  const { locale } = await params;
 
   // Validate that the incoming `locale` parameter is valid
   if (!hasLocale(routing.locales, locale)) {
-    notFound()
+    notFound();
   }
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning={true}>
       <head>
         <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Trusted script
           dangerouslySetInnerHTML={{
             __html: themeInitScript,
           }}
@@ -100,5 +101,5 @@ export default async function RootLayout({
         </SerwistProvider>
       </body>
     </html>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-export const TEMPLATE_SOURCE = "github:odest/catalyzer"
+export const TEMPLATE_SOURCE = "github:odest/catalyzer";
 
-export const DEFAULT_VERSION = "0.1.0"
+export const DEFAULT_VERSION = "0.1.0";
 
 /** Search terms used for automatic find-replace across the entire project. */
 export const SEARCH_TERMS = {
@@ -8,7 +8,7 @@ export const SEARCH_TERMS = {
   namePascal: "Catalyzer",
   identifier: "com.catalyzer.app",
   githubUser: "odest",
-} as const
+} as const;
 
 /**
  * Directories and files to skip when scanning for replacements.
@@ -37,7 +37,7 @@ export const SKIP_PATTERNS = [
   "*.dll",
   // Lock files managed by tools (pnpm-lock will be regenerated)
   "pnpm-lock.yaml",
-] as const
+] as const;
 
 /** Files/dirs to delete after cloning (relative to project root). */
 export const FILES_TO_CLEAN = [
@@ -47,7 +47,7 @@ export const FILES_TO_CLEAN = [
   ".github/FUNDING.yml",
   ".github/workflows/publish-cli.yml",
   ".github/assets",
-] as const
+] as const;
 
 /**
  * JSON config files that reference packages/cli.
@@ -56,4 +56,4 @@ export const FILES_TO_CLEAN = [
 export const CLI_CONFIG_REFS = [
   "release-please-config.json",
   ".release-please-manifest.json",
-] as const
+] as const;

@@ -1,9 +1,9 @@
-import { ThemeProvider } from "@workspace/core/providers/theme-provider"
-import { HeroHeader } from "./components/header"
-import { Footer } from "./components/footer"
+import { ThemeProvider } from "@workspace/core/providers/theme-provider";
+import { Footer } from "./components/footer";
+import { HeroHeader } from "./components/header";
 
 interface LandingLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function LandingLayout({ children }: LandingLayoutProps) {
@@ -11,13 +11,13 @@ export default function LandingLayout({ children }: LandingLayoutProps) {
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-      enableColorScheme
+      disableTransitionOnChange={true}
+      enableColorScheme={true}
+      enableSystem={true}
     >
       <HeroHeader />
       {children}
       <Footer />
     </ThemeProvider>
-  )
+  );
 }

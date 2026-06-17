@@ -1,19 +1,19 @@
 import {
-  Tag,
   Download,
   FileText,
-  LucideIcon,
+  type LucideIcon,
   MessageCircle,
-} from "lucide-react"
+  Tag,
+} from "lucide-react";
 
 export interface NotificationItem {
-  id: string
-  title: string
-  description: string
-  time: string
-  unread: boolean
-  avatar?: string
-  icon?: LucideIcon
+  avatar?: string;
+  description: string;
+  icon?: LucideIcon;
+  id: string;
+  time: string;
+  title: string;
+  unread: boolean;
 }
 
 export const notifications: NotificationItem[] = [
@@ -57,4 +57,4 @@ export const notifications: NotificationItem[] = [
     unread: false,
     icon: Tag,
   },
-]
+];

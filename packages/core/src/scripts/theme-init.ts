@@ -13,4 +13,4 @@ export const themeInitScript = `
       console.error("[Theme Init]", error);
     }
   })();
-`
+`;

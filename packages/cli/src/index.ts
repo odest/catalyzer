@@ -1,19 +1,21 @@
 #!/usr/bin/env node
-import { Command } from "commander"
-import pc from "picocolors"
-import * as p from "@clack/prompts"
-import { runPrompts } from "./prompts.js"
-import { scaffold } from "./scaffold.js"
+import { cancel, intro } from "@clack/prompts";
+import { Command } from "commander";
+import pc from "picocolors";
+import { runPrompts } from "./prompts.js";
+import { scaffold } from "./scaffold.js";
 import {
   toPascalCase,
   toSnakeCase,
+  validateIdentifier,
   validateProjectName,
   validateVersion,
-  validateIdentifier,
-} from "./utils/validate.js"
+} from "./utils/validate.js";
 
-declare const __CLI_VERSION__: string
-import { DEFAULT_VERSION } from "./consts.js"
+declare const __CLI_VERSION__: string;
+
+import process from "node:process";
+import { DEFAULT_VERSION } from "./consts.js";
 
 const banner = `
  ██████╗ █████╗ ████████╗ █████╗ ██╗  ██╗   ██╗███████╗███████╗██████╗ 
@@ -22,7 +24,7 @@ const banner = `
 ██║     ██╔══██║   ██║   ██╔══██║██║    ╚██╔╝   ███╔╝  ██╔══╝  ██╔══██╗
 ╚██████╗██║  ██║   ██║   ██║  ██║███████╗██║   ███████╗███████╗██║  ██║
  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝   ╚══════╝╚══════╝╚═╝  ╚═╝
-`
+`;
 
 const program = new Command()
   .name("catalyzer")
@@ -37,30 +39,30 @@ const program = new Command()
   .option("--no-git", "Skip git initialization")
   .option("-b, --branch <branch>", "Template branch to clone", "master")
   .action(async (flags) => {
-    console.log(pc.cyan(banner))
-    p.intro(pc.bold(pc.green("Catalyzer Scaffold Tool")))
+    console.log(pc.cyan(banner));
+    intro(pc.bold(pc.green("Catalyzer Scaffold Tool")));
 
     if (flags.name) {
       // Non-interactive mode
-      const nameErr = validateProjectName(flags.name)
+      const nameErr = validateProjectName(flags.name);
       if (nameErr) {
-        p.cancel(nameErr)
-        process.exit(1)
+        cancel(nameErr);
+        process.exit(1);
       }
       if (flags.appVersion) {
-        const verErr = validateVersion(flags.appVersion)
+        const verErr = validateVersion(flags.appVersion);
         if (verErr) {
-          p.cancel(verErr)
-          process.exit(1)
+          cancel(verErr);
+          process.exit(1);
         }
       }
 
       const identifier =
-        flags.identifier ?? `com.${toSnakeCase(flags.name)}.app`
-      const idErr = validateIdentifier(identifier)
+        flags.identifier ?? `com.${toSnakeCase(flags.name)}.app`;
+      const idErr = validateIdentifier(identifier);
       if (idErr) {
-        p.cancel(idErr)
-        process.exit(1)
+        cancel(idErr);
+        process.exit(1);
       }
 
       await scaffold({
@@ -74,12 +76,12 @@ const program = new Command()
         installDeps: flags.install ?? true,
         initGit: flags.git ?? true,
         branch: flags.branch,
-      })
+      });
     } else {
       // Interactive mode
-      const opts = await runPrompts(flags.directory)
-      await scaffold(opts)
+      const opts = await runPrompts(flags.directory);
+      await scaffold(opts);
     }
-  })
+  });
 
-program.parse()
+program.parse();

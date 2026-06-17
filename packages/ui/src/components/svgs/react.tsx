@@ -1,7 +1,9 @@
-import type { SVGProps } from "react"
+import type { SVGProps } from "react";
 
 const React = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    aria-label="React icon"
+    role="img"
     {...props}
     viewBox="0 0 569 512"
     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -19,6 +21,6 @@ const React = (props: SVGProps<SVGSVGElement>) => (
       </g>
     </g>
   </svg>
-)
+);
 
-export { React }
+export { React };

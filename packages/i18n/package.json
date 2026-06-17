@@ -16,10 +16,6 @@
     "./messages/*": "./src/messages/*.json"
   },
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf .turbo"
   },
@@ -27,11 +23,9 @@
     "@types/node": "^25.9.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "19.2.3",
-    "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "eslint": "^9.39.4",
-    "react": "^19.2.7",
     "next": "^16.2.7",
+    "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "typescript": "~5.9.3"
   },

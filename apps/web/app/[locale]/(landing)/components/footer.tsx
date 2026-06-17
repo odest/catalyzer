@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import type { ReactNode } from "react"
-import { cn } from "@workspace/ui/lib/utils"
-import { Logo } from "@workspace/ui/components/landing/logo"
+import { ModeSwitch } from "@workspace/core/components/common/mode-switch";
+import { siteConfig } from "@workspace/core/config/site";
+import { AnimatedContainer } from "@workspace/ui/components/landing/animated-container";
+import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
+import { Logo } from "@workspace/ui/components/landing/logo";
+import { TextHoverEffect } from "@workspace/ui/components/landing/text-hover-effect";
+import { cn } from "@workspace/ui/lib/utils";
 import {
-  GithubIcon,
-  MessageSquareIcon,
   BugIcon,
+  GithubIcon,
   GitPullRequestIcon,
-} from "lucide-react"
-import { ModeSwitch } from "@workspace/core/components/common/mode-switch"
-import { AnimatedContainer } from "@workspace/ui/components/landing/animated-container"
-import { TextHoverEffect } from "@workspace/ui/components/landing/text-hover-effect"
-import { BorderBeam } from "@workspace/ui/components/landing/border-beam"
-import { siteConfig } from "@workspace/core/config/site"
+  MessageSquareIcon,
+} from "lucide-react";
+import Link from "next/link";
+import type { ReactNode } from "react";
 
-type FooterLink = {
-  title: string
-  href: string
-  isExternal: boolean
-  icon?: ReactNode
+interface FooterLink {
+  href: string;
+  icon?: ReactNode;
+  isExternal: boolean;
+  title: string;
 }
 
-type FooterSection = {
-  label: string
-  links: FooterLink[]
+interface FooterSection {
+  label: string;
+  links: FooterLink[];
 }
 
 const footerLinks: FooterSection[] = [
@@ -97,13 +97,13 @@ const footerLinks: FooterSection[] = [
       },
     ],
   },
-]
+];
 
 export function Footer() {
   return (
     <footer
       className={cn(
-        "md:rounded-t-6xl relative mx-auto flex w-full max-w-6xl flex-col items-center justify-center overflow-hidden rounded-t-4xl border-t px-6 md:px-8",
+        "relative mx-auto flex w-full max-w-6xl flex-col items-center justify-center overflow-hidden rounded-t-4xl border-t px-6 md:rounded-t-6xl md:px-8",
         "dark:bg-[radial-gradient(35%_128px_at_50%_0%,--theme(--color-foreground/.1),transparent)]"
       )}
     >
@@ -114,10 +114,10 @@ export function Footer() {
           <Link href="/">
             <div className="flex flex-row items-center gap-2">
               <Logo className="size-8!" />
-              <h2 className="text-xl font-bold">{siteConfig.name}</h2>
+              <h2 className="font-bold text-xl">{siteConfig.name}</h2>
             </div>
           </Link>
-          <p className="mt-4 text-sm text-muted-foreground">
+          <p className="mt-4 text-muted-foreground text-sm">
             {siteConfig.headline}
           </p>
           <ModeSwitch />
@@ -128,17 +128,17 @@ export function Footer() {
             <AnimatedContainer delay={0.1 + index * 0.1} key={section.label}>
               <div className="mb-10 md:mb-0">
                 <h3 className="text-xs">{section.label}</h3>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                <ul className="mt-4 space-y-2 text-muted-foreground text-sm">
                   {section.links.map((link) => (
                     <li key={link.title}>
                       <Link
                         className="inline-flex items-center duration-250 hover:text-foreground [&_svg]:me-1 [&_svg]:size-4"
                         href={link.href}
-                        target={link.isExternal ? "_blank" : "_self"}
+                        key={`${section.label}-${link.title}`}
                         rel={
                           link.isExternal ? "noopener noreferrer" : undefined
                         }
-                        key={`${section.label}-${link.title}`}
+                        target={link.isExternal ? "_blank" : "_self"}
                       >
                         {link.icon}
                         {link.title}
@@ -155,10 +155,10 @@ export function Footer() {
         <TextHoverEffect text={siteConfig.name.toUpperCase()} />
       </div>
       <BorderBeam
+        className="from-transparent via-primary to-transparent"
         duration={6}
         size={200}
-        className="from-transparent via-primary to-transparent"
       />
     </footer>
-  )
+  );
 }
