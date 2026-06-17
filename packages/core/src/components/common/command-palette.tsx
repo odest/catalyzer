@@ -311,14 +311,17 @@ export function CommandPalette({
                   {selectedTheme === themeItem.name ? <Check /> : <Palette />}
                   <span>{themeItem.label}</span>
                   <div className="ml-auto flex items-center gap-1">
-                    {palette.slice(0, 5).map((color) => (
-                      <div
-                        className="h-3 w-3 rounded-full border border-border"
-                        data-slot="command-shortcut"
-                        key={color}
-                        style={{ backgroundColor: color }}
-                      />
-                    ))}
+                    {palette.slice(0, 5).map((color, index) => {
+                      return (
+                        <div
+                          className="h-3 w-3 rounded-full border border-border"
+                          data-slot="command-shortcut"
+                          // biome-ignore lint/suspicious/noArrayIndexKey: Decorative static color list
+                          key={`${themeItem.name}-${index}`}
+                          style={{ backgroundColor: color }}
+                        />
+                      );
+                    })}
                   </div>
                 </CommandMenuItem>
               );

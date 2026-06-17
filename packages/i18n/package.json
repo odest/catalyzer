@@ -20,11 +20,11 @@
     "clean": "rimraf .turbo"
   },
   "devDependencies": {
-    "@types/node": "^25.9.2",
+    "@types/node": "^25.9.3",
     "@types/react": "^19.2.17",
     "@types/react-dom": "19.2.3",
     "@workspace/typescript-config": "workspace:*",
-    "next": "^16.2.7",
+    "next": "^16.2.9",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "typescript": "~5.9.3"
