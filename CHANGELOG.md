@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.1.0](https://github.com/odest/catalyzer/compare/v2.0.1...v2.1.0) (2026-07-16)
+
+
+### Features
+
+* migrate from eslint and prettier to ultracite and biome ([#74](https://github.com/odest/catalyzer/issues/74)) ([8bfc157](https://github.com/odest/catalyzer/commit/8bfc1579f66796f0060abf15e7fc06fa59415d35))
+
+
+### Documentation
+
+* **cli:** Add AGENTS.md template and generate file during scaffold ([18306e7](https://github.com/odest/catalyzer/commit/18306e7ca47a51d299dbc51bdd3b2639aaaa1bad))
+
+
+### Build System
+
+* **deps-dev:** bump esbuild from 0.27.7 to 0.28.1 ([#73](https://github.com/odest/catalyzer/issues/73)) ([37e4141](https://github.com/odest/catalyzer/commit/37e41419199250196c4b1c606cdddb30fbbd4d36))
+* **deps:** bump serde_with from 3.17.0 to 3.21.0 in /apps/native/src-tauri ([#76](https://github.com/odest/catalyzer/issues/76)) ([0e366ad](https://github.com/odest/catalyzer/commit/0e366ad5f69db7b833649b2ebd94e41e31825bf5))
+
 ## [2.0.1](https://github.com/odest/catalyzer/compare/v2.0.0...v2.0.1) (2026-06-07)
 
 
