@@ -1,0 +1,34 @@
+---
+title: Quick Start
+description: Getting started with your new project.
+icon: Rocket
+---
+
+import { Step, Steps } from 'fumadocs-ui/components/steps'
+
+## Getting Started
+
+<Steps>
+  <Step>
+    ### Install Dependencies
+    ```bash
+    pnpm install
+    ```
+  </Step>
+  <Step>
+    ### Start Development
+    ```bash
+    pnpm dev
+    ```
+    The web development server starts at `http://localhost:3000` and the native desktop app in parallel.
+  </Step>
+</Steps>
+
+## Platform Commands
+
+| Target | Development Server | Production Build |
+|---|---|---|
+| Web + PWA | `pnpm web dev` | `pnpm web build` |
+| Windows / macOS / Linux | `pnpm tauri dev` | `pnpm tauri build` |
+| Android | `pnpm tauri android dev` | `pnpm tauri android build` |
+| iOS | `pnpm tauri ios dev` | `pnpm tauri ios build` |
