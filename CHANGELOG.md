@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.1](https://github.com/odest/catalyzer/compare/v2.1.0...v2.1.1) (2026-07-25)
+
+
+### Bug Fixes
+
+* **cli:** add quick-start template to prevent 404 in scaffolded apps ([7921591](https://github.com/odest/catalyzer/commit/79215911a51e428f03635478964bdbffa7454077))
+
+
+### Build System
+
+* **deps:** bump next from 16.2.10 to 16.2.11 ([#79](https://github.com/odest/catalyzer/issues/79)) ([68912ff](https://github.com/odest/catalyzer/commit/68912ffc4f276db2f4f769f86da954d416b74bfa))
+
 ## [2.1.0](https://github.com/odest/catalyzer/compare/v2.0.1...v2.1.0) (2026-07-16)
 
 
