@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.2...create-catalyzer@v0.1.3) (2026-07-25)
+
+
+### Bug Fixes
+
+* **cli:** add quick-start template to prevent 404 in scaffolded apps ([7921591](https://github.com/odest/catalyzer/commit/79215911a51e428f03635478964bdbffa7454077))
+
 ## [0.1.2](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.1...create-catalyzer@v0.1.2) (2026-06-17)
 
 
