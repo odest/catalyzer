@@ -27,13 +27,13 @@
   },
   "devDependencies": {
     "@serwist/turbopack": "^9.5.12",
-    "@types/node": "^25.9.5",
+    "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@workspace/typescript-config": "workspace:*",
     "esbuild": "^0.28.2",
     "serwist": "^9.5.12",
-    "typescript": "~5.9.3",
+    "typescript": "~7.0.2",
     "zod": "^4.4.3"
   }
 }

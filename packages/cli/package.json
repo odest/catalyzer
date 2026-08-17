@@ -57,10 +57,10 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.19.43",
+    "@types/node": "^26.2.0",
     "@workspace/typescript-config": "workspace:*",
     "tsup": "^8.5.1",
-    "typescript": "~5.9.3",
+    "typescript": "~7.0.2",
     "vitest": "^4.1.10"
   }
 }
