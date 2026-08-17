@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.1.2](https://github.com/odest/catalyzer/compare/v2.1.1...v2.1.2) (2026-08-17)
+
+
+### Build System
+
+* **deps:** bump mermaid from 11.16.0 to 11.16.1 ([#80](https://github.com/odest/catalyzer/issues/80)) ([01b418d](https://github.com/odest/catalyzer/commit/01b418d9d5430ee4e7c81ed7cec45a49ab2110e3))
+* **deps:** update dependencies across packages ([75163ce](https://github.com/odest/catalyzer/commit/75163ce22fbff4741c6db53352d2f8406f692406))
+* **deps:** upgrade lucide-react to v1.31.0 and add GitHub SVG ([a9b61cf](https://github.com/odest/catalyzer/commit/a9b61cf0561b541c35e3c266e580e4aececb966c))
+* **deps:** upgrade motion to v13, commander to v15, and execa to v10 ([a875934](https://github.com/odest/catalyzer/commit/a8759346c5b2b5e1c3c7906f798ddad400f895eb))
+* **deps:** upgrade typescript to v7.0.2 and @types/node to v26 ([c6e8602](https://github.com/odest/catalyzer/commit/c6e860290fa05a721c626dc1e160437fbaa711c0))
+
 ## [2.1.1](https://github.com/odest/catalyzer/compare/v2.1.0...v2.1.1) (2026-07-25)
 
 
