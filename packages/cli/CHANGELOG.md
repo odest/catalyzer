@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.4](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.3...create-catalyzer@v0.1.4) (2026-08-17)
+
+
+### Build System
+
+* **deps:** update dependencies across packages ([75163ce](https://github.com/odest/catalyzer/commit/75163ce22fbff4741c6db53352d2f8406f692406))
+* **deps:** upgrade motion to v13, commander to v15, and execa to v10 ([a875934](https://github.com/odest/catalyzer/commit/a8759346c5b2b5e1c3c7906f798ddad400f895eb))
+* **deps:** upgrade typescript to v7.0.2 and @types/node to v26 ([c6e8602](https://github.com/odest/catalyzer/commit/c6e860290fa05a721c626dc1e160437fbaa711c0))
+
 ## [0.1.3](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.2...create-catalyzer@v0.1.3) (2026-07-25)
 
 
