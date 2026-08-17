@@ -1,17 +1,17 @@
 "use client";
 
+import type { NavIcon } from "@workspace/core/config/navigation";
 import { useCommandPaletteStore } from "@workspace/core/stores/command-palette-store";
 import { useProfileDrawerStore } from "@workspace/core/stores/profile-drawer-store";
 import { useTranslations } from "@workspace/i18n";
 import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
 import { cn } from "@workspace/ui/lib/utils";
-import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import type { ComponentType } from "react";
 
 export interface MobileBottomNavItem {
   href?: string;
-  icon: LucideIcon;
+  icon: NavIcon;
   isActive?: boolean;
   title: string;
   translationKey: string;

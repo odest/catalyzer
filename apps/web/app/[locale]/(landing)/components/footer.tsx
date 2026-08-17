@@ -6,13 +6,9 @@ import { AnimatedContainer } from "@workspace/ui/components/landing/animated-con
 import { BorderBeam } from "@workspace/ui/components/landing/border-beam";
 import { Logo } from "@workspace/ui/components/landing/logo";
 import { TextHoverEffect } from "@workspace/ui/components/landing/text-hover-effect";
+import { Github } from "@workspace/ui/components/svgs/github";
 import { cn } from "@workspace/ui/lib/utils";
-import {
-  BugIcon,
-  GithubIcon,
-  GitPullRequestIcon,
-  MessageSquareIcon,
-} from "lucide-react";
+import { BugIcon, GitPullRequestIcon, MessageSquareIcon } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -75,7 +71,7 @@ const footerLinks: FooterSection[] = [
         title: "GitHub",
         href: siteConfig.links.github,
         isExternal: true,
-        icon: <GithubIcon className="h-4 w-4" />,
+        icon: <Github className="h-4 w-4" />,
       },
       {
         title: "Contribute",

@@ -1,5 +1,6 @@
 "use client";
 
+import type { NavIcon } from "@workspace/core/config/navigation";
 import { useTranslations } from "@workspace/i18n";
 import {
   Collapsible,
@@ -18,13 +19,13 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from "@workspace/ui/components/sidebar";
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import type { ComponentType } from "react";
 import { useCallback } from "react";
 
 interface MainNavItem {
   href?: string;
-  icon: LucideIcon;
+  icon: NavIcon;
   isActive?: boolean;
   items?: {
     title: string;

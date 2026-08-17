@@ -1,3 +1,4 @@
+import type { NavIcon } from "@workspace/core/config/navigation";
 import { useTranslations } from "@workspace/i18n";
 import {
   SidebarGroup,
@@ -7,13 +8,12 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@workspace/ui/components/sidebar";
-import type { LucideIcon } from "lucide-react";
 import type * as React from "react";
 import { type ComponentType, useCallback } from "react";
 
 interface SecondaryNavItem {
   external?: boolean;
-  icon: LucideIcon;
+  icon: NavIcon;
   title: string;
   translationKey: string;
   url: string;

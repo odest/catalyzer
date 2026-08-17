@@ -3,8 +3,9 @@
 import { siteConfig } from "@workspace/core/config/site";
 import { Button } from "@workspace/ui/components/button";
 import { Logo } from "@workspace/ui/components/landing/logo";
+import { Github } from "@workspace/ui/components/svgs/github";
 import { cn } from "@workspace/ui/lib/utils";
-import { Github, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 

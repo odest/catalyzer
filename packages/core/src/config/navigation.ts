@@ -1,9 +1,9 @@
 import { siteConfig } from "@workspace/core/config/site";
+import { Github } from "@workspace/ui/components/svgs/github";
 import {
   BadgeCheck,
   Bell,
   CreditCard,
-  Github,
   Home,
   LayoutDashboard,
   LogOut,
@@ -15,6 +15,9 @@ import {
   Sparkles,
   User,
 } from "lucide-react";
+import type { ComponentType, SVGProps } from "react";
+
+export type NavIcon = LucideIcon | ComponentType<SVGProps<SVGSVGElement>>;
 
 export interface UserNavItem {
   avatar: string;
@@ -30,7 +33,7 @@ export interface SubNavItem {
 
 export interface MainNavItem {
   href?: string;
-  icon: LucideIcon;
+  icon: NavIcon;
   isActive?: boolean;
   items?: SubNavItem[];
   title: string;
@@ -40,7 +43,7 @@ export interface MainNavItem {
 
 export interface MobileNavItem {
   href?: string;
-  icon: LucideIcon;
+  icon: NavIcon;
   title: string;
   translationKey: string;
   url: string;
@@ -48,21 +51,21 @@ export interface MobileNavItem {
 
 export interface SecondaryNavItem {
   external?: boolean;
-  icon: LucideIcon;
+  icon: NavIcon;
   title: string;
   translationKey: string;
   url: string;
 }
 
 export interface ProjectNavItem {
-  icon: LucideIcon;
+  icon: NavIcon;
   name: string;
   translationKey: string;
   url: string;
 }
 
 export interface ProfileNavItem {
-  icon: LucideIcon;
+  icon: NavIcon;
   title: string;
   translationKey: string;
   url: string;
