@@ -1,6 +1,6 @@
 {
   "name": "create-catalyzer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Scaffolding CLI for Catalyzer",
   "license": "MIT",
   "author": "odest",
