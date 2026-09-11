@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.1.3](https://github.com/odest/catalyzer/compare/v2.1.2...v2.1.3) (2026-09-11)
+
+
+### Bug Fixes
+
+* **lockfile:** remove duplicate package entries ([d04e31b](https://github.com/odest/catalyzer/commit/d04e31bf3564be8507e8fb1bb946c196a6be541b))
+
+
+### Build System
+
+* **deps-dev:** bump vitest from 4.1.10 to 4.1.11 ([#83](https://github.com/odest/catalyzer/issues/83)) ([bb56e5f](https://github.com/odest/catalyzer/commit/bb56e5f38348cd2072a83db3b747e251baf175bc))
+* **deps:** bump next from 16.3.1 to 16.3.3 ([#84](https://github.com/odest/catalyzer/issues/84)) ([4d840a1](https://github.com/odest/catalyzer/commit/4d840a1abf1bbf31b244008696a1cdf978978113))
+
 ## [2.1.2](https://github.com/odest/catalyzer/compare/v2.1.1...v2.1.2) (2026-08-17)
 
 
