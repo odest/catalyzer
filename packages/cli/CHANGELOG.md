@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.4...create-catalyzer@v0.1.5) (2026-09-11)
+
+
+### Build System
+
+* **deps-dev:** bump vitest from 4.1.10 to 4.1.11 ([#83](https://github.com/odest/catalyzer/issues/83)) ([bb56e5f](https://github.com/odest/catalyzer/commit/bb56e5f38348cd2072a83db3b747e251baf175bc))
+
 ## [0.1.4](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.3...create-catalyzer@v0.1.4) (2026-08-17)
 
 
