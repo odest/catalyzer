@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.6](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.5...create-catalyzer@v0.1.6) (2026-10-10)
+
+
+### Bug Fixes
+
+* **cli:** resolve type inference in exitIfCancelled for @clack/prompts 1.8 ([8607577](https://github.com/odest/catalyzer/commit/8607577f2f7d9b8e512991a0e0026dc13d28b311))
+
+
+### Build System
+
+* **deps:** update dependencies across workspaces ([2abf147](https://github.com/odest/catalyzer/commit/2abf147e6fd6ac908391a808c8b8255cb7ed5fa0))
+
 ## [0.1.5](https://github.com/odest/catalyzer/compare/create-catalyzer@v0.1.4...create-catalyzer@v0.1.5) (2026-09-11)
 
 
