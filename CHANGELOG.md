@@ -14,6 +14,20 @@
 * **deps:** bump next from 16.3.4 to 16.3.8 ([#87](https://github.com/odest/catalyzer/issues/87)) ([92c0274](https://github.com/odest/catalyzer/commit/92c027489793f233a6edc350761119cc8d79d4e9))
 * **deps:** update dependencies across workspaces ([2abf147](https://github.com/odest/catalyzer/commit/2abf147e6fd6ac908391a808c8b8255cb7ed5fa0))
 
+## [2.1.4](https://github.com/odest/catalyzer/compare/v2.1.3...v2.1.4) (2026-10-10)
+
+
+### Bug Fixes
+
+* **cli:** resolve type inference in exitIfCancelled for @clack/prompts 1.8 ([8607577](https://github.com/odest/catalyzer/commit/8607577f2f7d9b8e512991a0e0026dc13d28b311))
+* **web:** add root layout for ~offline page ([334da5d](https://github.com/odest/catalyzer/commit/334da5d9a68e6676c7effbbe320c59c46265e7ce))
+
+
+### Build System
+
+* **deps:** bump next from 16.3.4 to 16.3.8 ([#87](https://github.com/odest/catalyzer/issues/87)) ([92c0274](https://github.com/odest/catalyzer/commit/92c027489793f233a6edc350761119cc8d79d4e9))
+* **deps:** update dependencies across workspaces ([2abf147](https://github.com/odest/catalyzer/commit/2abf147e6fd6ac908391a808c8b8255cb7ed5fa0))
+
 ## [2.1.3](https://github.com/odest/catalyzer/compare/v2.1.2...v2.1.3) (2026-09-11)
 
 
