@@ -24,12 +24,12 @@ export interface ScaffoldOptions {
 }
 
 /** Exit gracefully when the user cancels a prompt. */
-function exitIfCancelled<T>(value: T | symbol): T {
+function exitIfCancelled<T>(value: T): Exclude<T, symbol> {
   if (isCancel(value)) {
     cancel("Setup cancelled.");
     process.exit(0);
   }
-  return value;
+  return value as Exclude<T, symbol>;
 }
 
 async function collectProjectInfo(defaultDir?: string) {
