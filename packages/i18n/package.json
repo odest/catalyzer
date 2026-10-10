@@ -20,17 +20,17 @@
     "clean": "rimraf .turbo"
   },
   "devDependencies": {
-    "@types/node": "^26.2.0",
-    "@types/react": "^19.2.18",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
     "@types/react-dom": "19.2.3",
     "@workspace/typescript-config": "workspace:*",
-    "next": "^16.3.8",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "next": "^16.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "typescript": "~7.0.2"
   },
   "dependencies": {
-    "next-intl": "^4.13.7"
+    "next-intl": "^4.14.9"
   },
   "peerDependencies": {
     "next": "^15.5.10 || ^16.0.0",
