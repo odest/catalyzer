@@ -15,15 +15,15 @@
     "@workspace/core": "workspace:*",
     "@workspace/i18n": "workspace:*",
     "@workspace/ui": "workspace:*",
-    "fumadocs-core": "^16.17.1",
-    "fumadocs-mdx": "^15.4.7",
-    "fumadocs-ui": "^16.17.1",
+    "fumadocs-core": "^16.17.8",
+    "fumadocs-mdx": "^15.4.10",
+    "fumadocs-ui": "^16.17.8",
     "lucide-react": "^1.55.0",
     "mermaid": "^11.17.2",
-    "next": "^16.4.0",
+    "next": "^16.4.3",
     "next-themes": "^0.4.6",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@serwist/turbopack": "^9.5.13",
@@ -34,6 +34,6 @@
     "esbuild": "^0.28.2",
     "serwist": "^9.5.13",
     "typescript": "~7.0.2",
-    "zod": "^4.6.5"
+    "zod": "^4.6.7"
   }
 }

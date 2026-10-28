@@ -12,18 +12,18 @@
     "clean": "rimraf dist .next .turbo src-tauri/target"
   },
   "dependencies": {
-    "@tauri-apps/api": "^2.12.3",
-    "@tauri-apps/plugin-opener": "^2.7.1",
+    "@tauri-apps/api": "^2.12.4",
+    "@tauri-apps/plugin-opener": "^2.7.2",
     "@workspace/core": "workspace:*",
     "@workspace/i18n": "workspace:*",
     "@workspace/ui": "workspace:*",
     "lucide-react": "^1.55.0",
-    "next": "^16.4.0",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2.12.2",
+    "@tauri-apps/cli": "^2.12.4",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
