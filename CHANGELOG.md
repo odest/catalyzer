@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.5](https://github.com/odest/catalyzer/compare/v2.1.4...v2.1.5) (2026-10-28)
+
+
+### Build System
+
+* **deps:** update dependencies across packages ([7a61a3f](https://github.com/odest/catalyzer/commit/7a61a3f74311f9480852c6cd047f940a3c822ac2))
+
 ## [2.1.4](https://github.com/odest/catalyzer/compare/v2.1.3...v2.1.4) (2026-10-10)
 
 
